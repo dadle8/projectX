@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" build-on-make="true" name="ProjectX_idea:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/ProjectX_idea_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="ProjectX_idea/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="ProjectX_idea" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Hibernate 5.2.3-5.2.3" />
+          <element id="library" level="project" name="gwt-user" />
+        </element>
+      </element>
+      <element id="gwt-compiler-output" facet="ProjectX_idea/gwt/GWT" />
+    </root>
+  </artifact>
+</component>
