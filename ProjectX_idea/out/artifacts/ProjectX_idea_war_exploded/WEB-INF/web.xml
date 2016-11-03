@@ -7,8 +7,20 @@
         <servlet-name>com.worker.MainModule MainRpcService</servlet-name>
         <servlet-class>com.worker.server.MainRpcServiceImpl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>com.worker.client.login.LoginModule LoginRpcService</servlet-name>
+        <servlet-class>com.worker.client.login.server.LoginRpcServiceImpl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>com.worker.MainModule MainRpcService</servlet-name>
         <url-pattern>/com.worker.MainModule/MainRpcService</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>com.worker.client.login.LoginModule LoginRpcService</servlet-name>
+        <url-pattern>/com.worker.client.login.LoginModule/LoginRpcService</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>LoginModule.html</welcome-file>
+    </welcome-file-list>
 </web-app>
