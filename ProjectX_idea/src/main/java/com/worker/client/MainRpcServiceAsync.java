@@ -1,6 +1,7 @@
 package com.worker.client;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.worker.shared.PersonsEntity;
 import com.worker.shared.UsersEntity;
 
 /**
@@ -8,5 +9,5 @@ import com.worker.shared.UsersEntity;
  */
 public interface MainRpcServiceAsync {
 
-    void save(UsersEntity user, AsyncCallback<UsersEntity> async);
+    void save(PersonsEntity user, AsyncCallback<PersonsEntity> async);
 }

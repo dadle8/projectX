@@ -1,15 +1,17 @@
 package com.worker.shared;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
-import java.util.Collection;
 
 /**
  * Created by Слава on 03.11.2016.
  */
 @Entity
 @Table(name = "persons", schema = "projectx")
-public class PersonsEntity {
+public class PersonsEntity implements Serializable {
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int idPerson;
     private String name;
     private String surname;
@@ -17,12 +19,11 @@ public class PersonsEntity {
     private String password;
     private Date lastdatelogin;
     private Integer isOnline;
-    private Collection<GeolocationsEntity> geolocationsesByIdPerson;
-    private Collection<MessagesEntity> messagesByIdPerson;
-    private Collection<MessagesEntity> messagesByIdPerson_0;
 
-    @Id
-    @Column(name = "id_person", nullable = false)
+    public PersonsEntity() {
+    }
+
+    @Column(name = "idperson", nullable = false)
     public int getIdPerson() {
         return idPerson;
     }
@@ -82,7 +83,7 @@ public class PersonsEntity {
     }
 
     @Basic
-    @Column(name = "is_online", nullable = true)
+    @Column(name = "isonline", nullable = true)
     public Integer getIsOnline() {
         return isOnline;
     }
@@ -120,32 +121,5 @@ public class PersonsEntity {
         result = 31 * result + (lastdatelogin != null ? lastdatelogin.hashCode() : 0);
         result = 31 * result + (isOnline != null ? isOnline.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "personsByIdPerson")
-    public Collection<GeolocationsEntity> getGeolocationsesByIdPerson() {
-        return geolocationsesByIdPerson;
-    }
-
-    public void setGeolocationsesByIdPerson(Collection<GeolocationsEntity> geolocationsesByIdPerson) {
-        this.geolocationsesByIdPerson = geolocationsesByIdPerson;
-    }
-
-    @OneToMany(mappedBy = "personsByIdFrom")
-    public Collection<MessagesEntity> getMessagesByIdPerson() {
-        return messagesByIdPerson;
-    }
-
-    public void setMessagesByIdPerson(Collection<MessagesEntity> messagesByIdPerson) {
-        this.messagesByIdPerson = messagesByIdPerson;
-    }
-
-    @OneToMany(mappedBy = "personsByIdTo")
-    public Collection<MessagesEntity> getMessagesByIdPerson_0() {
-        return messagesByIdPerson_0;
-    }
-
-    public void setMessagesByIdPerson_0(Collection<MessagesEntity> messagesByIdPerson_0) {
-        this.messagesByIdPerson_0 = messagesByIdPerson_0;
     }
 }

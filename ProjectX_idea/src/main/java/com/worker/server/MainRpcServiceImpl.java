@@ -2,10 +2,13 @@ package com.worker.server;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.worker.client.MainRpcService;
-import com.worker.shared.UsersEntity;
+import com.worker.shared.PersonsEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
+import java.util.List;
 
 /**
  * Created by Слава on 01.11.2016.
@@ -18,12 +21,16 @@ public class MainRpcServiceImpl extends RemoteServiceServlet implements MainRpcS
         sessionFactory = HiberUtil.getSessionFactory();
     }
 
-    public UsersEntity save(UsersEntity user) {
+    public PersonsEntity save(PersonsEntity user) {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
         session.save(user);
         tx.commit();
+        Query query = session.createQuery("from PersonsEntity where login = :paramName");
+        query.setParameter("paramName", user.getLogin());
+        List list = query.list();
         session.close();
-        return null;
+
+        return (PersonsEntity) list.get(0);
     }
 }

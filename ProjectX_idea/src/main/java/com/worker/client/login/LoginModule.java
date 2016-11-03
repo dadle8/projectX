@@ -1,9 +1,5 @@
-package com.worker.client.login.client;
+package com.worker.client.login;
 
-import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
 
 /**
@@ -15,7 +11,7 @@ public class LoginModule extends Composite {
     HorizontalPanel loginPanel = new HorizontalPanel();
     VerticalPanel loginrightPanel = new VerticalPanel();
     public final TextBox logintb = new TextBox();
-    final TextBox passwordlogintb = new TextBox();
+    public final TextBox passwordlogintb = new TextBox();
     public final Button loginbt = new Button("Log In");
 
     VerticalPanel loginleftPanel = new VerticalPanel();
@@ -24,11 +20,11 @@ public class LoginModule extends Composite {
 
     HorizontalPanel singupPanel = new HorizontalPanel();
     VerticalPanel singuprightPanel = new VerticalPanel();
-    final TextBox nametb = new TextBox();
-    final TextBox surnametb = new TextBox();
-    final TextBox newlogintb = new TextBox();
-    final TextBox passwordtb = new TextBox();
-    final Button createbt = new Button("Log In");
+    public final TextBox nametb = new TextBox();
+    public final TextBox surnametb = new TextBox();
+    public final TextBox newlogintb = new TextBox();
+    public final TextBox passwordtb = new TextBox();
+    public final Button createbt = new Button("Log In");
 
     VerticalPanel singupleftPanel = new VerticalPanel();
     final Label namelb = new Label("Name");
@@ -37,7 +33,6 @@ public class LoginModule extends Composite {
     final Label newpasswordlb = new Label("Password");
 
     public LoginModule() {
-
         /* Start create LoginPanel */
         loginrightPanel.add(logintb);
         loginrightPanel.add(passwordlogintb);
@@ -49,7 +44,6 @@ public class LoginModule extends Composite {
         loginPanel.add(loginleftPanel);
         loginPanel.add(loginrightPanel);
         /* End create LoginPanel */
-
 
         /* Start create singupPanel */
         singuprightPanel.add(nametb);
@@ -74,47 +68,6 @@ public class LoginModule extends Composite {
         welcomePanel.setSize("500px","250px");
 
         initWidget(welcomePanel);
-        //RootPanel.get("welcome").add(welcomePanel);
-        // final UsersEntity user = new UsersEntity();
-
-
-      /*  loginbt.addClickHandler(new ClickHandler() {
-
-            public void onClick(ClickEvent event) {
-                Window.alert("Work?");
-                user.setName(nametb.getText());
-                user.setPassword(passwordtb.getText());
-
-                rpcAsync.save(user, new AsyncCallback<UsersEntity>() {
-                    public void onFailure(Throwable caught) {
-                        Window.alert("Faild");
-                    }
-
-                    public void onSuccess(UsersEntity result) {
-                        Window.alert("Success");
-                    }
-                });
-            }
-        });
-
-        createbt.addClickHandler(new ClickHandler() {
-
-            public void onClick(ClickEvent event) {
-                Window.alert("Work?");
-               /* user.setName(nametb.getText());
-                user.setPassword(passwordtb.getText());
-
-                rpcAsync.save(user, new AsyncCallback<UsersEntity>() {
-                    public void onFailure(Throwable caught) {
-                        Window.alert("Faild");
-                    }
-
-                    public void onSuccess(UsersEntity result) {
-                        Window.alert("Success");
-                    }
-                });
-            }
-        }); */
     }
 
 }

@@ -4,9 +4,12 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-    <property name="connection.url">jdbc:mysql://localhost:3306/projectx</property>
+    <property name="connection.url">jdbc:mysql://localhost:3306/projectx?useUnicode=true&amp;useJDBCCompliantTimezoneS‌​hift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</property>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+
+    <property name="connection.username">admin</property>
+    <property name="connection.password">admin</property>
+
     <mapping class="com.worker.shared.GeolocationsEntity"/>
     <mapping class="com.worker.shared.MessagesEntity"/>
     <mapping class="com.worker.shared.PersonsEntity"/>

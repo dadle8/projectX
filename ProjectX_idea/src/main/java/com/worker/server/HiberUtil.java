@@ -15,7 +15,9 @@ public class HiberUtil {
     private static SessionFactory buildSessionFactory() {
         try {
             Configuration cfg = new Configuration();
-            cfg.addAnnotatedClass(com.worker.shared.UsersEntity.class);
+            cfg.addAnnotatedClass(com.worker.shared.PersonsEntity.class);
+            cfg.addAnnotatedClass(com.worker.shared.MessagesEntity.class);
+            cfg.addAnnotatedClass(com.worker.shared.GeolocationsEntity.class);
             cfg.configure();
 
             serviceRegistry = new StandardServiceRegistryBuilder().applySettings(

@@ -8,7 +8,9 @@ import java.sql.Date;
  */
 @Entity
 @Table(name = "messages", schema = "projectx")
-public class MessagesEntity {
+public class MessagesEntity implements Serializable{
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int idMessage;
     private String message;
     private Date dateMessage;
@@ -18,8 +20,7 @@ public class MessagesEntity {
     private PersonsEntity personsByIdFrom;
     private PersonsEntity personsByIdTo;
 
-    @Id
-    @Column(name = "id_message", nullable = false)
+    @Column(name = "idmessage", nullable = false)
     public int getIdMessage() {
         return idMessage;
     }
@@ -39,7 +40,7 @@ public class MessagesEntity {
     }
 
     @Basic
-    @Column(name = "date_message", nullable = false)
+    @Column(name = "datemessage", nullable = false)
     public Date getDateMessage() {
         return dateMessage;
     }
@@ -49,7 +50,7 @@ public class MessagesEntity {
     }
 
     @Basic
-    @Column(name = "is_read", nullable = false)
+    @Column(name = "isread", nullable = false)
     public int getIsRead() {
         return isRead;
     }
@@ -59,7 +60,7 @@ public class MessagesEntity {
     }
 
     @Basic
-    @Column(name = "id_from", nullable = true)
+    @Column(name = "idfrom", nullable = true)
     public Integer getIdFrom() {
         return idFrom;
     }
@@ -69,7 +70,7 @@ public class MessagesEntity {
     }
 
     @Basic
-    @Column(name = "id_to", nullable = true)
+    @Column(name = "idto", nullable = true)
     public Integer getIdTo() {
         return idTo;
     }
@@ -107,7 +108,7 @@ public class MessagesEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_from", referencedColumnName = "id_person")
+    @JoinColumn(name = "idfrom", referencedColumnName = "idperson")
     public PersonsEntity getPersonsByIdFrom() {
         return personsByIdFrom;
     }
@@ -117,7 +118,7 @@ public class MessagesEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_to", referencedColumnName = "id_person")
+    @JoinColumn(name = "idto", referencedColumnName = "idperson")
     public PersonsEntity getPersonsByIdTo() {
         return personsByIdTo;
     }

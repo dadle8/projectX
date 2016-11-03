@@ -8,7 +8,9 @@ import java.sql.Date;
  */
 @Entity
 @Table(name = "geolocations", schema = "projectx")
-public class GeolocationsEntity {
+public class GeolocationsEntity implements Serializable{
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int idGeolocation;
     private double geolocationX;
     private double geolocationY;
@@ -16,8 +18,7 @@ public class GeolocationsEntity {
     private Integer idPerson;
     private PersonsEntity personsByIdPerson;
 
-    @Id
-    @Column(name = "id_geolocation", nullable = false)
+    @Column(name = "idgeolocation", nullable = false)
     public int getIdGeolocation() {
         return idGeolocation;
     }
@@ -27,7 +28,7 @@ public class GeolocationsEntity {
     }
 
     @Basic
-    @Column(name = "geolocation_X", nullable = false, precision = 6)
+    @Column(name = "geolocationX", nullable = false, precision = 6)
     public double getGeolocationX() {
         return geolocationX;
     }
@@ -37,7 +38,7 @@ public class GeolocationsEntity {
     }
 
     @Basic
-    @Column(name = "geolocation_Y", nullable = false, precision = 6)
+    @Column(name = "geolocationY", nullable = false, precision = 6)
     public double getGeolocationY() {
         return geolocationY;
     }
@@ -47,7 +48,7 @@ public class GeolocationsEntity {
     }
 
     @Basic
-    @Column(name = "date_geolocation", nullable = false)
+    @Column(name = "dategeolocation", nullable = false)
     public Date getDateGeolocation() {
         return dateGeolocation;
     }
@@ -57,7 +58,7 @@ public class GeolocationsEntity {
     }
 
     @Basic
-    @Column(name = "id_person", nullable = true)
+    @Column(name = "idperson", nullable = true)
     public Integer getIdPerson() {
         return idPerson;
     }
@@ -98,7 +99,7 @@ public class GeolocationsEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_person", referencedColumnName = "id_person")
+    @JoinColumn(name = "idperson", referencedColumnName = "idperson")
     public PersonsEntity getPersonsByIdPerson() {
         return personsByIdPerson;
     }
