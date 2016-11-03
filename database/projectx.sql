@@ -3,20 +3,20 @@ use projectx;
 
 create table person 
 (
-    idperson INT auto_increment,
+	idperson INT auto_increment,
     name varchar(45) not null,
     surname varchar(45) not null,
     login varchar(45) not null,
     password varchar(45) not null,
     lastdatelogin DATE,
     isonline INT,
-    primary key(idperson)
+	primary key(idperson)
 );
 
 create table geolocations
 (
-    idgeolocation INT auto_increment,
-    geolocation geometry not null,
+	idgeolocation INT auto_increment,
+	geolocation geometry not null,
     date_geolocation date not null,
     idperson INT,
     primary key(idgeolocation),
@@ -25,7 +25,7 @@ create table geolocations
 
 create table messages
 (
-    idmessage INT auto_increment,
+	idmessage INT auto_increment,
     message VARCHAR(1024) not null,
     datemessage DATE not null,
     isread INT not null,
