@@ -18,58 +18,72 @@ public class Worker implements EntryPoint {
      * This is the entry point method.
      */
     public void onModuleLoad() {
-        final Button button = new Button("Click me");
-        final Label label = new Label("Text area");
-        final TextBox txtBox = new TextBox();
+        final FormPanel form = new FormPanel();
+        form.setEncoding(FormPanel.ENCODING_MULTIPART);
+        form.setMethod(FormPanel.METHOD_POST);
 
-        button.addClickHandler(new ClickHandler() {
+        VerticalPanel panel = new VerticalPanel();
+
+        final TextBox loginBox = new TextBox();
+        final PasswordTextBox passwordBox = new PasswordTextBox();
+        final Label label = new Label("SMTH is here.");
+
+        panel.add(loginBox);
+        panel.add(passwordBox);
+        panel.add(label);
+
+        panel.add(new Button("Submit", new ClickHandler() {
             public void onClick(ClickEvent event) {
-                if (txtBox.getText().equals("")) {
-                    label.setText("NULLable request.");
-                } else {
-                    WorkerService.App.getInstance().makeRequest(txtBox.getText(), new ListedAsyncCallback(label));
+                form.submit();
+            }
+        }));
+
+        form.setWidget(panel);
+
+        form.addSubmitHandler(new FormPanel.SubmitHandler() {
+            public void onSubmit(FormPanel.SubmitEvent event) {
+                if (loginBox.getText().length() == 0) {
+                    label.setText("Login field is empty!");
+                    event.cancel();
                 }
+                label.setText(loginBox.getText() + "</br>" + passwordBox.getValue() + "</br>" + passwordBox.getText() + "<hr>" + new MD5hashing().getMD5(passwordBox.getText()));
+                WorkerService.App.getInstance().Auth(loginBox.getText(), new MD5hashing().getMD5(passwordBox.getText()), new AuthAsyncCallBack(label));
             }
         });
 
-        // Assume that the host HTML has elements defined whose
-        // IDs are "slot1", "slot2".  In a real app, you probably would not want
-        // to hard-code IDs.  Instead, you could, for example, search for all
-        // elements with a particular CSS class and replace them with widgets.
-        //
-        RootPanel.get("slot1").add(txtBox);
-        RootPanel.get("slot2").add(button);
-        RootPanel.get("slot3").add(label);
+        form.addSubmitCompleteHandler(new FormPanel.SubmitCompleteHandler() {
+            public void onSubmitComplete(FormPanel.SubmitCompleteEvent event) {
+                //label.setText(event.getResults());
+            }
+        });
+
+        RootPanel.get("auth_form").add(form);
     }
 
-    private static class ListedAsyncCallback implements AsyncCallback<List<String>> {
+    private static class AuthAsyncCallBack implements AsyncCallback<Boolean> {
+
         private Label label;
 
-        //Can't catch syntax errors :: TODO
-
-        public ListedAsyncCallback(Label label) {
+        AuthAsyncCallBack(Label label) {
             this.label = label;
         }
 
-        public void onSuccess(List<String> ans) {
-            String formatedAns = "";
-            if (ans.isEmpty())
+        public void onSuccess(Boolean ans) {
+            if (ans)
             {
-                label.setText("NULLable answer.");
-                return;
+                label.setText("Accepted!");
             }
-            for(Object line : ans)
+            else
             {
-                System.out.println(line.toString());
-                formatedAns = formatedAns.concat(line.toString());
-                formatedAns = formatedAns.concat("</br>");
+                label.setText("Refused!");
             }
-            label.getElement().setInnerHTML(formatedAns);
             return;
         }
 
         public void onFailure(Throwable throwable) {
-            label.setText("Failed to receive answer from server!" + throwable.getCause().toString());
+            {
+                label.setText("SMTH goes wrong!");
+            }
             return;
         }
     }

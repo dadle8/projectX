@@ -11,15 +11,8 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
     // Implementation of sample interface method
     private HibernateWorker HW = new HibernateWorker();
 
-    public String getMessage(String msg) {
-        return "Client said: \"" + msg + "\"<br>Server answered: \"Hi!\"";
-    }
-
-    public String ShowMsg(String msg) {
-        return msg;
-    }
-
-    public List makeRequest(String req) {
-        return HW.makeRequest(req);
+    public boolean Auth(String login, String passwd)
+    {
+       return HW.Auth(login, passwd);
     }
 }

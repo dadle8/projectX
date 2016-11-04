@@ -1,41 +1,24 @@
 package com.worker.DB_hibernate;
 
 import org.hibernate.*;
+
 import java.util.List;
-import java.util.ArrayList;
 
 /**
  * Created by AsmodeusX on 29.10.2016.
  */
 public class HibernateWorker {
     private Session session = null;
-    private SessionFactory Factory = null;
+    private SessionFactory factory = HibUtil.getSessionFactory();
+
     public HibernateWorker () {
-        Factory = HibUtil.getSessionFactory();
-        session = Factory.openSession();
+        session = factory.openSession();
     }
 
-    public List<String> makeRequest(String req)
-    {
-        /*Transaction tx = session.beginTransaction();
-        SQLQuery */
-        List preans = new ArrayList();
-        List<String> ans = new ArrayList<String>();
-
-        try {
-            preans = this.session.createSQLQuery(req).list();
-        } catch (Throwable e)
-        {
-            throw new Error(e.toString());
-        }
-
-        if (!preans.isEmpty()) {
-
-            for (Object o : preans) {
-                ans.add(o.toString());
-            }
-        }
-        return ans;
+    public boolean Auth(String login, String passwd) {
+        String req = "SELECT password FROM UserEntity WHERE login=:login";
+        List ans = session.createQuery(req).setParameter("login", login).list();
+        return !(ans.isEmpty() || ans.size() > 1) && (ans.get(0).equals(passwd));
     }
 
     public void shutdown ()

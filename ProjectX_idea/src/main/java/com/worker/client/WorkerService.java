@@ -8,9 +8,7 @@ import java.util.List;
 @RemoteServiceRelativePath("WorkerService")
 public interface WorkerService extends RemoteService {
     // Sample interface method of remote interface
-    String getMessage(String msg);
-    String ShowMsg(String msg);
-    List<String> makeRequest(String req);
+    boolean Auth(String login, String passwd);
 
     /**
      * Utility/Convenience class.
