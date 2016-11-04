@@ -6,6 +6,9 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import java.io.FileInputStream;
+import java.util.Properties;
+
 public class HibUtil {
 
     private static SessionFactory sessionFactory = buildSessionFactory();
@@ -13,11 +16,12 @@ public class HibUtil {
 
     private static SessionFactory buildSessionFactory() {
         try {
-            Configuration cfg = new Configuration();
-            cfg.configure();
-            serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
-                    cfg.getProperties()).build();
-            sessionFactory = cfg.buildSessionFactory(serviceRegistry);
+            //Properties properties = new Properties();
+            //properties.load(new FileInputStream("src//main//resources//app.properties"));
+            Configuration configuration = new Configuration();
+            configuration.configure("hibernate.cfg.xml");
+            //configuration.addProperties(properties);
+            sessionFactory = configuration.buildSessionFactory();
             return sessionFactory;
         } catch (Throwable ex) {
             System.err.println("Initial SessionFactory creation failed." + ex);
