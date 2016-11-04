@@ -46,8 +46,9 @@ public class Worker implements EntryPoint {
                     label.setText("Login field is empty!");
                     event.cancel();
                 }
-                label.setText(loginBox.getText() + "</br>" + passwordBox.getValue() + "</br>" + passwordBox.getText() + "<hr>" + new MD5hashing().getMD5(passwordBox.getText()));
-                WorkerService.App.getInstance().Auth(loginBox.getText(), new MD5hashing().getMD5(passwordBox.getText()), new AuthAsyncCallBack(label));
+                String hash = new MD5hashing().getMD5(passwordBox.getText());
+                label.setText(loginBox.getText() + "</br>" + passwordBox.getValue() + "</br>" + passwordBox.getText() + "<hr>" + hash);
+                WorkerService.App.getInstance().Auth(loginBox.getText(), hash, new AuthAsyncCallBack(label));
             }
         });
 

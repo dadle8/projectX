@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.worker.DB_hibernate.UserEntity" table="user" schema="projectx">
+    <class name="com.worker.DB_classes.UserEntity" table="user" schema="projectx">
         <id name="id">
             <column name="id" sql-type="int(6) unsigned"/>
         </id>

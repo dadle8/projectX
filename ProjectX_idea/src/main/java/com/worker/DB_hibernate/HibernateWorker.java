@@ -16,8 +16,8 @@ public class HibernateWorker {
     }
 
     public boolean Auth(String login, String passwd) {
-        String req = "SELECT password FROM UserEntity WHERE login=:login";
-        List ans = session.createQuery(req).setParameter("login", login).list();
+        String req = "SELECT password FROM com.worker.UserEntity WHERE com.worker.UserEntity.login= 'root'";
+        List ans = session.createQuery(req)./*setParameter("login_field", login).*/list();
         return !(ans.isEmpty() || ans.size() > 1) && (ans.get(0).equals(passwd));
     }
 
