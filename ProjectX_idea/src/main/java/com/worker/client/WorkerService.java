@@ -5,8 +5,6 @@ import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import com.worker.DB_classes.UserEntity;
 
-import java.util.List;
-
 @RemoteServiceRelativePath("WorkerService")
 public interface WorkerService extends RemoteService {
     boolean Auth(String login, String passwd);

@@ -3,12 +3,12 @@ package com.worker.DB_managing; /**
  */
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
 
-public class HibUtil {
+import java.io.Serializable;
+
+public class HibUtil implements Serializable {
 
     private static SessionFactory sessionFactory = buildSessionFactory();
-    private static ServiceRegistry serviceRegistry;
 
     private static SessionFactory buildSessionFactory() {
         try {
@@ -21,7 +21,7 @@ public class HibUtil {
             return sessionFactory;
         } catch (Throwable ex) {
             System.err.println("Initial SessionFactory creation failed." + ex);
-            throw new ExceptionInInitializerError(ex);
+            throw new Error("Smth Goes wrong in sessionfactory!");
         }
     }
 

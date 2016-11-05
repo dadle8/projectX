@@ -1,12 +1,12 @@
 package com.worker.client;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.*;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.user.client.ui.*;
 import com.worker.DB_classes.UserEntity;
 
 import java.util.Date;
@@ -85,24 +85,28 @@ public class Worker implements EntryPoint {
                 {
                     public void onSuccess(UserEntity result)
                     {
+                        if (result == null)
+                        {
+                            Window.alert("Invalid login or password!");
+                        }
                         if (result.getLoggedIn() == 1)
                         {
                             RootPanel.get().clear();
-                            String sessionID = result.getSessionId();
-                            final long DURATION = 1000 * 60 * 60 * 24 * 1;
-                            Date expires = new Date(System.currentTimeMillis() + DURATION);
-                            Cookies.setCookie("sid", sessionID, expires, null, "/", false);
+                            //String sessionID = result.getSessionId();
+                            //final long DURATION = 1000 * 60 * 60 * 24 * 1;
+                            //Date expires = new Date(System.currentTimeMillis() + DURATION);
+                            //Cookies.setCookie("sid", sessionID, expires, null, "/", false);
                             Window.alert("Cookies were successduly set.");
                         } else
                         {
-                            Window.alert("Access Denied. Check your user-name and password_1.");
+                            Window.alert("Access Denied. Check your user-name and password.");
                         }
 
                     }
 
                     public void onFailure(Throwable caught)
                     {
-                        Window.alert("Access Denied. Check your user-name and password_2.");
+                        Window.alert("Access Denied. Failure.");
                     }
                 });
             }
@@ -120,12 +124,26 @@ public class Worker implements EntryPoint {
     private void displaySimpleWindow()
     {
         final Label label = new Label("HEYO!");
+        final Button btn = new Button("Logout");
+        btn.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+               WorkerService.App.getInstance().logout(new AsyncCallback<Void>() {
+                   public void onFailure(Throwable caught) {
+                       Window.alert("Logout failed.");
+                   }
+
+                   public void onSuccess(Void result) {
+                        Window.alert("Logout successful!");
+                   }
+               });
+            }
+        });
         RootPanel.get().add(label);
+        RootPanel.get().add(btn);
     }
 
     public void onModuleLoad() {
-
-        String sessionID = Cookies.getCookie("sid");
+        String sessionID = Cookies.getCookie("JSESSIONID");
         if (sessionID != null)
         {
             checkWithServerIfSessionIdIsStillLegal(sessionID);

@@ -8,6 +8,7 @@
     <source path="DB_classes"/>
     <source path="client"/>
     <source path="server"/>
+    <source path="DB_managing"/>
 
 
     <!-- Specify the app entry point class.                   -->

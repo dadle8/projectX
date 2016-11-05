@@ -1,6 +1,7 @@
 package com.worker.client;
 
-import java.security.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by AsmodeusX on 04.11.2016.

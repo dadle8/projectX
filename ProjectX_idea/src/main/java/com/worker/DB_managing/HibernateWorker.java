@@ -1,21 +1,19 @@
 package com.worker.DB_managing;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.impl.AsyncFragmentLoader;
-import com.google.gwt.user.client.Window;
 import com.worker.DB_classes.UserEntity;
-import org.hibernate.*;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Created by AsmodeusX on 29.10.2016.
  */
 public class HibernateWorker implements Serializable {
-    private SessionFactory factory = HibUtil.getSessionFactory();
+    private HibUtil HibUtils = new HibUtil();
+    private SessionFactory factory = HibUtils.getSessionFactory();
     public HibernateWorker () {
     }
 
