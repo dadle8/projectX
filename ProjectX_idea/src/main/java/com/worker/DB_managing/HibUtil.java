@@ -1,13 +1,9 @@
-package com.worker.DB_hibernate; /**
+package com.worker.DB_managing; /**
  * Created by AsmodeusX on 02.11.2016.
  */
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-
-import java.io.FileInputStream;
-import java.util.Properties;
 
 public class HibUtil {
 

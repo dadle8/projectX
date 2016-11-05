@@ -1,13 +1,15 @@
 package com.worker.client;
 
-import com.google.gwt.core.client.GWT;
-import com.worker.DB_hibernate.HibernateWorker;
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.user.client.Cookies;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
-import java.util.List;
+import com.worker.DB_classes.UserEntity;
+
+import java.util.Date;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>
@@ -17,7 +19,38 @@ public class Worker implements EntryPoint {
     /**
      * This is the entry point method.
      */
-    public void onModuleLoad() {
+
+    private void checkWithServerIfSessionIdIsStillLegal(String sessionID)
+    {
+        WorkerService.App.getInstance().loginFromSessionServer(new AsyncCallback<UserEntity>()
+        {
+            public void onFailure(Throwable caught)
+            {
+                displayLoginWindow();
+            }
+
+            public void onSuccess(UserEntity result)
+            {
+                if (result == null)
+                {
+                    displayLoginWindow();
+                } else
+                {
+                    if (result.getLoggedIn() == 1)
+                    {
+                        displaySimpleWindow();
+                    } else
+                    {
+                        displayLoginWindow();
+                    }
+                }
+            }
+
+        });
+    }
+
+    private void displayLoginWindow()
+    {
         final FormPanel form = new FormPanel();
         form.setEncoding(FormPanel.ENCODING_MULTIPART);
         form.setMethod(FormPanel.METHOD_POST);
@@ -48,7 +81,30 @@ public class Worker implements EntryPoint {
                 }
                 String hash = new MD5hashing().getMD5(passwordBox.getText());
                 label.setText(loginBox.getText() + "</br>" + passwordBox.getValue() + "</br>" + passwordBox.getText() + "<hr>" + hash);
-                WorkerService.App.getInstance().Auth(loginBox.getText(), hash, new AuthAsyncCallBack(label));
+                WorkerService.App.getInstance().loginServer(loginBox.getText(), hash, new AsyncCallback<UserEntity>()
+                {
+                    public void onSuccess(UserEntity result)
+                    {
+                        if (result.getLoggedIn() == 1)
+                        {
+                            RootPanel.get().clear();
+                            String sessionID = result.getSessionId();
+                            final long DURATION = 1000 * 60 * 60 * 24 * 1;
+                            Date expires = new Date(System.currentTimeMillis() + DURATION);
+                            Cookies.setCookie("sid", sessionID, expires, null, "/", false);
+                            Window.alert("Cookies were successduly set.");
+                        } else
+                        {
+                            Window.alert("Access Denied. Check your user-name and password_1.");
+                        }
+
+                    }
+
+                    public void onFailure(Throwable caught)
+                    {
+                        Window.alert("Access Denied. Check your user-name and password_2.");
+                    }
+                });
             }
         });
 
@@ -61,31 +117,20 @@ public class Worker implements EntryPoint {
         RootPanel.get("auth_form").add(form);
     }
 
-    private static class AuthAsyncCallBack implements AsyncCallback<Boolean> {
+    private void displaySimpleWindow()
+    {
+        final Label label = new Label("HEYO!");
+        RootPanel.get().add(label);
+    }
 
-        private Label label;
+    public void onModuleLoad() {
 
-        AuthAsyncCallBack(Label label) {
-            this.label = label;
-        }
-
-        public void onSuccess(Boolean ans) {
-            if (ans)
-            {
-                label.setText("Accepted!");
-            }
-            else
-            {
-                label.setText("Refused!");
-            }
-            return;
-        }
-
-        public void onFailure(Throwable throwable) {
-            {
-                label.setText("SMTH goes wrong!");
-            }
-            return;
+        String sessionID = Cookies.getCookie("sid");
+        if (sessionID != null)
+        {
+            checkWithServerIfSessionIdIsStillLegal(sessionID);
+        } else {
+            displayLoginWindow();
         }
     }
 }
