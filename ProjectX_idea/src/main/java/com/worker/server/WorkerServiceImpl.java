@@ -9,6 +9,7 @@ import com.worker.client.WorkerService;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerService {
     // Implementation of sample interface method
@@ -19,7 +20,12 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
         return false;
     }
 
-    public String generateNewSessionId()
+    public UserEntity getUserFromCurrentSession()
+    {
+        return (UserEntity)this.getThreadLocalRequest().getSession().getAttribute("user");
+    }
+
+    private String generateNewSessionId()
     {
         serialVersionUID++;
         return Long.toString(serialVersionUID);
@@ -27,16 +33,20 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
 
     public UserEntity loginServer(String login, String passwd)
     {
-        UserEntity user = new UserEntity();
-        if (HW.Auth(login, passwd)) {
-            user = HW.getUserByLogin(login);
-        } else
-        {
+        UserEntity user = HW.getUserByLogin(login);
+        if (user == null)
             return null;
+        if (user.getPassword().equals(passwd)) {
+            System.err.println("Login:     " + user.getLogin());
+            System.err.println("InPasswd:  " + passwd);
+            System.err.println("CmpPasswd: " + user.getPassword());
+            user.setLoggedIn((byte) 1);
+            storeUserInSession(user);
+
+            String SessionID = generateNewSessionId();
+            System.err.println("Session:   " + SessionID);
+            user.setSessionId(SessionID);
         }
-        //store the user/session id
-        user.setLoggedIn((byte)1);
-        storeUserInSession(user);
         return user;
     }
 
@@ -48,7 +58,6 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
     public void logout()
     {
         deleteUserFromSession();
-        Cookies.removeCookie("JSESSIONID");
     }
 
     public boolean changePassword(String name, String newPassword)

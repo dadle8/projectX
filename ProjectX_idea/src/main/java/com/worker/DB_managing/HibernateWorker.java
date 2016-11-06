@@ -13,38 +13,39 @@ import java.util.List;
  */
 public class HibernateWorker implements Serializable {
     private HibUtil HibUtils = new HibUtil();
-    private SessionFactory factory = HibUtils.getSessionFactory();
+    private SessionFactory factory = HibUtil.getSessionFactory();
     public HibernateWorker () {
     }
 
-    public boolean Auth(String login, String passwd) {
+    /*public boolean Auth(String login, String passwd) {
         Session session = factory.openSession();
         String req = "SELECT U.password FROM com.worker.DB_classes.UserEntity U WHERE U.login= :login";
         Query q = session.createQuery(req);
         q.setParameter("login", login);
         List ans = q.list();
         session.close();
+        if (ans.isEmpty())
+            return false;
         System.err.println("In:  " + ans.get(0));
         System.err.println("Out: " + passwd);
-        return !(ans.isEmpty() || ans.size() > 1) && (ans.get(0).equals(passwd));
-    }
+        return (ans.size() == 1 && ans.get(0).equals(passwd));
+    }*/
 
     public UserEntity getUserByLogin(String login) {
-        Session session = factory.openSession();
-        UserEntity user = new UserEntity();
         //Костыль
+        Session session = factory.openSession();
         List ids = session.createQuery("SELECT U.id FROM com.worker.DB_classes.UserEntity U WHERE U.login= :login").setParameter("login", login).list();
         System.err.println(ids.size());
         //Костыль
-        if (!ids.isEmpty())
+        if (!ids.isEmpty() || ids.size() > 1)
         {
-            System.err.println(ids.get(0).toString());
-            Integer currentId = (Integer)ids.get(0);
-            user = session.get(UserEntity.class, currentId);
-            System.err.println(user.getLogin());
+            Integer currentId = (Integer) ids.get(0);
+            UserEntity user = session.get(UserEntity.class, currentId);
+            session.close();
+            return user;
         }
         session.close();
-        return user;
+        return null;
     }
 
     public void shutdown ()

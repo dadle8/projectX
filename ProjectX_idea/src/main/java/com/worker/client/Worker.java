@@ -1,6 +1,7 @@
 package com.worker.client;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Cookies;
@@ -38,7 +39,7 @@ public class Worker implements EntryPoint {
                 {
                     if (result.getLoggedIn() == 1)
                     {
-                        displaySimpleWindow();
+                        displayProfileWindow();
                     } else
                     {
                         displayLoginWindow();
@@ -85,18 +86,13 @@ public class Worker implements EntryPoint {
                 {
                     public void onSuccess(UserEntity result)
                     {
-                        if (result == null)
+                        if (result != null && result.getLoggedIn() == 1)
                         {
-                            Window.alert("Invalid login or password!");
-                        }
-                        if (result.getLoggedIn() == 1)
-                        {
-                            RootPanel.get().clear();
-                            //String sessionID = result.getSessionId();
-                            //final long DURATION = 1000 * 60 * 60 * 24 * 1;
-                            //Date expires = new Date(System.currentTimeMillis() + DURATION);
-                            //Cookies.setCookie("sid", sessionID, expires, null, "/", false);
-                            Window.alert("Cookies were successduly set.");
+                            final long DURATION = 1000 * 60 * 60 * 24; //24 hours
+                            Date expires = new Date(System.currentTimeMillis() + DURATION);
+                            Cookies.setCookie("longSID", result.getSessionId(), expires, null, "/", false);
+                            Window.alert("Access Granted. Cookie was set. Cookie = " + Cookies.getCookie("longSID"));
+                            Window.Location.reload();
                         } else
                         {
                             Window.alert("Access Denied. Check your user-name and password.");
@@ -106,7 +102,7 @@ public class Worker implements EntryPoint {
 
                     public void onFailure(Throwable caught)
                     {
-                        Window.alert("Access Denied. Failure.");
+                        Window.alert("Access Denied. Failure." + caught.getMessage());
                     }
                 });
             }
@@ -121,29 +117,14 @@ public class Worker implements EntryPoint {
         RootPanel.get("auth_form").add(form);
     }
 
-    private void displaySimpleWindow()
+    private void displayProfileWindow()
     {
-        final Label label = new Label("HEYO!");
-        final Button btn = new Button("Logout");
-        btn.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-               WorkerService.App.getInstance().logout(new AsyncCallback<Void>() {
-                   public void onFailure(Throwable caught) {
-                       Window.alert("Logout failed.");
-                   }
-
-                   public void onSuccess(Void result) {
-                        Window.alert("Logout successful!");
-                   }
-               });
-            }
-        });
-        RootPanel.get().add(label);
-        RootPanel.get().add(btn);
+        ProfilePage NewPage = new ProfilePage();
+        NewPage.Build();
     }
 
     public void onModuleLoad() {
-        String sessionID = Cookies.getCookie("JSESSIONID");
+        String sessionID = Cookies.getCookie("longSID");
         if (sessionID != null)
         {
             checkWithServerIfSessionIdIsStillLegal(sessionID);
