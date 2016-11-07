@@ -36,10 +36,10 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
         UserEntity user = HW.getUserByLogin(login);
         if (user == null)
             return null;
+        System.err.println("Login:     " + user.getLogin());
+        System.err.println("InPasswd:  " + passwd);
+        System.err.println("CmpPasswd: " + user.getPassword());
         if (user.getPassword().equals(passwd)) {
-            System.err.println("Login:     " + user.getLogin());
-            System.err.println("InPasswd:  " + passwd);
-            System.err.println("CmpPasswd: " + user.getPassword());
             user.setLoggedIn((byte) 1);
             storeUserInSession(user);
 

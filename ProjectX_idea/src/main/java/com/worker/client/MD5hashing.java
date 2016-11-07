@@ -14,11 +14,11 @@ public class MD5hashing {
         try {
             MessageDigest m = MessageDigest.getInstance("MD5");
             m.reset();
-
             m.update(str.getBytes());
             byte msgDigest[] = m.digest();
+
             for (byte aMsgDigest : msgDigest) {
-                hexString.append(Integer.toHexString(0xFF & aMsgDigest));
+                hexString.append(Integer.toHexString((0xFF & aMsgDigest) | 0x100).substring(1, 3));
             }
 
         } catch (NoSuchAlgorithmException e) {
