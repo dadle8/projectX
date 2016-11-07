@@ -78,7 +78,7 @@ public class LoginPage {
                             Date expires = new Date(System.currentTimeMillis() + DURATION);
                             Cookies.setCookie("longSID", result.getSessionId(), expires, null, "/", false);
                             Window.alert("Access Granted. Cookie was set. Cookie = " + Cookies.getCookie("longSID"));
-                            generateNextPage(2);
+                            generateNextPage(3);
                         } else {
                             Window.alert("Access Denied. Check your user-name and password.");
                         }

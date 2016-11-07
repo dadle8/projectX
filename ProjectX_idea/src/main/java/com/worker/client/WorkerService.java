@@ -4,6 +4,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import com.worker.DB_classes.UserEntity;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,7 +17,7 @@ public interface WorkerService extends RemoteService {
     boolean changePassword(String name, String newPassword);
     UserEntity getUserFromCurrentSession();
     void logout();
-
+    List getAllUsers();
     public static class App {
         private static WorkerServiceAsync ourInstance = GWT.create(WorkerService.class);
         public static synchronized WorkerServiceAsync getInstance() {

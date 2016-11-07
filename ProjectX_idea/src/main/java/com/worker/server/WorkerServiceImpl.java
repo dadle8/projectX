@@ -5,6 +5,8 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.worker.DB_classes.UserEntity;
 import com.worker.DB_managing.HibernateWorker;
 import com.worker.client.WorkerService;
+import org.hibernate.Session;
+import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -63,6 +65,10 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
     public void logout()
     {
         deleteUserFromSession();
+    }
+
+    public List getAllUsers() {
+        return HW.getAllUser();
     }
 
     public boolean changePassword(String name, String newPassword)

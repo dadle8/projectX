@@ -9,6 +9,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 import com.worker.DB_classes.UserEntity;
 
+import javax.enterprise.inject.New;
 import javax.servlet.http.Cookie;
 import java.util.*;
 
@@ -44,6 +45,12 @@ public class Worker implements EntryPoint {
         NewPage.Build();
     }
 
+    private void displayChatWindow()
+    {
+        ChatPage NewPage = new ChatPage();
+        NewPage.Build();
+    }
+
     private void buildNewPage(Integer id)
     {
         Cookies.setCookie("NextPage", id.toString());
@@ -52,6 +59,7 @@ public class Worker implements EntryPoint {
             // 0: login page
             // 1: register page
             // 2: profile page
+            // 3: chat page
             case 0:
                 displayLoginWindow();
                 break;
@@ -60,6 +68,9 @@ public class Worker implements EntryPoint {
                 break;
             case 2:
                 displayProfileWindow();
+                break;
+            case 3:
+                displayChatWindow();
                 break;
             default:
                 displayLoginWindow();

@@ -1,5 +1,6 @@
 package com.worker.DB_managing;
 
+import com.sun.org.apache.bcel.internal.generic.RET;
 import com.worker.DB_classes.UserEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -15,6 +16,22 @@ public class HibernateWorker implements Serializable {
     private HibUtil HibUtils = new HibUtil();
     private SessionFactory factory = HibUtil.getSessionFactory();
     public HibernateWorker () {
+    }
+
+    public List getAllUser()
+    {
+        Session session = factory.openSession();
+        List users = session.createQuery("SELECT U.login FROM com.worker.DB_classes.UserEntity U").list();
+        System.err.println(users.size());
+
+        if(!users.isEmpty())
+        {
+            session.close();
+            return users;
+        }
+
+        session.close();
+        return null;
     }
 
     public UserEntity getUserByLogin(String login) {
