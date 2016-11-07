@@ -15,5 +15,5 @@ public interface WorkerServiceAsync {
     void logout(AsyncCallback<Void> async);
     void getUserFromCurrentSession(AsyncCallback<UserEntity> async);
 
-    void getAllUsers(AsyncCallback<List> async);
+    void getAllUsers(String login, AsyncCallback<List> async);
 }

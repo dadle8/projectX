@@ -17,7 +17,7 @@ public interface WorkerService extends RemoteService {
     boolean changePassword(String name, String newPassword);
     UserEntity getUserFromCurrentSession();
     void logout();
-    List getAllUsers();
+    List getAllUsers(String login);
     public static class App {
         private static WorkerServiceAsync ourInstance = GWT.create(WorkerService.class);
         public static synchronized WorkerServiceAsync getInstance() {

@@ -40,11 +40,10 @@ public class ChatPage {
             }
 
             public void onSuccess(UserEntity user) {
-                setUsers();
-
                 CurrentUser = user;
                 if (CurrentUser != null) {
                     setElements();
+                    setUsers(CurrentUser.getLogin());
                     setHandlers();
                     RootPanel.get().clear();
                     RootPanel.get().add(MakeWrapper());
@@ -54,9 +53,9 @@ public class ChatPage {
 
     }
 
-    private void setUsers()
+    private void setUsers(String login)
     {
-        WorkerService.App.getInstance().getAllUsers(new AsyncCallback<List>() {
+        WorkerService.App.getInstance().getAllUsers(login,new AsyncCallback<List>() {
             public void onFailure(Throwable caught) {
                 Window.alert("SMTH IS WRONG");
             }

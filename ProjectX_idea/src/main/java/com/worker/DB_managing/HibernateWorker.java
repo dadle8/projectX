@@ -18,10 +18,10 @@ public class HibernateWorker implements Serializable {
     public HibernateWorker () {
     }
 
-    public List getAllUser()
+    public List getAllUser(String login)
     {
         Session session = factory.openSession();
-        List users = session.createQuery("SELECT U.login FROM com.worker.DB_classes.UserEntity U").list();
+        List users = session.createQuery("SELECT U.login FROM com.worker.DB_classes.UserEntity U WHERE U.login!= :login").setParameter("login",login).list();
         System.err.println(users.size());
 
         if(!users.isEmpty())

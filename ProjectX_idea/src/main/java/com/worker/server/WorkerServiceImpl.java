@@ -67,8 +67,8 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
         deleteUserFromSession();
     }
 
-    public List getAllUsers() {
-        return HW.getAllUser();
+    public List getAllUsers(String login) {
+        return HW.getAllUser(login);
     }
 
     public boolean changePassword(String name, String newPassword)
