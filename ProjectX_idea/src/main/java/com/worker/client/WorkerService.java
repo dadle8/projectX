@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 public interface WorkerService extends RemoteService {
     boolean Auth(String login, String passwd);
     UserEntity loginServer(String login ,String passwd);
+    Boolean registerNewUser(String login, String passwd, String eMail);
     UserEntity loginFromSessionServer();
     boolean changePassword(String name, String newPassword);
     UserEntity getUserFromCurrentSession();

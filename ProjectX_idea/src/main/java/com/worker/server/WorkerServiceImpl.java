@@ -50,6 +50,11 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
         return user;
     }
 
+    public Boolean registerNewUser(String login, String passwd, String eMail)
+    {
+        return HW.registerNewUser(login, passwd, eMail);
+    }
+
     public UserEntity loginFromSessionServer()
     {
         return getUserAlreadyFromSession();

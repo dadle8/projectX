@@ -21,7 +21,7 @@
             <column name="LoggedIn" sql-type="tinyint(1)"/>
         </property>
         <property name="sessionId">
-            <column name="SessionId" sql-type="varchar(16)" length="16" not-null="true"/>
+            <column name="SessionId" sql-type="varchar(16)" length="16"/>
         </property>
     </class>
 </hibernate-mapping>

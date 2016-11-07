@@ -17,20 +17,6 @@ public class HibernateWorker implements Serializable {
     public HibernateWorker () {
     }
 
-    /*public boolean Auth(String login, String passwd) {
-        Session session = factory.openSession();
-        String req = "SELECT U.password FROM com.worker.DB_classes.UserEntity U WHERE U.login= :login";
-        Query q = session.createQuery(req);
-        q.setParameter("login", login);
-        List ans = q.list();
-        session.close();
-        if (ans.isEmpty())
-            return false;
-        System.err.println("In:  " + ans.get(0));
-        System.err.println("Out: " + passwd);
-        return (ans.size() == 1 && ans.get(0).equals(passwd));
-    }*/
-
     public UserEntity getUserByLogin(String login) {
         //Костыль
         Session session = factory.openSession();
@@ -46,6 +32,26 @@ public class HibernateWorker implements Serializable {
         }
         session.close();
         return null;
+    }
+
+    public Boolean registerNewUser(String login, String passwd, String eMail)
+    {
+        if (getUserByLogin(login) != null) {
+            return false;
+        }
+
+        Session session = factory.openSession();
+        session.beginTransaction();
+
+        UserEntity newUser = new UserEntity();
+        newUser.setLogin(login);
+        newUser.setPassword(passwd);
+        newUser.setEmail(eMail);
+
+        session.save(newUser);
+        session.getTransaction().commit();
+        session.close();
+        return true;
     }
 
     public void shutdown ()

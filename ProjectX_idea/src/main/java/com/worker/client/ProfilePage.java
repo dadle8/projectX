@@ -24,6 +24,12 @@ public class ProfilePage {
 
     }
 
+    private void generateNextPage(Integer id)
+    {
+        Cookies.setCookie("NextPage", id.toString());
+        Window.Location.reload();
+    }
+
     public void Build()
     {
         WorkerService.App.getInstance().getUserFromCurrentSession(new AsyncCallback<UserEntity>() {
@@ -63,7 +69,7 @@ public class ProfilePage {
                     public void onSuccess(Void result) {
                         Cookies.removeCookie("longSID");
                         Window.alert("Logout successful!");
-                        Window.Location.reload();
+                        generateNextPage(0);
                     }
                 });
             }

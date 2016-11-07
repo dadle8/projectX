@@ -58,7 +58,7 @@ public class UserEntity implements IsSerializable {
     }
 
     @Basic
-    @Column(name = "LoggedIn", nullable = false)
+    @Column(name = "LoggedIn", nullable = true)
     public byte getLoggedIn() {
         return loggedIn;
     }
