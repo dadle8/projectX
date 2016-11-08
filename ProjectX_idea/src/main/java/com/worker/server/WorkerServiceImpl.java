@@ -71,6 +71,10 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
         return HW.getAllUser(login);
     }
 
+    public Boolean saveNewMessage(String message, Integer idfrom, String loginAddressee) {
+        return HW.saveNewMessage(message,idfrom,loginAddressee);
+    }
+
     public boolean changePassword(String name, String newPassword)
     {
         // change password logic

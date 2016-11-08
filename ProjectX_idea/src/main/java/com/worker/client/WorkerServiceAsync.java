@@ -16,4 +16,6 @@ public interface WorkerServiceAsync {
     void getUserFromCurrentSession(AsyncCallback<UserEntity> async);
 
     void getAllUsers(String login, AsyncCallback<List> async);
+
+    void saveNewMessage(String message, Integer idfrom, String loginAddressee, AsyncCallback<Boolean> async);
 }

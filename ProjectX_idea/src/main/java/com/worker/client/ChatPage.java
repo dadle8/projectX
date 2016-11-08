@@ -57,7 +57,7 @@ public class ChatPage {
     {
         WorkerService.App.getInstance().getAllUsers(login,new AsyncCallback<List>() {
             public void onFailure(Throwable caught) {
-                Window.alert("SMTH IS WRONG");
+                Window.alert("SMTH IS WRONG IN getAllUsers");
             }
 
             public void onSuccess(List result) {
@@ -84,12 +84,9 @@ public class ChatPage {
         message = new TextBox();
         btn = new Button("Send");
 
-
         chat.add(messages);
         chat.add(message);
         chat.add(btn);
-
-
         chat.setVisible(false);
     }
 
@@ -105,6 +102,21 @@ public class ChatPage {
         btnpp.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 generateNextPage(2);
+            }
+        });
+
+        btn.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                if(!(message.getText().length() == 0))
+                    WorkerService.App.getInstance().saveNewMessage(message.getText(), CurrentUser.getId(), users.getSelectedItemText(), new AsyncCallback<Boolean>() {
+                        public void onFailure(Throwable caught) {
+                            Window.alert("SMTH IS WRONG IN saveNewMessage");
+                        }
+
+                        public void onSuccess(Boolean result) {
+                            messages.setHTML(messages.getHTML() + "<br>" + message.getText());
+                        }
+                    });
             }
         });
     }

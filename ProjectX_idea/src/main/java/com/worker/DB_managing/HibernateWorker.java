@@ -1,12 +1,15 @@
 package com.worker.DB_managing;
 
-import com.sun.org.apache.bcel.internal.generic.RET;
+import com.google.gwt.i18n.client.DateTimeFormat;
+import com.worker.DB_classes.MessagesEntity;
 import com.worker.DB_classes.UserEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -66,6 +69,27 @@ public class HibernateWorker implements Serializable {
         newUser.setEmail(eMail);
 
         session.save(newUser);
+        session.getTransaction().commit();
+        session.close();
+        return true;
+    }
+
+    public Boolean saveNewMessage(String message, Integer idfrom, String loginAddressee)
+    {
+        UserEntity userAddressee = getUserByLogin(loginAddressee);
+        //java.util.Date dd = new java.util.Date();
+        Date d = new Date(new java.util.Date().getTime());
+        Session session = factory.openSession();
+        session.beginTransaction();
+
+        MessagesEntity newMessage = new MessagesEntity();
+        newMessage.setMessage(message);
+        newMessage.setDateMessage(d);
+        newMessage.setIdfrom(idfrom);
+        newMessage.setIdto(userAddressee.getId());
+        newMessage.setIsread(0);
+
+        session.save(newMessage);
         session.getTransaction().commit();
         session.close();
         return true;
