@@ -12,7 +12,7 @@
             <column name="message" sql-type="varchar(32)" length="1024"/>
         </property>
         <property name="dateMessage">
-            <column name="dateMessage" sql-type="date"/>
+            <column name="dateMessage" sql-type="datetime"/>
         </property>
         <property name="isread">
             <column name="isread" sql-type="tinyint(1)"/>

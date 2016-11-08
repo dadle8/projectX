@@ -1,14 +1,17 @@
 package com.worker.DB_managing;
 
 import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.i18n.client.NumberFormat;
 import com.worker.DB_classes.MessagesEntity;
 import com.worker.DB_classes.UserEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import sun.text.resources.cldr.FormatData;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -77,14 +80,12 @@ public class HibernateWorker implements Serializable {
     public Boolean saveNewMessage(String message, Integer idfrom, String loginAddressee)
     {
         UserEntity userAddressee = getUserByLogin(loginAddressee);
-        //java.util.Date dd = new java.util.Date();
-        Date d = new Date(new java.util.Date().getTime());
         Session session = factory.openSession();
         session.beginTransaction();
 
         MessagesEntity newMessage = new MessagesEntity();
         newMessage.setMessage(message);
-        newMessage.setDateMessage(d);
+        newMessage.setDateMessage(new Timestamp(new java.util.Date().getTime()));
         newMessage.setIdfrom(idfrom);
         newMessage.setIdto(userAddressee.getId());
         newMessage.setIsread(0);

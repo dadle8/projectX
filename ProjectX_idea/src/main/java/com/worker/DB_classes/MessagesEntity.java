@@ -3,7 +3,7 @@ package com.worker.DB_classes;
 import com.google.gwt.user.client.rpc.IsSerializable;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by Слава on 08.11.2016.
@@ -13,7 +13,7 @@ import java.sql.Date;
 public class MessagesEntity implements IsSerializable {
     private int id;
     private String message;
-    private Date dateMessage;
+    private Timestamp dateMessage;
     private int isread;
     private int idfrom;
     private int idto;
@@ -40,11 +40,11 @@ public class MessagesEntity implements IsSerializable {
 
     @Basic
     @Column(name = "datemessage", nullable = false)
-    public Date getDateMessage() {
+    public Timestamp getDateMessage() {
         return dateMessage;
     }
 
-    public void setDateMessage(Date dateMessage) {
+    public void setDateMessage(Timestamp dateMessage) {
         this.dateMessage = dateMessage;
     }
 
