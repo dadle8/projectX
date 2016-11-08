@@ -3,7 +3,7 @@ use projectx;
 
 create table user
 (
-	id int auto_increment,
+    id int auto_increment,
     login varchar(32) not null,
     password varchar(32) not null,
     email varchar(32),
@@ -14,7 +14,7 @@ create table user
 
 create table messages
 (
-	id INT auto_increment,
+    id INT auto_increment,
     message VARCHAR(1024) not null,
     datemessage DATE not null,
     isread tinyint(1) not null,
@@ -27,8 +27,8 @@ create table messages
 
 create table geolocations
 (
-	id INT auto_increment,
-	geolocationX float(10,6) not null,
+    id INT auto_increment,
+    geolocationX float(10,6) not null,
     geolocationY float(10,6) not null,
     dategeolocation date not null,
     iduser INT,
