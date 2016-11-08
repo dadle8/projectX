@@ -1,5 +1,6 @@
 create database projectx;
 use projectx;
+Set global time_zone="+3:00";
 
 create table user
 (
