@@ -1,37 +1,37 @@
 create database projectx;
 use projectx;
 
-create table person 
+create table user
 (
-	idperson INT auto_increment,
-    name varchar(45) not null,
-    surname varchar(45) not null,
-    login varchar(45) not null,
-    password varchar(45) not null,
-    lastdatelogin DATE,
-    isonline INT,
-	primary key(idperson)
-);
-
-create table geolocations
-(
-	idgeolocation INT auto_increment,
-	geolocation geometry not null,
-    date_geolocation date not null,
-    idperson INT,
-    primary key(idgeolocation),
-    FOREIGN KEY (idperson) REFERENCES person (idperson)
+	id int auto_increment,
+    login varchar(32) not null,
+    password varchar(32) not null,
+    email varchar(32),
+    loggedIn tinyint(1) not null,
+    sessionId varchar(16),
+    primary key(id)
 );
 
 create table messages
 (
-	idmessage INT auto_increment,
+	id INT auto_increment,
     message VARCHAR(1024) not null,
     datemessage DATE not null,
-    isread INT not null,
-    idfrom INT,
-    idto INT,
-    primary key(idmessage),
-    FOREIGN KEY (idfrom) REFERENCES person (idperson),
-    FOREIGN KEY (idto) REFERENCES person (idperson)
+    isread tinyint(1) not null,
+    idfrom INT not null,
+    idto INT not null,
+    primary key(id),
+    FOREIGN KEY (idfrom) REFERENCES user (id),
+    FOREIGN KEY (idto) REFERENCES user (id)
+);
+
+create table geolocations
+(
+	id INT auto_increment,
+	geolocationX float(10,6) not null,
+    geolocationY float(10,6) not null,
+    dategeolocation date not null,
+    iduser INT,
+    primary key(id),
+    FOREIGN KEY (iduser) REFERENCES user (id)
 );
