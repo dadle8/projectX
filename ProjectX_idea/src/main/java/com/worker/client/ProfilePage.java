@@ -16,8 +16,8 @@ public class ProfilePage {
     private Label Loginlabel = null;
     private Label Passwordlabel = null;
     private Label Emaillabel = null;
-    private Button btn = null;
     private static UserEntity CurrentUser = null;
+    private MenuWidget Menu = new MenuWidget();
 
     public ProfilePage()
     {
@@ -54,35 +54,19 @@ public class ProfilePage {
         this.Loginlabel =    new Label("Login:    " + CurrentUser.getLogin());
         this.Passwordlabel = new Label("Password: " + CurrentUser.getPassword());
         this.Emaillabel =    new Label("eMail:    " + CurrentUser.getEmail());
-        this.btn =           new Button("Logout");
     }
 
     private void setHandlers()
     {
-        this.btn.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                WorkerService.App.getInstance().logout(new AsyncCallback<Void>() {
-                    public void onFailure(Throwable caught) {
-                        Window.alert("Logout failed.");
-                    }
-
-                    public void onSuccess(Void result) {
-                        Cookies.removeCookie("longSID");
-                        Window.alert("Logout successful!");
-                        generateNextPage(0);
-                    }
-                });
-            }
-        });
     }
 
     private VerticalPanel MakeWrapper()
     {
         VerticalPanel Wrapper = new VerticalPanel();
+        Wrapper.add(this.Menu.Build());
         Wrapper.add(this.Loginlabel);
         Wrapper.add(this.Passwordlabel);
         Wrapper.add(this.Emaillabel);
-        Wrapper.add(this.btn);
         return Wrapper;
     }
 }

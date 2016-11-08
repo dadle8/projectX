@@ -1,14 +1,14 @@
 package com.worker.client;
 
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Cookies;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.*;
-import com.worker.DB_classes.UserEntity;
+        import com.google.gwt.event.dom.client.ClickEvent;
+        import com.google.gwt.event.dom.client.ClickHandler;
+        import com.google.gwt.user.client.Cookies;
+        import com.google.gwt.user.client.Window;
+        import com.google.gwt.user.client.rpc.AsyncCallback;
+        import com.google.gwt.user.client.ui.*;
+        import com.worker.DB_classes.UserEntity;
 
-import java.util.Date;
+        import java.util.Date;
 
 /**
  * Created by AsmodeusX on 07.11.2016.

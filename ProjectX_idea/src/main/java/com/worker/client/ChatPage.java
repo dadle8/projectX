@@ -22,6 +22,7 @@ public class ChatPage {
     private Button btn = null;
     private Button btnpp = null;
     private static UserEntity CurrentUser = null;
+    private MenuWidget Menu = new MenuWidget();
 
     public ChatPage () {}
 
@@ -124,6 +125,7 @@ public class ChatPage {
     private HorizontalPanel MakeWrapper()
     {
         HorizontalPanel Wrapper = new HorizontalPanel();
+        Wrapper.add(this.Menu.Build());
         Wrapper.add(this.usersPanel);
         Wrapper.add(this.chat);
         return Wrapper;
