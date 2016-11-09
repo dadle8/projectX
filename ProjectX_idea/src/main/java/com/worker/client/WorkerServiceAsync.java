@@ -17,5 +17,8 @@ public interface WorkerServiceAsync {
 
     void getAllUsers(String login, AsyncCallback<List> async);
 
-    void saveNewMessage(String message, Integer idfrom, String loginAddressee, AsyncCallback<Boolean> async);
+    void saveNewMessage(String message, int idfrom, String loginAddressee, AsyncCallback<Boolean> async);
+
+
+    void getLastUnreadMessage(int idfrom, String loginAddressee, String messages, AsyncCallback<String> async);
 }

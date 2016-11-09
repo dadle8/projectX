@@ -1,18 +1,11 @@
 package com.worker.DB_managing;
 
-import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.i18n.client.NumberFormat;
 import com.worker.DB_classes.MessagesEntity;
 import com.worker.DB_classes.UserEntity;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import sun.text.resources.cldr.FormatData;
-
 import java.io.Serializable;
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -77,7 +70,7 @@ public class HibernateWorker implements Serializable {
         return true;
     }
 
-    public Boolean saveNewMessage(String message, Integer idfrom, String loginAddressee)
+    public Boolean saveNewMessage(String message, int idfrom, String loginAddressee)
     {
         UserEntity userAddressee = getUserByLogin(loginAddressee);
         Session session = factory.openSession();
@@ -94,6 +87,40 @@ public class HibernateWorker implements Serializable {
         session.getTransaction().commit();
         session.close();
         return true;
+    }
+
+    public List getLastUnreadMessage(int idfrom, String loginAddressee,int lengthMessageHistory)
+    {
+        UserEntity userAddressee = getUserByLogin(loginAddressee);
+        Session session = factory.openSession();
+        session.beginTransaction();
+
+        List MessageHistory = session.createQuery("FROM com.worker.DB_classes.MessagesEntity M " +
+                "WHERE M.idfrom = :idto AND M.idto = :idfrom " +
+                "AND M.isread = 0" +
+                "ORDER BY M.dateMessage DESC")
+                .setParameter("idfrom", idfrom)
+                .setParameter("idto",userAddressee.getId())
+                .setMaxResults(lengthMessageHistory)
+                .list();
+
+        int updatedEntities = 0;
+        MessagesEntity message = null;
+
+        for(int i = 0; i< MessageHistory.size(); i++)
+        {
+            message = (MessagesEntity) MessageHistory.get(i);
+            updatedEntities = session.createQuery("UPDATE com.worker.DB_classes.MessagesEntity M SET M.isread = 1 " +
+                    "WHERE M.idfrom = :idto AND M.idto = :idfrom AND M.id = :id ")
+                    .setParameter("idfrom", idfrom)
+                    .setParameter("idto",userAddressee.getId()).setParameter("id", message.getId())
+                    .executeUpdate();
+        }
+
+        session.getTransaction().commit();
+        session.close();
+
+        return  MessageHistory;
     }
 
     public void shutdown ()

@@ -2,6 +2,7 @@ package com.worker.server;
 
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import com.worker.DB_classes.MessagesEntity;
 import com.worker.DB_classes.UserEntity;
 import com.worker.DB_managing.HibernateWorker;
 import com.worker.client.WorkerService;
@@ -17,6 +18,7 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
     // Implementation of sample interface method
     private HibernateWorker HW = new HibernateWorker();
     private static long serialVersionUID = 1456105400553118785L;
+    private int lengthMessageHistory = 10;
 
     public boolean Auth(String login, String passwd) {
         return false;
@@ -71,8 +73,24 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
         return HW.getAllUser(login);
     }
 
-    public Boolean saveNewMessage(String message, Integer idfrom, String loginAddressee) {
+    public Boolean saveNewMessage(String message, int idfrom, String loginAddressee) {
         return HW.saveNewMessage(message,idfrom,loginAddressee);
+    }
+
+    public String getLastUnreadMessage(int idfrom, String loginAddressee, String messages) {
+
+        List messageHistory =  HW.getLastUnreadMessage(idfrom,loginAddressee, lengthMessageHistory);
+        StringBuilder history = new StringBuilder();
+
+        history.append(messages);
+
+        for(int i = messageHistory.size() - 1; i >= 0; i--)
+        {
+            MessagesEntity message = (MessagesEntity)messageHistory.get(i);
+            history.append("<p align='left'>" + message.getMessage() + "</p>");
+        }
+
+        return history.toString();
     }
 
     public boolean changePassword(String name, String newPassword)

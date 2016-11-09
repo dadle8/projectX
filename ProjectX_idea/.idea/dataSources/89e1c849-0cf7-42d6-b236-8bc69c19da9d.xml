@@ -57,7 +57,7 @@
     </column>
     <column id="20" parent="8" name="datemessage">
       <mandatory>1</mandatory>
-      <data-type>date|0</data-type>
+      <data-type>datetime|0</data-type>
     </column>
     <column id="21" parent="8" name="isread">
       <mandatory>1</mandatory>

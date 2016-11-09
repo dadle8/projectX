@@ -18,7 +18,8 @@ public interface WorkerService extends RemoteService {
     UserEntity getUserFromCurrentSession();
     void logout();
     List getAllUsers(String login);
-    Boolean saveNewMessage(String message, Integer idfrom, String loginAddressee);
+    Boolean saveNewMessage(String message, int idfrom, String loginAddressee);
+    String getLastUnreadMessage(int idfrom, String loginAddressee, String messages);
     public static class App {
         private static WorkerServiceAsync ourInstance = GWT.create(WorkerService.class);
         public static synchronized WorkerServiceAsync getInstance() {

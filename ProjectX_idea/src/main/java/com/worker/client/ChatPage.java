@@ -3,6 +3,7 @@ package com.worker.client;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Cookies;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
@@ -23,6 +24,20 @@ public class ChatPage {
     private Button btnpp = null;
     private static UserEntity CurrentUser = null;
     private MenuWidget Menu = new MenuWidget();
+    Timer tm = new Timer() {
+        @Override
+        public void run() {
+            WorkerService.App.getInstance().getLastUnreadMessage(CurrentUser.getId(), users.getSelectedItemText(), messages.getHTML(), new AsyncCallback<String>() {
+                public void onFailure(Throwable caught) {
+                    Window.alert("SMTH IS WRONG IN getLastUnreadMessage");
+                }
+
+                public void onSuccess(String result) {
+                    messages.setHTML(result);
+                }
+            });
+        }
+    };
 
     public ChatPage () {}
 
@@ -34,7 +49,6 @@ public class ChatPage {
 
     public void Build()
     {
-
         WorkerService.App.getInstance().getUserFromCurrentSession(new AsyncCallback<UserEntity>() {
             public void onFailure(Throwable caught) {
                 Window.alert("SMTH IS WRONG WITH SESSION");
@@ -93,10 +107,24 @@ public class ChatPage {
 
     private void setHandlers()
     {
+
         users.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                messages.setHTML(CurrentUser.getLogin() + "<br>" + users.getSelectedItemText());
+                /*
+                WorkerService.App.getInstance().getLastUnreadMessage(CurrentUser.getId(), users.getSelectedItemText(), messages.getHTML(), new AsyncCallback<String>() {
+                    public void onFailure(Throwable caught) {
+                        Window.alert("SMTH IS WRONG IN getLastUnreadMessage");
+                    }
+
+                    public void onSuccess(String result) {
+                        messages.setHTML(result);
+                    }
+                });
+                */
+                messages.setHTML("");
                 chat.setVisible(true);
+                if(tm.isRunning()) tm.cancel();
+                tm.scheduleRepeating(1000);
             }
         });
 
@@ -115,7 +143,7 @@ public class ChatPage {
                         }
 
                         public void onSuccess(Boolean result) {
-                            messages.setHTML(messages.getHTML() + "<br>" + message.getText());
+                            messages.setHTML(messages.getHTML() + "<p align='right'>" + message.getText() + "</p>" );
                         }
                     });
             }
