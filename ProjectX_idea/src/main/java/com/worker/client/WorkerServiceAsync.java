@@ -2,6 +2,8 @@ package com.worker.client;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.worker.DB_classes.UserEntity;
+
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -21,4 +23,6 @@ public interface WorkerServiceAsync {
 
 
     void getLastUnreadMessage(int idfrom, String loginAddressee, String messages, AsyncCallback<String> async);
+
+    void getMessageHistory(int idfrom, String loginAddressee, Timestamp time, int i, AsyncCallback<String[]> async);
 }

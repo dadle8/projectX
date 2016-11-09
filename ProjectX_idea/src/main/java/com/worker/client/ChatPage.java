@@ -9,6 +9,8 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 import com.worker.DB_classes.UserEntity;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +25,7 @@ public class ChatPage {
     private Button btn = null;
     private Button btnpp = null;
     private static UserEntity CurrentUser = null;
+    private ScrollPanel scrollPanel = null;
     private MenuWidget Menu = new MenuWidget();
     Timer tm = new Timer() {
         @Override
@@ -38,6 +41,7 @@ public class ChatPage {
             });
         }
     };
+    private List<Timestamp> timestampList = new ArrayList<Timestamp>();
 
     public ChatPage () {}
 
@@ -76,9 +80,10 @@ public class ChatPage {
             }
 
             public void onSuccess(List result) {
-                for(int i = 0; i<result.size(); i++)
+                for(int i = 0; i < result.size(); i++)
                 {
                     users.addItem((String) result.get(i));
+                    timestampList.add(i, new Timestamp(new java.util.Date().getTime()));
                 }
                 users.setVisibleItemCount(users.getItemCount());
             }
@@ -95,11 +100,16 @@ public class ChatPage {
         usersPanel.add(btnpp);
 
         chat = new VerticalPanel();
+        scrollPanel = new ScrollPanel();
+        scrollPanel.setSize("200px","250px");
         messages = new HTML("");
+        messages.setWidth("180px");
+        messages.setWordWrap(true);
         message = new TextBox();
         btn = new Button("Send");
 
-        chat.add(messages);
+        scrollPanel.add(messages);
+        chat.add(scrollPanel);
         chat.add(message);
         chat.add(btn);
         chat.setVisible(false);
@@ -107,24 +117,25 @@ public class ChatPage {
 
     private void setHandlers()
     {
-
         users.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                /*
-                WorkerService.App.getInstance().getLastUnreadMessage(CurrentUser.getId(), users.getSelectedItemText(), messages.getHTML(), new AsyncCallback<String>() {
-                    public void onFailure(Throwable caught) {
-                        Window.alert("SMTH IS WRONG IN getLastUnreadMessage");
-                    }
-
-                    public void onSuccess(String result) {
-                        messages.setHTML(result);
-                    }
-                });
-                */
-                messages.setHTML("");
-                chat.setVisible(true);
                 if(tm.isRunning()) tm.cancel();
-                tm.scheduleRepeating(1000);
+                WorkerService.App.getInstance().getMessageHistory(CurrentUser.getId(), users.getSelectedItemText(), new Timestamp(new java.util.Date().getTime()), users.getSelectedIndex(), new AsyncCallback<String[]>() {
+                            public void onFailure(Throwable caught) {
+                                Window.alert("SMTH IS WRONG IN getMessageHistory");
+                            }
+
+                            public void onSuccess(String[] result) {
+                                if(result[1] != null) {
+                                    //timestampList.set(users.getSelectedIndex(), Timestamp.valueOf(result[0]));
+                                    messages.setHTML(result[1]);
+                                }
+                                else messages.setHTML("");
+                            }
+                        });
+
+                chat.setVisible(true);
+                tm.scheduleRepeating(2000);
             }
         });
 

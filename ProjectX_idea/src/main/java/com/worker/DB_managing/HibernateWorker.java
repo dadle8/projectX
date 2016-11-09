@@ -4,6 +4,8 @@ import com.worker.DB_classes.MessagesEntity;
 import com.worker.DB_classes.UserEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
@@ -89,7 +91,33 @@ public class HibernateWorker implements Serializable {
         return true;
     }
 
-    public List getLastUnreadMessage(int idfrom, String loginAddressee,int lengthMessageHistory)
+    public List getMessageHistory(int idfrom, String loginAddressee,int lengthMessageHistory, Timestamp time)
+    {
+        UserEntity userAddressee = getUserByLogin(loginAddressee);
+        Session session = factory.openSession();
+        session.beginTransaction();
+        List MessageHistory = session.createQuery("FROM com.worker.DB_classes.MessagesEntity M " +
+                "WHERE ((M.idfrom = :idto AND M.idto = :idfrom) OR (M.idfrom = :idfrom AND M.idto = :idto)) " +
+                "AND :time >= M.dateMessage ORDER BY M.dateMessage DESC")
+                .setParameter("idfrom", idfrom)
+                .setParameter("idto",userAddressee.getId())
+                .setParameter("time", time)
+                .setMaxResults(lengthMessageHistory)
+                .list();
+
+        if(!MessageHistory.isEmpty()) {
+            HibernateWorker.setIsReadMessage((MessagesEntity) MessageHistory.get(MessageHistory.size() - 1),
+                    (MessagesEntity) MessageHistory.get(0),
+                    session, idfrom, userAddressee.getId());
+        }
+
+        session.close();
+
+        return MessageHistory;
+    }
+
+
+    public List getLastUnreadMessage(int idfrom, String loginAddressee, int lengthMessageHistory)
     {
         UserEntity userAddressee = getUserByLogin(loginAddressee);
         Session session = factory.openSession();
@@ -104,23 +132,29 @@ public class HibernateWorker implements Serializable {
                 .setMaxResults(lengthMessageHistory)
                 .list();
 
-        int updatedEntities = 0;
-        MessagesEntity message = null;
-
-        for(int i = 0; i< MessageHistory.size(); i++)
-        {
-            message = (MessagesEntity) MessageHistory.get(i);
-            updatedEntities = session.createQuery("UPDATE com.worker.DB_classes.MessagesEntity M SET M.isread = 1 " +
-                    "WHERE M.idfrom = :idto AND M.idto = :idfrom AND M.id = :id ")
-                    .setParameter("idfrom", idfrom)
-                    .setParameter("idto",userAddressee.getId()).setParameter("id", message.getId())
-                    .executeUpdate();
+        if(!MessageHistory.isEmpty()) {
+            HibernateWorker.setIsReadMessage((MessagesEntity) MessageHistory.get(MessageHistory.size() - 1),
+                    (MessagesEntity) MessageHistory.get(0),
+                    session, idfrom, userAddressee.getId());
         }
 
-        session.getTransaction().commit();
         session.close();
-
         return  MessageHistory;
+    }
+
+    private static void setIsReadMessage(MessagesEntity firstmessage,MessagesEntity lastmessage,
+                                         Session session, int idfrom, int idto)
+    {
+        int result = session.createQuery("UPDATE com.worker.DB_classes.MessagesEntity M SET M.isread = 1 " +
+                " WHERE M.idfrom = :idto AND M.idto = :idfrom" +
+                " AND M.id BETWEEN :firstid AND :lastid ")
+                .setParameter("idfrom", idfrom)
+                .setParameter("idto", idto)
+                .setParameter("firstid", firstmessage.getId())
+                .setParameter("lastid", lastmessage.getId())
+                .executeUpdate();
+
+        session.getTransaction().commit();
     }
 
     public void shutdown ()

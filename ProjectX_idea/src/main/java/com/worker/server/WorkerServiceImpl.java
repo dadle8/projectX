@@ -5,8 +5,12 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.worker.DB_classes.MessagesEntity;
 import com.worker.DB_classes.UserEntity;
 import com.worker.DB_managing.HibernateWorker;
+import com.worker.client.ChatPage;
 import com.worker.client.WorkerService;
 import org.hibernate.Session;
+
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -78,19 +82,42 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
     }
 
     public String getLastUnreadMessage(int idfrom, String loginAddressee, String messages) {
-
         List messageHistory =  HW.getLastUnreadMessage(idfrom,loginAddressee, lengthMessageHistory);
         StringBuilder history = new StringBuilder();
+        MessagesEntity message = null;
 
         history.append(messages);
+        if(!messageHistory.isEmpty()) {
+            for (int i = messageHistory.size() - 1; i >= 0; i--) {
+                message = (MessagesEntity) messageHistory.get(i);
+                history.append("<p align='left'>" + message.getMessage() + "</p>");
+            }
 
-        for(int i = messageHistory.size() - 1; i >= 0; i--)
-        {
-            MessagesEntity message = (MessagesEntity)messageHistory.get(i);
-            history.append("<p align='left'>" + message.getMessage() + "</p>");
+        }
+        return history.toString();
+    }
+
+    public String[] getMessageHistory(int idfrom, String loginAddressee, Timestamp time, int i) {
+        List messageHistory =  HW.getMessageHistory(idfrom,loginAddressee, lengthMessageHistory, time);
+        String[] result = new String[2];
+
+        StringBuilder history = new StringBuilder();
+        if(!messageHistory.isEmpty()) {
+
+            MessagesEntity message = (MessagesEntity) messageHistory.get(0);
+            System.err.println( messageHistory.get(0)+"   " + message.getDateMessage().toString());
+            System.err.println( messageHistory.get(messageHistory.size() - 1));
+            result[0] = message.getDateMessage().toString();
+
+            for (int j = messageHistory.size() - 1; j >= 0; j--) {
+                message = (MessagesEntity) messageHistory.get(j);
+                if (message.getIdfrom() != idfrom) history.append("<p align='left'>" + message.getMessage() + "</p>");
+                else history.append("<p align='right'>" + message.getMessage() + "</p>");
+            }
+            result[1] = history.toString();
         }
 
-        return history.toString();
+        return result;
     }
 
     public boolean changePassword(String name, String newPassword)
