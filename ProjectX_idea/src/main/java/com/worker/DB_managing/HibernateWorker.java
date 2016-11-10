@@ -123,14 +123,40 @@ public class HibernateWorker implements Serializable {
         Session session = factory.openSession();
         session.beginTransaction();
 
-        List MessageHistory = session.createQuery("FROM com.worker.DB_classes.MessagesEntity M " +
-                "WHERE M.idfrom = :idto AND M.idto = :idfrom " +
-                "AND M.isread = 0" +
-                "ORDER BY M.dateMessage DESC")
+
+        List lastmessage = session.createQuery("SELECT M.id FROM com.worker.DB_classes.MessagesEntity M " +
+                "WHERE ((M.idfrom = :idfrom AND M.idto = :idto) OR (M.idfrom = :idto AND M.idto = :idfrom AND M.isread = 1)) " +
+                "ORDER BY M.id DESC")
                 .setParameter("idfrom", idfrom)
                 .setParameter("idto",userAddressee.getId())
-                .setMaxResults(lengthMessageHistory)
+                .setMaxResults(1)
                 .list();
+
+        List MessageHistory = null;
+
+        if(lastmessage.isEmpty())
+        {
+            MessageHistory = session.createQuery("FROM com.worker.DB_classes.MessagesEntity M " +
+                    "WHERE M.idfrom = :idto AND M.idto = :idfrom " +
+                    "AND M.isread = 0" +
+                    "ORDER BY M.dateMessage DESC")
+                    .setParameter("idfrom", idfrom)
+                    .setParameter("idto", userAddressee.getId())
+                    .setMaxResults(lengthMessageHistory)
+                    .list();
+        }
+        else
+        {
+            MessageHistory = session.createQuery("FROM com.worker.DB_classes.MessagesEntity M " +
+                    "WHERE M.idfrom = :idto AND M.idto = :idfrom " +
+                    "AND M.isread = 0 AND M.id > :id " +
+                    "ORDER BY M.dateMessage DESC")
+                    .setParameter("idfrom", idfrom)
+                    .setParameter("idto", userAddressee.getId())
+                    .setParameter("id", (Integer) lastmessage.get(0))
+                    .setMaxResults(lengthMessageHistory)
+                    .list();
+        }
 
         if(!MessageHistory.isEmpty()) {
             HibernateWorker.setIsReadMessage((MessagesEntity) MessageHistory.get(MessageHistory.size() - 1),
