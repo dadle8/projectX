@@ -23,7 +23,7 @@ public class ChatPage {
     private HTML messages = null;
     private TextBox message = null;
     private Button btn = null;
-    private Button btnpp = null;
+    private Button btnrefresh = null;
     private static UserEntity CurrentUser = null;
     private ScrollPanel scrollPanel = null;
     private MenuWidget Menu = new MenuWidget();
@@ -94,10 +94,9 @@ public class ChatPage {
     {
         usersPanel = new VerticalPanel();
         users = new ListBox();
-        btnpp = new Button("Profile");
+        btnrefresh = new Button("More");
 
         usersPanel.add(users);
-        usersPanel.add(btnpp);
 
         chat = new VerticalPanel();
         scrollPanel = new ScrollPanel();
@@ -109,6 +108,7 @@ public class ChatPage {
         btn = new Button("Send");
 
         scrollPanel.add(messages);
+        chat.add(btnrefresh);
         chat.add(scrollPanel);
         chat.add(message);
         chat.add(btn);
@@ -126,8 +126,8 @@ public class ChatPage {
                             }
 
                             public void onSuccess(String[] result) {
-                                if(result[1] != null) {
-                                    //timestampList.set(users.getSelectedIndex(), Timestamp.valueOf(result[0]));
+                                if(result[0] != null) {
+                                    timestampList.set(users.getSelectedIndex(), Timestamp.valueOf(result[0]));
                                     messages.setHTML(result[1]);
                                 }
                                 else messages.setHTML("");
@@ -139,9 +139,20 @@ public class ChatPage {
             }
         });
 
-        btnpp.addClickHandler(new ClickHandler() {
+        btnrefresh.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                generateNextPage(2);
+                WorkerService.App.getInstance().getMessageHistory(CurrentUser.getId(), users.getSelectedItemText(), timestampList.get(users.getSelectedIndex()), users.getSelectedIndex(), new AsyncCallback<String[]>() {
+                    public void onFailure(Throwable caught) {
+                        Window.alert("SMTH IS WRONG IN getMessageHistory");
+                    }
+
+                    public void onSuccess(String[] result) {
+                        if(result[1] != null) {
+                            timestampList.set(users.getSelectedIndex(), Timestamp.valueOf(result[0]));
+                            messages.setHTML(result[1] + messages.getHTML());
+                        }
+                    }
+                });
             }
         });
 

@@ -104,9 +104,7 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
         StringBuilder history = new StringBuilder();
         if(!messageHistory.isEmpty()) {
 
-            MessagesEntity message = (MessagesEntity) messageHistory.get(0);
-            System.err.println( messageHistory.get(0)+"   " + message.getDateMessage().toString());
-            System.err.println( messageHistory.get(messageHistory.size() - 1));
+            MessagesEntity message = (MessagesEntity) messageHistory.get(messageHistory.size() - 1);
             result[0] = message.getDateMessage().toString();
 
             for (int j = messageHistory.size() - 1; j >= 0; j--) {

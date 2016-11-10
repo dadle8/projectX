@@ -98,7 +98,7 @@ public class HibernateWorker implements Serializable {
         session.beginTransaction();
         List MessageHistory = session.createQuery("FROM com.worker.DB_classes.MessagesEntity M " +
                 "WHERE ((M.idfrom = :idto AND M.idto = :idfrom) OR (M.idfrom = :idfrom AND M.idto = :idto)) " +
-                "AND :time >= M.dateMessage ORDER BY M.dateMessage DESC")
+                "AND :time > M.dateMessage ORDER BY M.dateMessage DESC")
                 .setParameter("idfrom", idfrom)
                 .setParameter("idto",userAddressee.getId())
                 .setParameter("time", time)
