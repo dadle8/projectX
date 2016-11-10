@@ -1,13 +1,18 @@
 package com.worker.client;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.i18n.client.DefaultDateTimeFormatInfo;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 import com.worker.DB_classes.UserEntity;
+import com.worker.DB_managing.HibernateWorker;
+import com.worker.server.WorkerServiceImpl;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -36,7 +41,10 @@ public class ChatPage {
                 }
 
                 public void onSuccess(String result) {
-                    messages.setHTML(result);
+                    if (result.length() != 0) {
+                        messages.setHTML(result);
+                    }
+                    GWT.log("result is empty");
                 }
             });
         }
@@ -44,12 +52,6 @@ public class ChatPage {
     private List<Timestamp> timestampList = new ArrayList<Timestamp>();
 
     public ChatPage () {}
-
-    private void generateNextPage(Integer id)
-    {
-        Cookies.setCookie("NextPage", id.toString());
-        Window.Location.reload();
-    }
 
     public void Build()
     {
@@ -94,14 +96,15 @@ public class ChatPage {
     {
         usersPanel = new VerticalPanel();
         users = new ListBox();
-        btnrefresh = new Button("More");
+        btnrefresh = new Button("More messages");
 
         usersPanel.add(users);
 
         chat = new VerticalPanel();
         scrollPanel = new ScrollPanel();
-        scrollPanel.setSize("200px","250px");
-        messages = new HTML("");
+        scrollPanel.setSize("210px","330px");
+
+        messages = new HTML();
         messages.setWidth("180px");
         messages.setWordWrap(true);
         message = new TextBox();
@@ -115,22 +118,25 @@ public class ChatPage {
         chat.setVisible(false);
     }
 
-    private void setHandlers()
-    {
+    private void setHandlers() {
         users.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                if(tm.isRunning()) tm.cancel();
-                WorkerService.App.getInstance().getMessageHistory(CurrentUser.getId(), users.getSelectedItemText(), new Timestamp(new java.util.Date().getTime()), users.getSelectedIndex(), new AsyncCallback<String[]>() {
-                            public void onFailure(Throwable caught) {
-                                Window.alert("SMTH IS WRONG IN getMessageHistory");
-                            }
+                if(tm.isRunning()) {
+                    tm.cancel();
+                }
+
+                WorkerService.App.getInstance().getMessageHistory(CurrentUser.getId(), users.getSelectedItemText(),
+                        new Timestamp(new java.util.Date().getTime()), users.getSelectedIndex(), new AsyncCallback<String[]>() {
+                            public void onFailure(Throwable caught) { Window.alert("SMTH IS WRONG IN getMessageHistory"); }
 
                             public void onSuccess(String[] result) {
                                 if(result[0] != null) {
                                     timestampList.set(users.getSelectedIndex(), Timestamp.valueOf(result[0]));
                                     messages.setHTML(result[1]);
                                 }
-                                else messages.setHTML("");
+                                else {
+                                    messages.setHTML("");
+                                }
                             }
                         });
 
@@ -141,13 +147,14 @@ public class ChatPage {
 
         btnrefresh.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                WorkerService.App.getInstance().getMessageHistory(CurrentUser.getId(), users.getSelectedItemText(), timestampList.get(users.getSelectedIndex()), users.getSelectedIndex(), new AsyncCallback<String[]>() {
+                WorkerService.App.getInstance().getMessageHistory(CurrentUser.getId(), users.getSelectedItemText(),
+                        timestampList.get(users.getSelectedIndex()), users.getSelectedIndex(), new AsyncCallback<String[]>() {
                     public void onFailure(Throwable caught) {
                         Window.alert("SMTH IS WRONG IN getMessageHistory");
                     }
 
                     public void onSuccess(String[] result) {
-                        if(result[1] != null) {
+                        if(result[1] != null && result[0] != null) {
                             timestampList.set(users.getSelectedIndex(), Timestamp.valueOf(result[0]));
                             messages.setHTML(result[1] + messages.getHTML());
                         }
@@ -158,26 +165,38 @@ public class ChatPage {
 
         btn.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                if(!(message.getText().length() == 0))
-                    WorkerService.App.getInstance().saveNewMessage(message.getText(), CurrentUser.getId(), users.getSelectedItemText(), new AsyncCallback<Boolean>() {
+                if(message.getText().length() != 0) {
+                    WorkerService.App.getInstance().saveNewMessage(message.getText(), CurrentUser.getId(),
+                            users.getSelectedItemText(), new AsyncCallback<Boolean>() {
                         public void onFailure(Throwable caught) {
                             Window.alert("SMTH IS WRONG IN saveNewMessage");
                         }
 
                         public void onSuccess(Boolean result) {
-                            messages.setHTML(messages.getHTML() + "<p align='right'>" + message.getText() + "</p>" );
+                            messages.setHTML(messages.getHTML() + "<p align='right' style='overflow-wrap: break-word; width: 180px; color: #4B0082;'>"
+                                    + message.getText() + " | " + formatDate(new Timestamp(new java.util.Date().getTime())) + "</p>");
+                            message.setText("");
                         }
                     });
+                }
             }
         });
     }
 
-    private HorizontalPanel MakeWrapper()
-    {
+    private HorizontalPanel MakeWrapper() {
         HorizontalPanel Wrapper = new HorizontalPanel();
         Wrapper.add(this.Menu.Build());
         Wrapper.add(this.usersPanel);
         Wrapper.add(this.chat);
         return Wrapper;
+    }
+
+    private String formatDate(Timestamp time)
+    {
+        String pattern = "HH:mm";
+        DefaultDateTimeFormatInfo info = new DefaultDateTimeFormatInfo();
+        DateTimeFormat timeFormat = new DateTimeFormat(pattern, info) {}; // <- It is trick.
+
+        return timeFormat.format(time);
     }
 }
