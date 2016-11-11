@@ -78,29 +78,31 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
 
     public String getLastUnreadMessage(int idfrom, String loginAddressee, String messages) {
         List messageHistory =  HW.getLastUnreadMessage(idfrom,loginAddressee, lengthMessageHistory);
-        StringBuilder history = new StringBuilder();
+        StringBuilder history = null;
         MessagesEntity message = null;
 
-        history.append(messages);
         if(!messageHistory.isEmpty()) {
+            history = new StringBuilder();
+            history.append(messages);
             for (int i = messageHistory.size() - 1; i >= 0; i--) {
                 message = (MessagesEntity) messageHistory.get(i);
                 history.append("<p align='left' style='overflow-wrap:" +
                         " break-word; width: 180px; color: #ff6c36;'>" + message.getMessage()
                         + " | " + formatDate(message.getDateMessage()) + "</p>");
             }
-
+            return history.toString();
         }
-        return history.toString();
+        return null;
     }
 
     public String[] getMessageHistory(int idfrom, String loginAddressee, Timestamp time, int i) {
         List messageHistory =  HW.getMessageHistory(idfrom,loginAddressee, lengthMessageHistory, time);
-        String[] result = new String[2];
+        String[] result = null;
 
         StringBuilder history = new StringBuilder();
 
         if(!messageHistory.isEmpty()) {
+            result = new String[2];
             MessagesEntity message = (MessagesEntity) messageHistory.get(messageHistory.size() - 1);
             result[0] = message.getDateMessage().toString();
 

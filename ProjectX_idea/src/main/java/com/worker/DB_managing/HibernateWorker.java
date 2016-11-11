@@ -124,9 +124,9 @@ public class HibernateWorker implements Serializable {
         session.beginTransaction();
 
 
-        List lastmessage = session.createQuery("SELECT M.id FROM com.worker.DB_classes.MessagesEntity M " +
+        List lastmessage = session.createQuery("SELECT M.dateMessage FROM com.worker.DB_classes.MessagesEntity M " +
                 "WHERE ((M.idfrom = :idfrom AND M.idto = :idto) OR (M.idfrom = :idto AND M.idto = :idfrom AND M.isread = 1)) " +
-                "ORDER BY M.id DESC")
+                "ORDER BY M.dateMessage DESC")
                 .setParameter("idfrom", idfrom)
                 .setParameter("idto",userAddressee.getId())
                 .setMaxResults(1)
@@ -149,11 +149,11 @@ public class HibernateWorker implements Serializable {
         {
             MessageHistory = session.createQuery("FROM com.worker.DB_classes.MessagesEntity M " +
                     "WHERE M.idfrom = :idto AND M.idto = :idfrom " +
-                    "AND M.isread = 0 AND M.id > :id " +
+                    "AND M.isread = 0 AND M.dateMessage > :dateMessage " +
                     "ORDER BY M.dateMessage DESC")
                     .setParameter("idfrom", idfrom)
                     .setParameter("idto", userAddressee.getId())
-                    .setParameter("id", lastmessage.get(0))
+                    .setParameter("dateMessage", lastmessage.get(0))
                     .setMaxResults(lengthMessageHistory)
                     .list();
         }

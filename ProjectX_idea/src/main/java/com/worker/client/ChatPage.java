@@ -28,7 +28,8 @@ public class ChatPage {
     private HTML messages = null;
     private TextBox message = null;
     private Button btn = null;
-    private Button btnrefresh = null;
+    private Button loadMessagesBtn = null;
+    private Button cleanHistoryBtn = null;
     private static UserEntity CurrentUser = null;
     private ScrollPanel scrollPanel = null;
     private MenuWidget Menu = new MenuWidget();
@@ -41,10 +42,10 @@ public class ChatPage {
                 }
 
                 public void onSuccess(String result) {
-                    if (result.length() != 0) {
+                    if (result != null) {
                         messages.setHTML(result);
+                        scrollPanel.scrollToBottom();
                     }
-                    GWT.log("result is empty");
                 }
             });
         }
@@ -96,7 +97,7 @@ public class ChatPage {
     {
         usersPanel = new VerticalPanel();
         users = new ListBox();
-        btnrefresh = new Button("More messages");
+        loadMessagesBtn = new Button("Load messages");
 
         usersPanel.add(users);
 
@@ -108,13 +109,16 @@ public class ChatPage {
         messages.setWidth("180px");
         messages.setWordWrap(true);
         message = new TextBox();
+        message.setMaxLength(1024);
         btn = new Button("Send");
+        cleanHistoryBtn = new Button("Clean history");
 
         scrollPanel.add(messages);
-        chat.add(btnrefresh);
+        chat.add(loadMessagesBtn);
         chat.add(scrollPanel);
         chat.add(message);
         chat.add(btn);
+        chat.add(cleanHistoryBtn);
         chat.setVisible(false);
     }
 
@@ -130,22 +134,22 @@ public class ChatPage {
                             public void onFailure(Throwable caught) { Window.alert("SMTH IS WRONG IN getMessageHistory"); }
 
                             public void onSuccess(String[] result) {
-                                if(result[0] != null) {
+                                if(result != null) {
                                     timestampList.set(users.getSelectedIndex(), Timestamp.valueOf(result[0]));
                                     messages.setHTML(result[1]);
                                 }
                                 else {
                                     messages.setHTML("");
                                 }
+                                chat.setVisible(true);
+                                scrollPanel.scrollToBottom();
+                                tm.scheduleRepeating(2000);
                             }
                         });
-
-                chat.setVisible(true);
-                tm.scheduleRepeating(2000);
             }
         });
 
-        btnrefresh.addClickHandler(new ClickHandler() {
+        loadMessagesBtn.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 WorkerService.App.getInstance().getMessageHistory(CurrentUser.getId(), users.getSelectedItemText(),
                         timestampList.get(users.getSelectedIndex()), users.getSelectedIndex(), new AsyncCallback<String[]>() {
@@ -154,7 +158,7 @@ public class ChatPage {
                     }
 
                     public void onSuccess(String[] result) {
-                        if(result[1] != null && result[0] != null) {
+                        if(result != null) {
                             timestampList.set(users.getSelectedIndex(), Timestamp.valueOf(result[0]));
                             messages.setHTML(result[1] + messages.getHTML());
                         }
@@ -170,14 +174,39 @@ public class ChatPage {
                             users.getSelectedItemText(), new AsyncCallback<Boolean>() {
                         public void onFailure(Throwable caught) {
                             Window.alert("SMTH IS WRONG IN saveNewMessage");
+                            btn.setEnabled(true);
                         }
 
                         public void onSuccess(Boolean result) {
                             messages.setHTML(messages.getHTML() + "<p align='right' style='overflow-wrap: break-word; width: 180px; color: #4B0082;'>"
                                     + message.getText() + " | " + formatDate(new Timestamp(new java.util.Date().getTime())) + "</p>");
+                            scrollPanel.scrollToBottom();
                             message.setText("");
+                            btn.setEnabled(true);
                         }
                     });
+                }
+            }
+        });
+
+        cleanHistoryBtn.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                if(messages.getHTML() != "") {
+                    GWT.log("cleanHistoryBtn is clicked");
+                    WorkerService.App.getInstance().getMessageHistory(CurrentUser.getId(), users.getSelectedItemText(),
+                            new Timestamp(new java.util.Date().getTime()), users.getSelectedIndex(), new AsyncCallback<String[]>() {
+                                public void onFailure(Throwable caught) {
+                                    Window.alert("SMTH IS WRONG IN getMessageHistory");
+                                }
+
+                                public void onSuccess(String[] result) {
+                                    if (result != null) {
+                                        timestampList.set(users.getSelectedIndex(), Timestamp.valueOf(result[0]));
+                                        messages.setHTML(result[1]);
+                                        scrollPanel.scrollToBottom();
+                                    }
+                                }
+                            });
                 }
             }
         });
