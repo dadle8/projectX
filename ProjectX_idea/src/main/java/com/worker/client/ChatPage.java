@@ -3,6 +3,8 @@ package com.worker.client;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.ScrollEvent;
+import com.google.gwt.event.dom.client.ScrollHandler;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.DefaultDateTimeFormatInfo;
 import com.google.gwt.user.client.Cookies;
@@ -28,7 +30,6 @@ public class ChatPage {
     private HTML messages = null;
     private TextBox message = null;
     private Button btn = null;
-    private Button loadMessagesBtn = null;
     private Button cleanHistoryBtn = null;
     private static UserEntity CurrentUser = null;
     private ScrollPanel scrollPanel = null;
@@ -97,7 +98,6 @@ public class ChatPage {
     {
         usersPanel = new VerticalPanel();
         users = new ListBox();
-        loadMessagesBtn = new Button("Load messages");
 
         usersPanel.add(users);
 
@@ -114,7 +114,6 @@ public class ChatPage {
         cleanHistoryBtn = new Button("Clean history");
 
         scrollPanel.add(messages);
-        chat.add(loadMessagesBtn);
         chat.add(scrollPanel);
         chat.add(message);
         chat.add(btn);
@@ -146,24 +145,6 @@ public class ChatPage {
                                 tm.scheduleRepeating(2000);
                             }
                         });
-            }
-        });
-
-        loadMessagesBtn.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                WorkerService.App.getInstance().getMessageHistory(CurrentUser.getId(), users.getSelectedItemText(),
-                        timestampList.get(users.getSelectedIndex()), users.getSelectedIndex(), new AsyncCallback<String[]>() {
-                    public void onFailure(Throwable caught) {
-                        Window.alert("SMTH IS WRONG IN getMessageHistory");
-                    }
-
-                    public void onSuccess(String[] result) {
-                        if(result != null) {
-                            timestampList.set(users.getSelectedIndex(), Timestamp.valueOf(result[0]));
-                            messages.setHTML(result[1] + messages.getHTML());
-                        }
-                    }
-                });
             }
         });
 
@@ -204,6 +185,29 @@ public class ChatPage {
                                         timestampList.set(users.getSelectedIndex(), Timestamp.valueOf(result[0]));
                                         messages.setHTML(result[1]);
                                         scrollPanel.scrollToBottom();
+                                    }
+                                }
+                            });
+                }
+            }
+        });
+
+
+        scrollPanel.addScrollHandler(new ScrollHandler() {
+            public void onScroll(ScrollEvent event) {
+                if (scrollPanel.getVerticalScrollPosition() == scrollPanel.getMinimumVerticalScrollPosition()) {
+                    final int oldMaxScrollPosition = scrollPanel.getMaximumVerticalScrollPosition();
+                    WorkerService.App.getInstance().getMessageHistory(CurrentUser.getId(), users.getSelectedItemText(),
+                            timestampList.get(users.getSelectedIndex()), users.getSelectedIndex(), new AsyncCallback<String[]>() {
+                                public void onFailure(Throwable caught) {
+                                    Window.alert("SMTH IS WRONG IN getMessageHistory");
+                                }
+
+                                public void onSuccess(String[] result) {
+                                    if(result != null) {
+                                        timestampList.set(users.getSelectedIndex(), Timestamp.valueOf(result[0]));
+                                        messages.setHTML(result[1] + messages.getHTML());
+                                        scrollPanel.setVerticalScrollPosition(scrollPanel.getMaximumVerticalScrollPosition() - oldMaxScrollPosition);
                                     }
                                 }
                             });
