@@ -8,6 +8,7 @@ import com.google.gwt.event.dom.client.ScrollEvent;
 import com.google.gwt.event.dom.client.ScrollHandler;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.DefaultDateTimeFormatInfo;
+import com.google.gwt.junit.JUnitShell;
 import com.google.gwt.layout.client.Layout;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
@@ -15,9 +16,12 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 import com.worker.DB_classes.UserEntity;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.google.gwt.dom.client.Style.Unit.EM;
 import static com.google.gwt.dom.client.Style.Unit.PX;
@@ -36,6 +40,7 @@ import static com.google.gwt.dom.client.Style.Unit.PX;
  */
 public class ChatPage {
     private MenuWidget Menu = new MenuWidget();
+    private UnreadMessagesWidget UnreadMessages = null;
 
     private VerticalPanel usersPanel = null;
     private ListBox users = null;
@@ -54,7 +59,6 @@ public class ChatPage {
      */
     private List<Timestamp> timestampList = new ArrayList<Timestamp>();
     private static UserEntity CurrentUser = null;
-
 
     /**
      * Timer to display unread messages every 'delayMillis' ms.
@@ -81,8 +85,7 @@ public class ChatPage {
 
     public ChatPage () {}
 
-    public void Build()
-    {
+    public void Build() {
         WorkerService.App.getInstance().getUserFromCurrentSession(new AsyncCallback<UserEntity>() {
             public void onFailure(Throwable caught) {
                 GWT.log("Error in 'Build' when 'getUserFromCurrentSession'.\n" + caught.toString());
@@ -92,7 +95,9 @@ public class ChatPage {
                 if (user != null) {
                     CurrentUser = user;
 
-                    setElements();
+                    initElements();
+                    setDependences();
+                    setStyle();
                     setUsers(CurrentUser.getLogin());
                     setHandlers();
 
@@ -101,11 +106,9 @@ public class ChatPage {
                 }
             }
         });
-
     }
 
-    private void setUsers(String login)
-    {
+    private void setUsers(String login) {
         WorkerService.App.getInstance().getAllUsers(login,new AsyncCallback<List>() {
             public void onFailure(Throwable caught) {
                 GWT.log("Error in 'setUsers' when 'getAllUsers'.\n" + caught.toString());
@@ -122,25 +125,25 @@ public class ChatPage {
         });
     }
 
-    private void setElements()
-    {
+    private void initElements() {
+        UnreadMessages = new UnreadMessagesWidget(CurrentUser);
+
         usersPanel = new VerticalPanel();
         users = new ListBox();
 
-        usersPanel.add(users);
-
         chat = new VerticalPanel();
         scrollPanel = new ScrollPanel();
-        scrollPanel.setSize("210px","330px");
         buttonsPanel = new HorizontalPanel();
 
         messages = new HTML();
-        messages.setWidth("180px");
-        messages.setWordWrap(true);
         message = new TextBox();
         message.setMaxLength(1024);
         sendMessageBtn = new Button("Send");
         cleanHistoryBtn = new Button("Clean history");
+    }
+
+    private void setDependences() {
+        usersPanel.add(users);
 
         buttonsPanel.add(sendMessageBtn);
         buttonsPanel.add(cleanHistoryBtn);
@@ -153,6 +156,12 @@ public class ChatPage {
         chat.setVisible(false);
     }
 
+    private void setStyle() {
+        scrollPanel.getElement().getStyle().setProperty("width","350px");
+        scrollPanel.getElement().getStyle().setProperty("height","405px");
+
+        messages.getElement().getStyle().setProperty("width","320px");
+    }
     private void setHandlers() {
         users.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
@@ -193,7 +202,7 @@ public class ChatPage {
                         }
 
                         public void onSuccess(Boolean result) {
-                            messages.setHTML(messages.getHTML() + "<p align='right' style='overflow-wrap: break-word; width: 180px; color: #4B0082;'>"
+                            messages.setHTML(messages.getHTML() + "<p align='right' style='overflow-wrap: break-word; width: 320px; color: #4B0082;'>"
                                     + message.getText() + " | " + formatDate(new Timestamp(new java.util.Date().getTime())) + "</p>");
                             scrollPanel.scrollToBottom();
                             message.setText("");
@@ -205,7 +214,7 @@ public class ChatPage {
 
         cleanHistoryBtn.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                if(messages.getHTML() != "") {
+                if(!messages.getHTML().equals("")) {
                     WorkerService.App.getInstance().getMessageHistory(CurrentUser.getId(), users.getSelectedItemText(),
                             new Timestamp(new java.util.Date().getTime()), users.getSelectedIndex(), new AsyncCallback<String[]>() {
                                 public void onFailure(Throwable caught) {
@@ -253,7 +262,7 @@ public class ChatPage {
         Wrapper.add(this.Menu.Build());
         Wrapper.add(this.usersPanel);
         Wrapper.add(this.chat);
-
+        Wrapper.add(this.UnreadMessages.Build());
         return Wrapper;
     }
 

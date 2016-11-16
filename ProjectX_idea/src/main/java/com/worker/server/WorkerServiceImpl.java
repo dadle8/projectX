@@ -1,5 +1,6 @@
 package com.worker.server;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.DefaultDateTimeFormatInfo;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -9,6 +10,7 @@ import com.worker.DB_managing.HibernateWorker;
 import com.worker.client.WorkerService;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,7 +19,7 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
     // Implementation of sample interface method
     private HibernateWorker HW = new HibernateWorker();
     private static long serialVersionUID = 1456105400553118785L;
-    private int lengthMessageHistory = 10;
+    private int lengthMessageHistory = 15;
 
     public boolean Auth(String login, String passwd) {
         return false;
@@ -87,7 +89,7 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
             for (int i = messageHistory.size() - 1; i >= 0; i--) {
                 message = (MessagesEntity) messageHistory.get(i);
                 history.append("<p align='left' style='overflow-wrap:" +
-                        " break-word; width: 180px; color: #ff6c36;'>" + message.getMessage()
+                        " break-word; width: 320px; color: #ff6c36;'>" + message.getMessage()
                         + " | " + formatDate(message.getDateMessage()) + "</p>");
             }
             return history.toString();
@@ -109,15 +111,32 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
             for (int j = messageHistory.size() - 1; j >= 0; j--) {
                 message = (MessagesEntity) messageHistory.get(j);
                 if (message.getIdfrom() != idfrom) history.append("<p align='left' style='overflow-wrap:" +
-                        " break-word; width: 180px; color: #ff6c36;'>" + message.getMessage()
+                        " break-word; width: 320px; color: #ff6c36;'>" + message.getMessage()
                         + " | " + formatDate(message.getDateMessage()) + "</p>");
-                else history.append("<p align='right' style='overflow-wrap: break-word; width: 180px; color: #4B0082;'>"
+                else history.append("<p align='right' style='overflow-wrap: break-word; width: 320px; color: #4B0082;'>"
                         + message.getMessage() + " | " + formatDate(message.getDateMessage()) +  "</p>");
             }
             result[1] = history.toString();
         }
 
         return result;
+    }
+
+    public String[] getCountOfUnreadMessages(int idto) {
+        List<Object[]> countUnreadMessages = HW.getCountOfUnreadMessages(idto);
+
+        String[] res = null;
+        if(countUnreadMessages != null) {
+            res = new String[countUnreadMessages.size()];
+            int i = 0;
+            for (Object[] obj : countUnreadMessages) {
+                res[i] = obj[0] + ": " + obj[1];
+                i++;
+            }
+
+        }
+
+        return res;
     }
 
     public boolean changePassword(String name, String newPassword)
