@@ -27,6 +27,7 @@ public interface WorkerService extends RemoteService {
     Boolean saveNewMessage(String message, int idfrom, String loginAddressee);
     String getLastUnreadMessage(int idfrom, String loginAddressee, String messages);
     String[] getMessageHistory(int idfrom, String loginAddressee, Timestamp time, int i);
+    String[] getCountOfUnreadMessages(int idto);
     public static class App {
         private static WorkerServiceAsync ourInstance = GWT.create(WorkerService.class);
         public static synchronized WorkerServiceAsync getInstance() {

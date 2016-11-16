@@ -98,8 +98,7 @@ public class HibernateWorker implements Serializable {
         return true;
     }
 
-    public Boolean saveNewMessage(String message, int idfrom, String loginAddressee)
-    {
+    public Boolean saveNewMessage(String message, int idfrom, String loginAddressee) {
         UserEntity userAddressee = getUserByLogin(loginAddressee);
         Session session = factory.openSession();
         session.beginTransaction();
@@ -117,8 +116,7 @@ public class HibernateWorker implements Serializable {
         return true;
     }
 
-    public List getMessageHistory(int idfrom, String loginAddressee,int lengthMessageHistory, Timestamp time)
-    {
+    public List getMessageHistory(int idfrom, String loginAddressee,int lengthMessageHistory, Timestamp time) {
         UserEntity userAddressee = getUserByLogin(loginAddressee);
         Session session = factory.openSession();
         session.beginTransaction();
@@ -141,9 +139,7 @@ public class HibernateWorker implements Serializable {
         return MessageHistory;
     }
 
-
-    public List getLastUnreadMessage(int idfrom, String loginAddressee, int lengthMessageHistory)
-    {
+    public List getLastUnreadMessage(int idfrom, String loginAddressee, int lengthMessageHistory) {
         UserEntity userAddressee = getUserByLogin(loginAddressee);
         Session session = factory.openSession();
         session.beginTransaction();
@@ -159,8 +155,7 @@ public class HibernateWorker implements Serializable {
 
         List MessageHistory;
 
-        if(lastmessage.isEmpty())
-        {
+        if(lastmessage.isEmpty()) {
             MessageHistory = session.createQuery("FROM com.worker.DB_classes.MessagesEntity M " +
                     "WHERE M.idfrom = :idto AND M.idto = :idfrom " +
                     "AND M.isread = 0" +
@@ -170,8 +165,7 @@ public class HibernateWorker implements Serializable {
                     .setMaxResults(lengthMessageHistory)
                     .list();
         }
-        else
-        {
+        else {
             MessageHistory = session.createQuery("FROM com.worker.DB_classes.MessagesEntity M " +
                     "WHERE M.idfrom = :idto AND M.idto = :idfrom " +
                     "AND M.isread = 0 AND M.dateMessage > :dateMessage " +
@@ -194,8 +188,7 @@ public class HibernateWorker implements Serializable {
     }
 
     private void setIsReadMessage(MessagesEntity firstmessage,MessagesEntity lastmessage,
-                                         Session session, int idfrom, int idto)
-    {
+                                         Session session, int idfrom, int idto) {
         int result = session.createQuery("UPDATE com.worker.DB_classes.MessagesEntity M SET M.isread = 1 " +
                 " WHERE M.idfrom = :idto AND M.idto = :idfrom" +
                 " AND M.dateMessage BETWEEN :firstid AND :lastid ")
@@ -208,6 +201,24 @@ public class HibernateWorker implements Serializable {
         session.getTransaction().commit();
     }
 
+
+    public List getCountOfUnreadMessages(int idto) {
+        Session session = factory.openSession();
+        session.beginTransaction();
+
+        List countIfUnreadMessages = session.createQuery("SELECT U.login, COUNT(*) AS C FROM com.worker.DB_classes.MessagesEntity M, com.worker.DB_classes.UserEntity U " +
+                "WHERE M.idfrom = U.id AND M.idto= :idto AND M.isread = 0 GROUP BY M.idfrom")
+                .setParameter("idto", idto)
+                .list();
+
+        if(!countIfUnreadMessages.isEmpty()) {
+            session.close();
+            return countIfUnreadMessages;
+        }
+
+        session.close();
+        return  null;
+    }
     public void shutdown ()
     {
         HibUtil.shutdown();
