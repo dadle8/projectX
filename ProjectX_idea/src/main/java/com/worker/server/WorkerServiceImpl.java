@@ -2,13 +2,17 @@ package com.worker.server;
 
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.DefaultDateTimeFormatInfo;
+import com.google.gwt.maps.client.base.Point;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import com.google.web.bindery.requestfactory.server.Pair;
 import com.worker.DB_classes.MessagesEntity;
 import com.worker.DB_classes.UserEntity;
 import com.worker.DB_managing.HibernateWorker;
+import com.worker.client.DoublePoint;
 import com.worker.client.WorkerService;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,6 +22,14 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
     private HibernateWorker HW = new HibernateWorker();
     private static long serialVersionUID = 1456105400553118785L;
     private int lengthMessageHistory = 10;
+
+    public ArrayList<DoublePoint> getPath(Integer id)
+    {
+        ArrayList<DoublePoint> ans = new ArrayList<DoublePoint>();
+        ans = HW.getPath(id);
+        System.err.println(id + " " + ans);
+        return ans;
+    }
 
     public boolean Auth(String login, String passwd) {
         return false;

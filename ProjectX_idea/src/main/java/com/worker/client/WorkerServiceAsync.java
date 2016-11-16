@@ -1,14 +1,18 @@
 package com.worker.client;
 
+import com.google.gwt.maps.client.base.Point;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.web.bindery.requestfactory.server.Pair;
 import com.worker.DB_classes.UserEntity;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 public interface WorkerServiceAsync {
+    void getPath(Integer id, AsyncCallback<ArrayList<DoublePoint>> async);
     void Auth(String login, String passwd, AsyncCallback<Boolean> async);
     void loginServer(String login, String passwd, AsyncCallback<UserEntity> async);
     void registerNewUser(String login, String passwd, String eMail, AsyncCallback<Boolean> async);

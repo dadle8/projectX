@@ -3,6 +3,7 @@ package com.worker.client;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.maps.client.events.MapPanel;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -60,6 +61,7 @@ public class Worker implements EntryPoint {
             // 1: register page
             // 2: profile page
             // 3: chat page
+            // 4: map page
             case 0:
                 displayLoginWindow();
                 break;
@@ -72,10 +74,19 @@ public class Worker implements EntryPoint {
             case 3:
                 displayChatWindow();
                 break;
+            case 4:
+                displayMapWindow();
+                break;
             default:
                 displayLoginWindow();
                 Cookies.setCookie("NextPage", "0");
         }
+    }
+
+    private void displayMapWindow()
+    {
+        MapPage NewPage = new MapPage();
+        NewPage.Build();
     }
 
     private Boolean isAllowedForUnAuth(Integer id)

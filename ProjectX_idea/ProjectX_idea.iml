@@ -47,5 +47,7 @@
     <orderEntry type="library" name="mysql-connector-java-6.0.2" level="project" />
     <orderEntry type="library" name="Hibernate 5.2.3-5.2.3" level="project" />
     <orderEntry type="library" name="gwt-user (2)" level="project" />
+    <orderEntry type="library" name="gwt-maps-api-3.10.0-alpha-8-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="gwt-ajaxloader-1.1.0" level="project" />
   </component>
 </module>

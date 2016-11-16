@@ -8,4 +8,5 @@
     <artifactId>gwtapp</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!-- GWT Maps API V3 -->
 </project>
