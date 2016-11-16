@@ -1,22 +1,17 @@
 package com.worker.server;
 
-import com.google.gwt.user.client.Cookies;
+import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.i18n.client.DefaultDateTimeFormatInfo;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.worker.DB_classes.MessagesEntity;
 import com.worker.DB_classes.UserEntity;
 import com.worker.DB_managing.HibernateWorker;
-import com.worker.client.ChatPage;
 import com.worker.client.WorkerService;
-import org.hibernate.Session;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 
 public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerService {
     // Implementation of sample interface method
@@ -83,34 +78,41 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
 
     public String getLastUnreadMessage(int idfrom, String loginAddressee, String messages) {
         List messageHistory =  HW.getLastUnreadMessage(idfrom,loginAddressee, lengthMessageHistory);
-        StringBuilder history = new StringBuilder();
+        StringBuilder history = null;
         MessagesEntity message = null;
 
-        history.append(messages);
         if(!messageHistory.isEmpty()) {
+            history = new StringBuilder();
+            history.append(messages);
             for (int i = messageHistory.size() - 1; i >= 0; i--) {
                 message = (MessagesEntity) messageHistory.get(i);
-                history.append("<p align='left'>" + message.getMessage() + "</p>");
+                history.append("<p align='left' style='overflow-wrap:" +
+                        " break-word; width: 180px; color: #ff6c36;'>" + message.getMessage()
+                        + " | " + formatDate(message.getDateMessage()) + "</p>");
             }
-
+            return history.toString();
         }
-        return history.toString();
+        return null;
     }
 
     public String[] getMessageHistory(int idfrom, String loginAddressee, Timestamp time, int i) {
         List messageHistory =  HW.getMessageHistory(idfrom,loginAddressee, lengthMessageHistory, time);
-        String[] result = new String[2];
+        String[] result = null;
 
         StringBuilder history = new StringBuilder();
-        if(!messageHistory.isEmpty()) {
 
+        if(!messageHistory.isEmpty()) {
+            result = new String[2];
             MessagesEntity message = (MessagesEntity) messageHistory.get(messageHistory.size() - 1);
             result[0] = message.getDateMessage().toString();
 
             for (int j = messageHistory.size() - 1; j >= 0; j--) {
                 message = (MessagesEntity) messageHistory.get(j);
-                if (message.getIdfrom() != idfrom) history.append("<p align='left'>" + message.getMessage() + "</p>");
-                else history.append("<p align='right'>" + message.getMessage() + "</p>");
+                if (message.getIdfrom() != idfrom) history.append("<p align='left' style='overflow-wrap:" +
+                        " break-word; width: 180px; color: #ff6c36;'>" + message.getMessage()
+                        + " | " + formatDate(message.getDateMessage()) + "</p>");
+                else history.append("<p align='right' style='overflow-wrap: break-word; width: 180px; color: #4B0082;'>"
+                        + message.getMessage() + " | " + formatDate(message.getDateMessage()) +  "</p>");
             }
             result[1] = history.toString();
         }
@@ -153,5 +155,14 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
         user.setLoggedIn((byte)0);
         user.setSessionId("");
         session.removeAttribute("user");
+    }
+
+    private String formatDate(Timestamp time)
+    {
+        String pattern = "HH:mm";
+        DefaultDateTimeFormatInfo info = new DefaultDateTimeFormatInfo();
+        DateTimeFormat timeFormat = new DateTimeFormat(pattern, info) {}; // <- It is trick.
+
+        return timeFormat.format(time);
     }
 }

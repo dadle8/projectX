@@ -1,11 +1,11 @@
 package com.worker.DB_managing;
 
+import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.i18n.client.DefaultDateTimeFormatInfo;
 import com.worker.DB_classes.MessagesEntity;
 import com.worker.DB_classes.UserEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
@@ -23,7 +23,6 @@ public class HibernateWorker implements Serializable {
     {
         Session session = factory.openSession();
         List users = session.createQuery("SELECT U.login FROM com.worker.DB_classes.UserEntity U WHERE U.login!= :login").setParameter("login",login).list();
-        System.err.println(users.size());
 
         if(!users.isEmpty())
         {
@@ -106,13 +105,12 @@ public class HibernateWorker implements Serializable {
                 .list();
 
         if(!MessageHistory.isEmpty()) {
-            HibernateWorker.setIsReadMessage((MessagesEntity) MessageHistory.get(MessageHistory.size() - 1),
+            setIsReadMessage((MessagesEntity) MessageHistory.get(MessageHistory.size() - 1),
                     (MessagesEntity) MessageHistory.get(0),
                     session, idfrom, userAddressee.getId());
         }
 
         session.close();
-
         return MessageHistory;
     }
 
@@ -124,15 +122,15 @@ public class HibernateWorker implements Serializable {
         session.beginTransaction();
 
 
-        List lastmessage = session.createQuery("SELECT M.id FROM com.worker.DB_classes.MessagesEntity M " +
+        List lastmessage = session.createQuery("SELECT M.dateMessage FROM com.worker.DB_classes.MessagesEntity M " +
                 "WHERE ((M.idfrom = :idfrom AND M.idto = :idto) OR (M.idfrom = :idto AND M.idto = :idfrom AND M.isread = 1)) " +
-                "ORDER BY M.id DESC")
+                "ORDER BY M.dateMessage DESC")
                 .setParameter("idfrom", idfrom)
                 .setParameter("idto",userAddressee.getId())
                 .setMaxResults(1)
                 .list();
 
-        List MessageHistory = null;
+        List MessageHistory;
 
         if(lastmessage.isEmpty())
         {
@@ -149,17 +147,17 @@ public class HibernateWorker implements Serializable {
         {
             MessageHistory = session.createQuery("FROM com.worker.DB_classes.MessagesEntity M " +
                     "WHERE M.idfrom = :idto AND M.idto = :idfrom " +
-                    "AND M.isread = 0 AND M.id > :id " +
+                    "AND M.isread = 0 AND M.dateMessage > :dateMessage " +
                     "ORDER BY M.dateMessage DESC")
                     .setParameter("idfrom", idfrom)
                     .setParameter("idto", userAddressee.getId())
-                    .setParameter("id", (Integer) lastmessage.get(0))
+                    .setParameter("dateMessage", lastmessage.get(0))
                     .setMaxResults(lengthMessageHistory)
                     .list();
         }
 
         if(!MessageHistory.isEmpty()) {
-            HibernateWorker.setIsReadMessage((MessagesEntity) MessageHistory.get(MessageHistory.size() - 1),
+            setIsReadMessage((MessagesEntity) MessageHistory.get(MessageHistory.size() - 1),
                     (MessagesEntity) MessageHistory.get(0),
                     session, idfrom, userAddressee.getId());
         }
@@ -168,16 +166,16 @@ public class HibernateWorker implements Serializable {
         return  MessageHistory;
     }
 
-    private static void setIsReadMessage(MessagesEntity firstmessage,MessagesEntity lastmessage,
+    private void setIsReadMessage(MessagesEntity firstmessage,MessagesEntity lastmessage,
                                          Session session, int idfrom, int idto)
     {
         int result = session.createQuery("UPDATE com.worker.DB_classes.MessagesEntity M SET M.isread = 1 " +
                 " WHERE M.idfrom = :idto AND M.idto = :idfrom" +
-                " AND M.id BETWEEN :firstid AND :lastid ")
+                " AND M.dateMessage BETWEEN :firstid AND :lastid ")
                 .setParameter("idfrom", idfrom)
                 .setParameter("idto", idto)
-                .setParameter("firstid", firstmessage.getId())
-                .setParameter("lastid", lastmessage.getId())
+                .setParameter("firstid", firstmessage.getDateMessage())
+                .setParameter("lastid", lastmessage.getDateMessage())
                 .executeUpdate();
 
         session.getTransaction().commit();
