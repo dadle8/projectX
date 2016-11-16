@@ -23,7 +23,6 @@ public class HibernateWorker implements Serializable {
     {
         Session session = factory.openSession();
         List users = session.createQuery("SELECT U.login FROM com.worker.DB_classes.UserEntity U WHERE U.login!= :login").setParameter("login",login).list();
-        System.err.println(users.size());
 
         if(!users.isEmpty())
         {
@@ -106,13 +105,12 @@ public class HibernateWorker implements Serializable {
                 .list();
 
         if(!MessageHistory.isEmpty()) {
-            HibernateWorker.setIsReadMessage((MessagesEntity) MessageHistory.get(MessageHistory.size() - 1),
+            setIsReadMessage((MessagesEntity) MessageHistory.get(MessageHistory.size() - 1),
                     (MessagesEntity) MessageHistory.get(0),
                     session, idfrom, userAddressee.getId());
         }
 
         session.close();
-
         return MessageHistory;
     }
 
@@ -132,7 +130,7 @@ public class HibernateWorker implements Serializable {
                 .setMaxResults(1)
                 .list();
 
-        List MessageHistory = null;
+        List MessageHistory;
 
         if(lastmessage.isEmpty())
         {
@@ -159,7 +157,7 @@ public class HibernateWorker implements Serializable {
         }
 
         if(!MessageHistory.isEmpty()) {
-            HibernateWorker.setIsReadMessage((MessagesEntity) MessageHistory.get(MessageHistory.size() - 1),
+            setIsReadMessage((MessagesEntity) MessageHistory.get(MessageHistory.size() - 1),
                     (MessagesEntity) MessageHistory.get(0),
                     session, idfrom, userAddressee.getId());
         }
@@ -168,7 +166,7 @@ public class HibernateWorker implements Serializable {
         return  MessageHistory;
     }
 
-    private static void setIsReadMessage(MessagesEntity firstmessage,MessagesEntity lastmessage,
+    private void setIsReadMessage(MessagesEntity firstmessage,MessagesEntity lastmessage,
                                          Session session, int idfrom, int idto)
     {
         int result = session.createQuery("UPDATE com.worker.DB_classes.MessagesEntity M SET M.isread = 1 " +
