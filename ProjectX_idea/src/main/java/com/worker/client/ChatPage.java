@@ -83,6 +83,20 @@ public class ChatPage {
         }
     };
 
+    /**
+     * This timer for blocking sendMessageBtn until RPC returned.
+     */
+    private  boolean abortFlag = false;
+    Timer tmForSendBtn = new Timer() {
+        @Override
+        public void run() {
+            if(abortFlag) {
+                sendMessageBtn.setEnabled(true);
+                tmForSendBtn.cancel();
+            }
+        }
+    };
+
     public ChatPage () {}
 
     public void Build() {
@@ -195,17 +209,22 @@ public class ChatPage {
         sendMessageBtn.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 if(message.getText().length() != 0 & message.getText().length() <= 1024) {
+                    sendMessageBtn.setEnabled(false);
+                    tmForSendBtn.scheduleRepeating(delayMillis/4);
+
                     WorkerService.App.getInstance().saveNewMessage(message.getText(), CurrentUser.getId(),
                             users.getSelectedItemText(), new AsyncCallback<Boolean>() {
                         public void onFailure(Throwable caught) {
                             GWT.log("Error in 'sendMessageBtn.addClickHandler' when 'saveNewMessage'.\n" + caught.toString());
+                            abortFlag = true;
                         }
 
                         public void onSuccess(Boolean result) {
                             messages.setHTML(messages.getHTML() + "<p align='right' style='overflow-wrap: break-word; width: 320px; color: #4B0082;'>"
                                     + message.getText() + " | " + formatDate(new Timestamp(new java.util.Date().getTime())) + "</p>");
-                            scrollPanel.scrollToBottom();
                             message.setText("");
+                            scrollPanel.scrollToBottom();
+                            abortFlag = true;
                         }
                     });
                 }
@@ -226,6 +245,7 @@ public class ChatPage {
                                         timestampList.set(users.getSelectedIndex(), Timestamp.valueOf(result[0]));
                                         messages.setHTML(result[1]);
                                         scrollPanel.scrollToBottom();
+
                                     }
                                 }
                             });
