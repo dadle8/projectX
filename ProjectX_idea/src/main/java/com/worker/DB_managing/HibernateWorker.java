@@ -2,12 +2,19 @@ package com.worker.DB_managing;
 
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.DefaultDateTimeFormatInfo;
+
+import com.google.web.bindery.requestfactory.server.Pair;
 import com.worker.DB_classes.MessagesEntity;
 import com.worker.DB_classes.UserEntity;
+import com.worker.client.DoublePoint;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,7 +23,27 @@ import java.util.List;
 public class HibernateWorker implements Serializable {
     private HibUtil HibUtils = new HibUtil();
     private SessionFactory factory = HibUtil.getSessionFactory();
-    public HibernateWorker () {
+
+    public HibernateWorker ()
+    {
+
+    }
+
+    public ArrayList<DoublePoint> getPath(Integer id)
+    {
+        Session session = factory.openSession();
+
+        List <Object[]> points = session.createQuery("SELECT G.latitude, G.longitude FROM com.worker.DB_classes.GeoEntity G WHERE G.userid = :id").setParameter("id", id).list();
+        ArrayList<DoublePoint> ans = new ArrayList<DoublePoint>();
+        for(Object[] point: points)
+        {
+            double latitude = (Double) point[0];
+            double longitude = (Double) point[1];
+            DoublePoint pt = new DoublePoint();
+            pt.Set(latitude, longitude);
+            ans.add(pt);
+        }
+        return ans;
     }
 
     public List getAllUser(String login)
@@ -71,8 +98,7 @@ public class HibernateWorker implements Serializable {
         return true;
     }
 
-    public Boolean saveNewMessage(String message, int idfrom, String loginAddressee)
-    {
+    public Boolean saveNewMessage(String message, int idfrom, String loginAddressee) {
         UserEntity userAddressee = getUserByLogin(loginAddressee);
         Session session = factory.openSession();
         session.beginTransaction();
@@ -90,8 +116,7 @@ public class HibernateWorker implements Serializable {
         return true;
     }
 
-    public List getMessageHistory(int idfrom, String loginAddressee,int lengthMessageHistory, Timestamp time)
-    {
+    public List getMessageHistory(int idfrom, String loginAddressee,int lengthMessageHistory, Timestamp time) {
         UserEntity userAddressee = getUserByLogin(loginAddressee);
         Session session = factory.openSession();
         session.beginTransaction();
@@ -114,9 +139,7 @@ public class HibernateWorker implements Serializable {
         return MessageHistory;
     }
 
-
-    public List getLastUnreadMessage(int idfrom, String loginAddressee, int lengthMessageHistory)
-    {
+    public List getLastUnreadMessage(int idfrom, String loginAddressee, int lengthMessageHistory) {
         UserEntity userAddressee = getUserByLogin(loginAddressee);
         Session session = factory.openSession();
         session.beginTransaction();
@@ -132,8 +155,7 @@ public class HibernateWorker implements Serializable {
 
         List MessageHistory;
 
-        if(lastmessage.isEmpty())
-        {
+        if(lastmessage.isEmpty()) {
             MessageHistory = session.createQuery("FROM com.worker.DB_classes.MessagesEntity M " +
                     "WHERE M.idfrom = :idto AND M.idto = :idfrom " +
                     "AND M.isread = 0" +
@@ -143,8 +165,7 @@ public class HibernateWorker implements Serializable {
                     .setMaxResults(lengthMessageHistory)
                     .list();
         }
-        else
-        {
+        else {
             MessageHistory = session.createQuery("FROM com.worker.DB_classes.MessagesEntity M " +
                     "WHERE M.idfrom = :idto AND M.idto = :idfrom " +
                     "AND M.isread = 0 AND M.dateMessage > :dateMessage " +
@@ -167,8 +188,7 @@ public class HibernateWorker implements Serializable {
     }
 
     private void setIsReadMessage(MessagesEntity firstmessage,MessagesEntity lastmessage,
-                                         Session session, int idfrom, int idto)
-    {
+                                         Session session, int idfrom, int idto) {
         int result = session.createQuery("UPDATE com.worker.DB_classes.MessagesEntity M SET M.isread = 1 " +
                 " WHERE M.idfrom = :idto AND M.idto = :idfrom" +
                 " AND M.dateMessage BETWEEN :firstid AND :lastid ")
@@ -181,6 +201,24 @@ public class HibernateWorker implements Serializable {
         session.getTransaction().commit();
     }
 
+
+    public List getCountOfUnreadMessages(int idto) {
+        Session session = factory.openSession();
+        session.beginTransaction();
+
+        List countIfUnreadMessages = session.createQuery("SELECT U.login, COUNT(*) AS C FROM com.worker.DB_classes.MessagesEntity M, com.worker.DB_classes.UserEntity U " +
+                "WHERE M.idfrom = U.id AND M.idto= :idto AND M.isread = 0 GROUP BY M.idfrom")
+                .setParameter("idto", idto)
+                .list();
+
+        if(!countIfUnreadMessages.isEmpty()) {
+            session.close();
+            return countIfUnreadMessages;
+        }
+
+        session.close();
+        return  null;
+    }
     public void shutdown ()
     {
         HibUtil.shutdown();

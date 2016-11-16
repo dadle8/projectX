@@ -4,6 +4,8 @@
     <data-source name="MySQL - projectx@localhost" uuid="bb96e8e7-d77b-4809-bdf2-c11a19f66b07">
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
+      <schema-pattern>projectx.*</schema-pattern>
+      <default-schemas>projectx.*</default-schemas>
     </data-source>
     <data-source name="hibernate.cfg.xml/Hibernate" uuid="89e1c849-0cf7-42d6-b236-8bc69c19da9d">
       <user-name>root</user-name>
