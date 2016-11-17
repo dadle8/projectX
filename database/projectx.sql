@@ -43,7 +43,7 @@ CREATE TABLE `geolocations` (
 CREATE TABLE `messages` (
   `id` int(11) NOT NULL,
   `message` varchar(1024) NOT NULL,
-  `datemessage` date NOT NULL,
+  `datemessage` datetime NOT NULL,
   `isread` tinyint(1) NOT NULL,
   `idfrom` int(11) NOT NULL,
   `idto` int(11) NOT NULL
