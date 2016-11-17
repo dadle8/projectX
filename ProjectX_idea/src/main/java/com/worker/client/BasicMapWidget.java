@@ -140,7 +140,7 @@ public class BasicMapWidget extends Composite {
 
         mapWidget = new MapWidget(opts);
         pWidget.add(mapWidget);
-        mapWidget.setSize(Window.getClientWidth() + "px", Window.getClientHeight() + "px");
+        mapWidget.setSize("600px", "400px");
 
         mapWidget.addClickHandler(new ClickMapHandler() {
             public void onEvent(ClickMapEvent event) {

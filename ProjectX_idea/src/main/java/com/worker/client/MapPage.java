@@ -32,11 +32,13 @@ public class MapPage {
             public void onSuccess(Position result)
             {
                 BasicMapWidget wMap = new BasicMapWidget(Point.newInstance(result.getCoordinates().getLatitude(), result.getCoordinates().getLongitude()));
-                VerticalPanel Menu = new MenuWidget().Build();
+                MenuWidget Menu = new MenuWidget();
+                VerticalPanel Wrapper = new VerticalPanel();
+                Wrapper.add(Menu.Build("Map"));
+                Wrapper.add(wMap);
 
-                RootPanel.get().clear();
-                RootPanel.get().add(Menu);
-                RootPanel.get().add(wMap);
+                RootPanel.get("root-div").clear();
+                RootPanel.get("root-div").add(Wrapper);
             }
 
             public void onFailure(PositionError reason)

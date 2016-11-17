@@ -48,8 +48,8 @@ public class RegisterPage {
     {
         this.setElements();
         this.setHandlers();
-        RootPanel.get().clear();
-        RootPanel.get().add(this.MakeWrapper());
+        RootPanel.get("root-div").clear();
+        RootPanel.get("root-div").add(this.MakeWrapper());
     }
 
     private void setElements()
@@ -60,20 +60,32 @@ public class RegisterPage {
 
         VerticalPanel panel = new VerticalPanel();
 
-        loginLabel = new Label("Type a login:");
+        loginLabel = new Label("Login");
+        loginLabel.addStyleName("registerLabels");
         loginBox = new TextBox();
+        loginBox.getElement().setAttribute("placeholder","Enter login");
 
-        passwordLabel = new Label("Type a password:");
+        passwordLabel = new Label("Password");
+        passwordLabel.addStyleName("registerLabels");
         passwordBox = new PasswordTextBox();
+        passwordBox.getElement().setAttribute("placeholder","Enter password here");
 
-        confirmPasswordLabel = new Label("Confirm a password:");
+        confirmPasswordLabel = new Label("Confirm a password");
+        confirmPasswordLabel.addStyleName("registerLabels");
         confirmPasswordBox = new PasswordTextBox();
+        confirmPasswordBox.getElement().setAttribute("placeholder","Enter password again");
 
-        emailLabel = new Label("Type an E-Mail:");
+        emailLabel = new Label("E-Mail:");
+        emailLabel.addStyleName("registerLabels");
         emailBox = new TextBox();
+        emailBox.getElement().setAttribute("placeholder","Your e-mail");
 
         submit = new Button("Submit");
         loginForm = new Button("LoginForm");
+
+        HorizontalPanel buttonPanel = new HorizontalPanel();
+        buttonPanel.add(submit);
+        buttonPanel.add(loginForm);
 
         panel.add(loginLabel);
         panel.add(loginBox);
@@ -83,8 +95,7 @@ public class RegisterPage {
         panel.add(confirmPasswordBox);
         panel.add(emailLabel);
         panel.add(emailBox);
-        panel.add(submit);
-        panel.add(loginForm);
+        panel.add(buttonPanel);
 
         regForm.setWidget(panel);
     }

@@ -19,6 +19,7 @@ public class MenuWidget {
     private Button toChatPage = null;
     private Button logOut = null;
     private Button toMapPage = null;
+    private Label TitleLabel = null;
 
     public MenuWidget()
     {
@@ -30,10 +31,11 @@ public class MenuWidget {
         Window.Location.reload();
     }
 
-    public VerticalPanel Build()
+    public VerticalPanel Build(String title)
     {
         this.setElements();
         this.setHandlers();
+        this.TitleLabel.setText(title);
         return this.MakeWrapper();
     }
 
@@ -43,6 +45,8 @@ public class MenuWidget {
         this.toChatPage = new Button("Chat");
         this.logOut = new Button("Logout");
         this.toMapPage = new Button("Map");
+        this.TitleLabel = new Label("Default");
+        this.TitleLabel.addStyleName("menu-label-title");
     }
 
     private void setHandlers()
@@ -82,14 +86,13 @@ public class MenuWidget {
     private VerticalPanel MakeWrapper()
     {
         VerticalPanel Wrapper = new VerticalPanel();
-        Wrapper.getElement().getStyle().setProperty("position", "absolute");
-        Wrapper.getElement().getStyle().setZIndex(1000);
-        Wrapper.setHorizontalAlignment(HasAlignment.ALIGN_RIGHT);
-        Wrapper.getElement().getStyle().setRight(0, Style.Unit.PX);
-        Wrapper.add(this.toProfilePage);
-        Wrapper.add(this.toChatPage);
-        Wrapper.add(this.toMapPage);
-        Wrapper.add(this.logOut);
+        HorizontalPanel HorizonWrapper = new HorizontalPanel();
+        HorizonWrapper.add(this.toProfilePage);
+        HorizonWrapper.add(this.toChatPage);
+        HorizonWrapper.add(this.toMapPage);
+        HorizonWrapper.add(this.logOut);
+        Wrapper.add(HorizonWrapper);
+        Wrapper.add(TitleLabel);
         return Wrapper;
     }
 }

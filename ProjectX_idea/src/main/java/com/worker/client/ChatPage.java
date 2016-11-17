@@ -115,8 +115,8 @@ public class ChatPage {
                     setUsers(CurrentUser.getLogin());
                     setHandlers();
 
-                    RootPanel.get().clear();
-                    RootPanel.get().add(MakeWrapper());
+                    RootPanel.get("root-div").clear();
+                    RootPanel.get("root-div").add(MakeWrapper());
                 }
             }
         });
@@ -277,12 +277,14 @@ public class ChatPage {
         });
     }
 
-    private HorizontalPanel MakeWrapper() {
-        HorizontalPanel Wrapper = new HorizontalPanel();
-        Wrapper.add(this.Menu.Build());
-        Wrapper.add(this.usersPanel);
-        Wrapper.add(this.chat);
-        Wrapper.add(this.UnreadMessages.Build());
+    private VerticalPanel MakeWrapper() {
+        VerticalPanel Wrapper = new VerticalPanel();
+        HorizontalPanel HorizonWrapper = new HorizontalPanel();
+        Wrapper.add(this.Menu.Build("Chat"));
+        HorizonWrapper.add(this.usersPanel);
+        HorizonWrapper.add(this.chat);
+        HorizonWrapper.add(this.UnreadMessages.Build());
+        Wrapper.add(HorizonWrapper);
         return Wrapper;
     }
 

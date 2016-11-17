@@ -13,11 +13,9 @@ import com.worker.DB_classes.UserEntity;
  * Created by AsmodeusX on 06.11.2016.
  */
 public class ProfilePage {
-    private Label Loginlabel = null;
-    private Label Passwordlabel = null;
-    private Label Emaillabel = null;
     private static UserEntity CurrentUser = null;
     private MenuWidget Menu = new MenuWidget();
+    private HTML content = null;
 
     public ProfilePage()
     {
@@ -42,8 +40,9 @@ public class ProfilePage {
                 if (CurrentUser != null) {
                     setElements();
                     setHandlers();
-                    RootPanel.get().clear();
-                    RootPanel.get().add(MakeWrapper());
+
+                    RootPanel.get("root-div").get().clear();
+                    RootPanel.get("root-div").add(MakeWrapper());
                 }
             }
         });
@@ -51,9 +50,11 @@ public class ProfilePage {
 
     private void setElements()
     {
-        this.Loginlabel =    new Label("Login:    " + CurrentUser.getLogin());
-        this.Passwordlabel = new Label("Password: " + CurrentUser.getPassword());
-        this.Emaillabel =    new Label("eMail:    " + CurrentUser.getEmail());
+        this.content = new HTML(
+                "<p><strong>Login:</strong> " + CurrentUser.getLogin() + "</p>" +
+                "<strong>Password:</strong> " + CurrentUser.getPassword() + "</p>" +
+                "<strong>eMail:</strong> " + CurrentUser.getEmail() + "</p>"
+        );
     }
 
     private void setHandlers()
@@ -63,10 +64,8 @@ public class ProfilePage {
     private VerticalPanel MakeWrapper()
     {
         VerticalPanel Wrapper = new VerticalPanel();
-        Wrapper.add(this.Menu.Build());
-        Wrapper.add(this.Loginlabel);
-        Wrapper.add(this.Passwordlabel);
-        Wrapper.add(this.Emaillabel);
+        Wrapper.add(this.Menu.Build("Profile"));
+        Wrapper.add(this.content);
         return Wrapper;
     }
 }
