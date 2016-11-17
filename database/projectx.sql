@@ -97,6 +97,22 @@ INSERT INTO `user` (`id`, `login`, `password`, `email`, `loggedIn`, `sessionId`)
 (1, 'root', '63a9f0ea7bb98050796b649e85481845', 'root@root.root', 0, NULL),
 (2, 'admin', '63a9f0ea7bb98050796b649e85481845', 'admin@root.admin', 0, NULL);
 
+
+CREATE TABLE friend (
+	id int auto_increment,
+	userId int not null,
+    friendId int not null,
+    accepted tinyint(1) not null,
+    primary key(id),
+    FOREIGN KEY (userId) REFERENCES user (id),
+    FOREIGN KEY (friendId) REFERENCES user (id)
+);
+
+--
+-- Поле accepted = 0 - предложение дружбы еще не приняты.
+-- Поле accepted = 1 - предложение дружбы принято, пользователи стали друзьями.
+
+insert into friend (userId, friendId, accepted) values (1,2,1);
 -- --------------------------------------------------------
 
 --
