@@ -90,15 +90,15 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
     }
 
     public String getLastUnreadMessage(int idfrom, String loginAddressee, String messages) {
-        List messageHistory =  HW.getLastUnreadMessage(idfrom,loginAddressee, lengthMessageHistory);
-        StringBuilder history = null;
-        MessagesEntity message = null;
+        List lastUnreadMessages =  HW.getLastUnreadMessage(idfrom,loginAddressee, lengthMessageHistory);
 
-        if(!messageHistory.isEmpty()) {
-            history = new StringBuilder();
+        if(lastUnreadMessages != null) {
+            StringBuilder history = new StringBuilder();
+            MessagesEntity message = null;
+
             history.append(messages);
-            for (int i = messageHistory.size() - 1; i >= 0; i--) {
-                message = (MessagesEntity) messageHistory.get(i);
+            for (int i = lastUnreadMessages.size() - 1; i >= 0; i--) {
+                message = (MessagesEntity) lastUnreadMessages.get(i);
                 history.append("<p align='left' style='overflow-wrap:" +
                         " break-word; width: 320px; color: #ff6c36;'>" + message.getMessage()
                         + " | " + formatDate(message.getDateMessage()) + "</p>");
@@ -110,12 +110,11 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
 
     public String[] getMessageHistory(int idfrom, String loginAddressee, Timestamp time, int i) {
         List messageHistory =  HW.getMessageHistory(idfrom,loginAddressee, lengthMessageHistory, time);
-        String[] result = null;
 
-        StringBuilder history = new StringBuilder();
+        if(messageHistory != null) {
+            String[] result = new String[2];
+            StringBuilder history = new StringBuilder();
 
-        if(!messageHistory.isEmpty()) {
-            result = new String[2];
             MessagesEntity message = (MessagesEntity) messageHistory.get(messageHistory.size() - 1);
             result[0] = message.getDateMessage().toString();
 
@@ -128,26 +127,40 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
                         + message.getMessage() + " | " + formatDate(message.getDateMessage()) +  "</p>");
             }
             result[1] = history.toString();
-        }
 
-        return result;
+            return result;
+        }
+        return null;
     }
 
     public String[] getCountOfUnreadMessages(int idto) {
         List<Object[]> countUnreadMessages = HW.getCountOfUnreadMessages(idto);
 
-        String[] res = null;
         if(countUnreadMessages != null) {
-            res = new String[countUnreadMessages.size()];
+            String[] res = new String[countUnreadMessages.size()];
             int i = 0;
+
             for (Object[] obj : countUnreadMessages) {
                 res[i] = obj[0] + ": " + obj[1];
                 i++;
             }
-
+            return  res;
         }
+        return null;
+    }
 
-        return res;
+    public UserEntity[] getFriend(int userId) {
+        List friendsList = HW.getFriends(userId);
+
+        if(friendsList != null) {
+            UserEntity[] friends = new UserEntity[friendsList.size()];
+
+            for(int i =0; i<friendsList.size(); i++){
+                friends[i] = (UserEntity) friendsList.get(i);
+            }
+            return friends;
+        }
+        return null;
     }
 
     public boolean changePassword(String name, String newPassword)

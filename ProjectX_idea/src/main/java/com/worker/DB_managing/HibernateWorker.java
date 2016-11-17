@@ -133,10 +133,12 @@ public class HibernateWorker implements Serializable {
             setIsReadMessage((MessagesEntity) MessageHistory.get(MessageHistory.size() - 1),
                     (MessagesEntity) MessageHistory.get(0),
                     session, idfrom, userAddressee.getId());
+            session.close();
+            return MessageHistory;
         }
 
         session.close();
-        return MessageHistory;
+        return null;
     }
 
     public List getLastUnreadMessage(int idfrom, String loginAddressee, int lengthMessageHistory) {
@@ -181,10 +183,12 @@ public class HibernateWorker implements Serializable {
             setIsReadMessage((MessagesEntity) MessageHistory.get(MessageHistory.size() - 1),
                     (MessagesEntity) MessageHistory.get(0),
                     session, idfrom, userAddressee.getId());
+            session.close();
+            return  MessageHistory;
         }
 
         session.close();
-        return  MessageHistory;
+        return  null;
     }
 
     private void setIsReadMessage(MessagesEntity firstmessage,MessagesEntity lastmessage,
@@ -206,7 +210,8 @@ public class HibernateWorker implements Serializable {
         Session session = factory.openSession();
         session.beginTransaction();
 
-        List countIfUnreadMessages = session.createQuery("SELECT U.login, COUNT(*) AS C FROM com.worker.DB_classes.MessagesEntity M, com.worker.DB_classes.UserEntity U " +
+        List countIfUnreadMessages = session.createQuery("SELECT U.login, COUNT(*) AS C FROM " +
+                "com.worker.DB_classes.MessagesEntity M, com.worker.DB_classes.UserEntity U " +
                 "WHERE M.idfrom = U.id AND M.idto= :idto AND M.isread = 0 GROUP BY M.idfrom")
                 .setParameter("idto", idto)
                 .list();
@@ -219,6 +224,26 @@ public class HibernateWorker implements Serializable {
         session.close();
         return  null;
     }
+
+    public List getFriends(int userId) {
+        Session session = factory.openSession();
+        session.beginTransaction();
+
+        List friends = session.createQuery("FROM com.worker.DB_classes.UserEntity U " +
+                "WHERE U.id IN (SELECT F.friendId FROM com.worker.DB_classes.FriendEntity F " +
+                "WHERE F.userId = :userId AND F.accepted = 1)")
+                .setParameter("userId", userId)
+                .list();
+
+        if(!friends.isEmpty()) {
+            session.close();
+            return friends;
+        }
+
+        session.close();
+        return  null;
+    }
+
     public void shutdown ()
     {
         HibUtil.shutdown();

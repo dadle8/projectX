@@ -32,4 +32,6 @@ public interface WorkerServiceAsync {
 
 
     void getCountOfUnreadMessages(int idto, AsyncCallback<String[]> async);
+
+    void getFriend(int userId, AsyncCallback<UserEntity[]> async);
 }
