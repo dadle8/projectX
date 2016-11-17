@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.worker.DB_classes.UserEntity" table="user" schema="projectx">
+        <id name="id">
+            <column name="id" sql-type="int(6) unsigned"/>
+        </id>
+        <property name="login">
+            <column name="login" sql-type="varchar(32)" length="32"/>
+        </property>
+        <property name="password">
+            <column name="password" sql-type="varchar(32)" length="32"/>
+        </property>
+        <property name="email">
+            <column name="email" sql-type="varchar(32)" length="32" not-null="true"/>
+        </property>
+        <property name="loggedIn">
+            <column name="LoggedIn" sql-type="tinyint(1)"/>
+        </property>
+        <property name="sessionId">
+            <column name="SessionId" sql-type="varchar(16)" length="16"/>
+        </property>
+    </class>
+</hibernate-mapping>

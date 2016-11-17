@@ -55,7 +55,11 @@ public class MapPage {
     {
         boolean sensor = true;
 
+        /*HTML key = new HTML("<script src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyDR4Z_yTOp-uo5IjtQhQrkna_Zb9SrMWu0\" type=\"text/javascript\"></script>");
+        RootPanel.get().add(key);*/
+
         ArrayList<LoadLibrary> loadLibraries = new ArrayList<LoadApi.LoadLibrary>();
+
         loadLibraries.add(LoadLibrary.ADSENSE);
         loadLibraries.add(LoadLibrary.DRAWING);
         loadLibraries.add(LoadLibrary.GEOMETRY);
@@ -68,6 +72,7 @@ public class MapPage {
             }
         };
 
-        LoadApi.go(onLoad, loadLibraries, sensor);
+        LoadApi.go(onLoad, loadLibraries, sensor, "key=AIzaSyDR4Z_yTOp-uo5IjtQhQrkna_Zb9SrMWu0");
     }
+
 }

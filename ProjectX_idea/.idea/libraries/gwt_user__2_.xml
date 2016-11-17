@@ -2,6 +2,8 @@
   <library name="gwt-user (2)">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/../gwt-2.8.0/gwt-user.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../gwt-2.8.0/gwt-servlet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../gwt-2.8.0/gwt-servlet-deps.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+  <component name="DataSourceManagerImpl" format="xml" hash="647349874">
     <data-source source="LOCAL" name="MySQL - projectx@localhost" uuid="bb96e8e7-d77b-4809-bdf2-c11a19f66b07">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
@@ -16,7 +16,7 @@
       </driver-properties>
     </data-source>
     <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="89e1c849-0cf7-42d6-b236-8bc69c19da9d">
-      <driver-ref>da1e90de-b983-48a1-87c0-8372b583b98c</driver-ref>
+      <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
       <remarks>$PROJECT_DIR$/src/main/java/hibernate.cfg.xml</remarks>
@@ -35,7 +35,10 @@
       </driver-properties>
       <libraries>
         <library>
-          <url>file://$PROJECT_DIR$/../mysql-connector-java-6.0.2.jar</url>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/mysql-connector-license.txt</url>
+        </library>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/mysql-connector-java-5.1.35-bin.jar</url>
         </library>
       </libraries>
     </data-source>
