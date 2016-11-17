@@ -2,12 +2,19 @@ package com.worker.DB_managing;
 
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.DefaultDateTimeFormatInfo;
+
+import com.google.web.bindery.requestfactory.server.Pair;
 import com.worker.DB_classes.MessagesEntity;
 import com.worker.DB_classes.UserEntity;
+import com.worker.client.DoublePoint;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,7 +23,27 @@ import java.util.List;
 public class HibernateWorker implements Serializable {
     private HibUtil HibUtils = new HibUtil();
     private SessionFactory factory = HibUtil.getSessionFactory();
-    public HibernateWorker () {
+
+    public HibernateWorker ()
+    {
+
+    }
+
+    public ArrayList<DoublePoint> getPath(Integer id)
+    {
+        Session session = factory.openSession();
+
+        List <Object[]> points = session.createQuery("SELECT G.latitude, G.longitude FROM com.worker.DB_classes.GeoEntity G WHERE G.userid = :id").setParameter("id", id).list();
+        ArrayList<DoublePoint> ans = new ArrayList<DoublePoint>();
+        for(Object[] point: points)
+        {
+            double latitude = (Double) point[0];
+            double longitude = (Double) point[1];
+            DoublePoint pt = new DoublePoint();
+            pt.Set(latitude, longitude);
+            ans.add(pt);
+        }
+        return ans;
     }
 
     public List getAllUser(String login)
