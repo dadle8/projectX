@@ -1,17 +1,10 @@
 package com.worker.DB_managing;
 
-import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.i18n.client.DefaultDateTimeFormatInfo;
-
-import com.google.web.bindery.requestfactory.server.Pair;
 import com.worker.DB_classes.MessagesEntity;
 import com.worker.DB_classes.UserEntity;
 import com.worker.client.DoublePoint;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -46,13 +39,16 @@ public class HibernateWorker implements Serializable {
         return ans;
     }
 
-    public List getAllUser(String login)
-    {
+    /**
+     * Created by Слава
+     *
+     * This method return logins of users that are stored in the database except the user with the login 'String login'.
+     */
+    public List getAllUser(String login) {
         Session session = factory.openSession();
-        List users = session.createQuery("SELECT U.login FROM com.worker.DB_classes.UserEntity U WHERE U.login!= :login").setParameter("login",login).list();
+        List users = session.createQuery("SELECT U.login FROM com.worker.DB_classes.UserEntity U WHERE U.login != :login").setParameter("login",login).list();
 
-        if(!users.isEmpty())
-        {
+        if(!users.isEmpty()) {
             session.close();
             return users;
         }
@@ -98,6 +94,12 @@ public class HibernateWorker implements Serializable {
         return true;
     }
 
+    /**
+     * Created by Слава
+     *
+     * This method save in table 'message' new message from 'idfrom' to 'loginAddressee' with content 'message'.
+     * New message has flag 'isread' = 0 and 'dateMessage' = now date.
+     */
     public Boolean saveNewMessage(String message, int idfrom, String loginAddressee) {
         UserEntity userAddressee = getUserByLogin(loginAddressee);
         Session session = factory.openSession();
@@ -116,6 +118,20 @@ public class HibernateWorker implements Serializable {
         return true;
     }
 
+    /**
+     * Created by Слава
+     *
+     * This method get 'lengthMessageHistory' messages with dateMessage before 'time' for specific user.
+     *
+     *  |     idfrom    |      idto     |
+     *  ---------------------------------
+     *  | specific user |   addressee   |
+     *  ---------------------------------
+     *  |   addressee   | specific user |
+     *
+     *  After get messages those messages which were not read by the addressee
+     *  be read (call method setIsReadMessage), i.e. flag 'isread' = 1.
+     */
     public List getMessageHistory(int idfrom, String loginAddressee,int lengthMessageHistory, Timestamp time) {
         UserEntity userAddressee = getUserByLogin(loginAddressee);
         Session session = factory.openSession();
@@ -141,6 +157,13 @@ public class HibernateWorker implements Serializable {
         return null;
     }
 
+    /**
+     * Created by Слава
+     *
+     * This method get 'lengthMessageHistory' unread messages from 'loginAddressee'
+     * that have a 'dateMessage' before 'dateMessage' last read message.
+     *
+     */
     public List getLastUnreadMessage(int idfrom, String loginAddressee, int lengthMessageHistory) {
         UserEntity userAddressee = getUserByLogin(loginAddressee);
         Session session = factory.openSession();
@@ -191,21 +214,32 @@ public class HibernateWorker implements Serializable {
         return  null;
     }
 
+    /**
+     * Created by Слава
+     *
+     * This method set flag 'isread' = 1 from messages
+     * which have  'firstDateMessage' <= 'dataMessage' <= 'lastDateMessage' for specific user.
+     */
     private void setIsReadMessage(MessagesEntity firstmessage,MessagesEntity lastmessage,
                                          Session session, int idfrom, int idto) {
         int result = session.createQuery("UPDATE com.worker.DB_classes.MessagesEntity M SET M.isread = 1 " +
                 " WHERE M.idfrom = :idto AND M.idto = :idfrom" +
-                " AND M.dateMessage BETWEEN :firstid AND :lastid ")
+                " AND M.dateMessage BETWEEN :firstDateMessage AND :lastDateMessage ")
                 .setParameter("idfrom", idfrom)
                 .setParameter("idto", idto)
-                .setParameter("firstid", firstmessage.getDateMessage())
-                .setParameter("lastid", lastmessage.getDateMessage())
+                .setParameter("firstDateMessage", firstmessage.getDateMessage())
+                .setParameter("lastDateMessage", lastmessage.getDateMessage())
                 .executeUpdate();
 
         session.getTransaction().commit();
     }
 
-
+    /**
+     * Created by Слава
+     *
+     * This method return count unread message, i.e. flag 'isread' = 0,
+     * and login for all users who send messages specific user.
+     */
     public List getCountOfUnreadMessages(int idto) {
         Session session = factory.openSession();
         session.beginTransaction();
@@ -225,6 +259,11 @@ public class HibernateWorker implements Serializable {
         return  null;
     }
 
+    /**
+     * Created by Слава
+     *
+     * This method return all users who have in table 'friend' usersId  = specific userid and accepted = 1.
+     */
     public List getFriends(int userId) {
         Session session = factory.openSession();
         session.beginTransaction();
