@@ -1,2 +1,4 @@
-ProjectX_idea/.idea/dataSources.xml
-ProjectX_idea/.idea/workspace.xml
+ProjectX_idea/.idea/*
+*.cache.js
+*.class
+*.class
