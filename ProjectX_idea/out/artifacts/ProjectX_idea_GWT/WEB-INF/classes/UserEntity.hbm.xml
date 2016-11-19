@@ -23,5 +23,8 @@
         <property name="sessionId">
             <column name="SessionId" sql-type="varchar(16)" length="16"/>
         </property>
+        <property name="ref">
+            <column name="ref" sql-type="varchar(32)" length="32"/>
+        </property>
     </class>
 </hibernate-mapping>

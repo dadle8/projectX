@@ -16,6 +16,9 @@ public class UserEntity implements IsSerializable {
     private String email;
     private byte loggedIn;
     private String sessionId;
+    private String ref;
+    private String name;
+    private String surname;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -58,7 +61,7 @@ public class UserEntity implements IsSerializable {
     }
 
     @Basic
-    @Column(name = "LoggedIn", nullable = true)
+    @Column(name = "loggedIn", nullable = false)
     public byte getLoggedIn() {
         return loggedIn;
     }
@@ -68,13 +71,23 @@ public class UserEntity implements IsSerializable {
     }
 
     @Basic
-    @Column(name = "SessionId", nullable = true, length = 16)
+    @Column(name = "sessionId", nullable = true, length = 16)
     public String getSessionId() {
         return sessionId;
     }
 
     public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
+    }
+
+    @Basic
+    @Column(name = "ref", nullable = true, length = 32)
+    public String getRef() {
+        return ref;
+    }
+
+    public void setRef(String ref) {
+        this.ref = ref;
     }
 
     @Override
@@ -90,6 +103,7 @@ public class UserEntity implements IsSerializable {
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (sessionId != null ? !sessionId.equals(that.sessionId) : that.sessionId != null) return false;
+        if (ref != null ? !ref.equals(that.ref) : that.ref != null) return false;
 
         return true;
     }
@@ -102,6 +116,27 @@ public class UserEntity implements IsSerializable {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (int) loggedIn;
         result = 31 * result + (sessionId != null ? sessionId.hashCode() : 0);
+        result = 31 * result + (ref != null ? ref.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "name", nullable = true, length = 32)
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Basic
+    @Column(name = "surname", nullable = true, length = 32)
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 }

@@ -129,9 +129,9 @@ com.google.gwt.xhr.client.XMLHttpRequest$ResponseType, true, true, false, false,
 com.google.web.bindery.event.shared.UmbrellaException, true, true, false, false, com.google.web.bindery.event.shared.UmbrellaException/1025846929, 1025846929
 com.worker.DB_classes.MessagesEntity, true, true, false, false, com.worker.DB_classes.MessagesEntity/565825063, 565825063
 @ClientFields,com.worker.DB_classes.MessagesEntity,id,message,dateMessage,isread,idfrom,idto
-com.worker.DB_classes.UserEntity, true, true, false, false, com.worker.DB_classes.UserEntity/2052261285, 2052261285
-@ClientFields,com.worker.DB_classes.UserEntity,id,login,password,email,loggedIn,sessionId
-[Lcom.worker.DB_classes.UserEntity;, true, true, false, false, [Lcom.worker.DB_classes.UserEntity;/1307124693, 1307124693
+com.worker.DB_classes.UserEntity, true, true, false, false, com.worker.DB_classes.UserEntity/478841430, 478841430
+@ClientFields,com.worker.DB_classes.UserEntity,id,login,password,email,loggedIn,sessionId,ref
+[Lcom.worker.DB_classes.UserEntity;, true, true, false, false, [Lcom.worker.DB_classes.UserEntity;/2328702325, 2328702325
 com.worker.client.DoublePoint, true, true, false, false, com.worker.client.DoublePoint/1007324328, 1007324328
 com.worker.client.WorkerService, false, false, false, false, _, 812141931
 java.io.IOException, true, true, false, false, java.io.IOException/1159940531, 1159940531

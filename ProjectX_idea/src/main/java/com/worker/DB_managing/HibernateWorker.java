@@ -1,5 +1,6 @@
 package com.worker.DB_managing;
 
+import com.worker.DB_classes.FriendEntity;
 import com.worker.DB_classes.MessagesEntity;
 import com.worker.DB_classes.UserEntity;
 import com.worker.client.DoublePoint;
@@ -9,6 +10,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by AsmodeusX on 29.10.2016.
@@ -20,6 +22,18 @@ public class HibernateWorker implements Serializable {
     public HibernateWorker ()
     {
 
+    }
+
+    public ArrayList<UserEntity> searchUsers(String str)
+    {
+        Session session = factory.openSession();
+        str = '%' + str + '%';
+        System.err.println(str);
+        List <UserEntity> users = session.createQuery("SELECT U FROM com.worker.DB_classes.UserEntity U WHERE U.name like :pattern OR U.surname like :pattern OR U.ref like :pattern").setParameter("pattern", str).list();
+        System.err.println(users.size());
+        //ArrayList<UserEntity> ans = new ArrayList<UserEntity>();
+
+        return new ArrayList<UserEntity>(users);
     }
 
     public ArrayList<DoublePoint> getPath(Integer id)
@@ -74,6 +88,21 @@ public class HibernateWorker implements Serializable {
         return null;
     }
 
+    public String generateNewRef()
+    {
+        String ans = "";
+        Random rnd = new Random();
+        char[] avialable = new char[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+                'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+                '!', '@', '#', ')', '%', '(', '?', ';', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', '+', '_'};
+        for(int i = 0; i < 32; i++)
+        {
+            ans += avialable[Math.abs(rnd.nextInt() % avialable.length)];
+        }
+
+        return ans;
+    }
+
     public Boolean registerNewUser(String login, String passwd, String eMail)
     {
         if (getUserByLogin(login) != null) {
@@ -87,6 +116,7 @@ public class HibernateWorker implements Serializable {
         newUser.setLogin(login);
         newUser.setPassword(passwd);
         newUser.setEmail(eMail);
+        newUser.setRef(generateNewRef());
 
         session.save(newUser);
         session.getTransaction().commit();
@@ -264,13 +294,15 @@ public class HibernateWorker implements Serializable {
      *
      * This method return all users who have in table 'friend' usersId  = specific userid and accepted = 1.
      */
-    public List getFriends(int userId) {
+    public List<UserEntity> getFriends(int userId) {
         Session session = factory.openSession();
         session.beginTransaction();
 
-        List friends = session.createQuery("FROM com.worker.DB_classes.UserEntity U " +
+        List<UserEntity> friends = session.createQuery("FROM com.worker.DB_classes.UserEntity U " +
                 "WHERE U.id IN (SELECT F.friendId FROM com.worker.DB_classes.FriendEntity F " +
-                "WHERE F.userId = :userId AND F.accepted = 1)")
+                "WHERE F.userId = :userId AND F.accepted = 1)" +
+                "OR U.id IN (SELECT F.userId FROM com.worker.DB_classes.FriendEntity F " +
+                "WHERE F.friendId = :userId AND F.accepted = 1)")
                 .setParameter("userId", userId)
                 .list();
 
@@ -281,6 +313,59 @@ public class HibernateWorker implements Serializable {
 
         session.close();
         return  null;
+    }
+
+    public List<UserEntity> getInvites(UserEntity usr)
+    {
+        Session session = factory.openSession();
+        session.beginTransaction();
+
+        List<UserEntity> invites = session.createQuery("FROM com.worker.DB_classes.UserEntity U " +
+                "WHERE U.id IN (SELECT F.userId FROM com.worker.DB_classes.FriendEntity F " +
+                "WHERE F.friendId = :userId AND F.accepted = 0)")
+                .setParameter("userId", usr.getId())
+                .list();
+
+        if(!invites.isEmpty()) {
+            session.close();
+            return invites;
+        }
+
+        session.close();
+        return  null;
+    }
+
+    public void confirmFriendship(UserEntity from, UserEntity to)
+    {
+        Session session = factory.openSession();
+        session.beginTransaction();
+
+        int res = session.createQuery("UPDATE com.worker.DB_classes.FriendEntity F SET F.accepted = 1 WHERE F.userId = :to AND F.friendId = :from").setParameter("to", to.getId()).setParameter("from", from.getId()).executeUpdate();
+        session.getTransaction().commit();
+
+        session.close();
+    }
+
+    public boolean addFriend(UserEntity from, UserEntity to)
+    {
+        Session session = factory.openSession();
+        session.beginTransaction();
+
+        List <Byte> ans = session.createQuery("SELECT F.accepted FROM com.worker.DB_classes.FriendEntity F WHERE F.userId = :from AND F.friendId = :to").setParameter("from", from.getId()).setParameter("to", to.getId()).list();
+
+        if (ans.size() != 0) {//Если предложение уже было
+            return false;
+        }
+
+        FriendEntity friendship = new FriendEntity();
+        friendship.setAccepted((byte)0);
+        friendship.setUserId(from.getId());
+        friendship.setFriendId(to.getId());
+
+        session.save(friendship);
+        session.getTransaction().commit();
+        session.close();
+        return true;
     }
 
     public void shutdown ()

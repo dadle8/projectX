@@ -24,6 +24,11 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
     private static long serialVersionUID = 1456105400553118785L;
     private int lengthMessageHistory = 15;
 
+    public ArrayList<UserEntity> searchUsers(String str)
+    {
+        return HW.searchUsers(str);
+    }
+
     public ArrayList<DoublePoint> getPath(Integer id)
     {
         ArrayList<DoublePoint> ans = new ArrayList<DoublePoint>();
@@ -149,18 +154,28 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
         return null;
     }
 
-    public UserEntity[] getFriend(int userId) {
-        List friendsList = HW.getFriends(userId);
+    public List<UserEntity> getInvites()
+    {
+        return HW.getInvites(getUserFromCurrentSession());
+    }
 
-        if(friendsList != null) {
-            UserEntity[] friends = new UserEntity[friendsList.size()];
+    public void confirmFriendship(UserEntity usr)
+    {
+        HW.confirmFriendship(getUserFromCurrentSession(), usr);
+    }
 
-            for(int i =0; i<friendsList.size(); i++){
-                friends[i] = (UserEntity) friendsList.get(i);
-            }
-            return friends;
+    public boolean addFriend(UserEntity usr)
+    {
+        UserEntity currentUser = this.getUserFromCurrentSession();
+        if (currentUser.getId() == usr.getId())
+        {
+            throw(new Error("Can't send invite to yourself"));
         }
-        return null;
+        return HW.addFriend(this.getUserFromCurrentSession(), usr);
+    }
+
+    public List<UserEntity> getFriends() {
+            return HW.getFriends(getUserFromCurrentSession().getId());
     }
 
     public boolean changePassword(String name, String newPassword)

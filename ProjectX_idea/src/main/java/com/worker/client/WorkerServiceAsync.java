@@ -9,9 +9,14 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpSession;
 
 public interface WorkerServiceAsync {
+    void confirmFriendship(UserEntity usr, AsyncCallback<Void> async);
+    void getInvites(AsyncCallback<List<UserEntity>> async);
+    void addFriend(UserEntity usr, AsyncCallback<Boolean> async);
+    void searchUsers(String str, AsyncCallback<ArrayList<UserEntity>> async);
     void getPath(Integer id, AsyncCallback<ArrayList<DoublePoint>> async);
     void Auth(String login, String passwd, AsyncCallback<Boolean> async);
     void loginServer(String login, String passwd, AsyncCallback<UserEntity> async);
@@ -33,5 +38,5 @@ public interface WorkerServiceAsync {
 
     void getCountOfUnreadMessages(int idto, AsyncCallback<String[]> async);
 
-    void getFriend(int userId, AsyncCallback<UserEntity[]> async);
+    void getFriends(AsyncCallback<List<UserEntity>> async);
 }

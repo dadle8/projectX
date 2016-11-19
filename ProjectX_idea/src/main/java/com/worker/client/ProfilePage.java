@@ -16,8 +16,12 @@ public class ProfilePage {
     private Label Loginlabel = null;
     private Label Passwordlabel = null;
     private Label Emaillabel = null;
+    private Label Reflabel = null;
     private static UserEntity CurrentUser = null;
     private MenuWidget Menu = new MenuWidget();
+    private FindFriendsWidget FindFriends = new FindFriendsWidget();
+    private ShowFriendsWidget ShowFriends = new ShowFriendsWidget();
+    private FriendshipInvitesWidget Invites = new FriendshipInvitesWidget();
 
     public ProfilePage()
     {
@@ -54,6 +58,7 @@ public class ProfilePage {
         this.Loginlabel =    new Label("Login:    " + CurrentUser.getLogin());
         this.Passwordlabel = new Label("Password: " + CurrentUser.getPassword());
         this.Emaillabel =    new Label("eMail:    " + CurrentUser.getEmail());
+        this.Reflabel =      new Label("ref:      " + CurrentUser.getRef());
     }
 
     private void setHandlers()
@@ -67,6 +72,10 @@ public class ProfilePage {
         Wrapper.add(this.Loginlabel);
         Wrapper.add(this.Passwordlabel);
         Wrapper.add(this.Emaillabel);
+        Wrapper.add(this.Reflabel);
+        Wrapper.add(this.Invites.Build());
+        Wrapper.add(this.FindFriends.Build());
+        Wrapper.add(this.ShowFriends.Build());
         return Wrapper;
     }
 }
