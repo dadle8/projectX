@@ -21,6 +21,12 @@ public class RegisterPage {
     private Label loginLabel = null;
     private TextBox loginBox = null;
 
+    private Label nameLabel = null;
+    private TextBox nameBox = null;
+
+    private Label surNameLabel = null;
+    private TextBox surNameBox = null;
+
     private Label passwordLabel = null;
     private PasswordTextBox passwordBox = null;
 
@@ -63,6 +69,12 @@ public class RegisterPage {
         loginLabel = new Label("Type a login:");
         loginBox = new TextBox();
 
+        nameLabel = new Label("Type a name:");
+        nameBox = new TextBox();
+
+        surNameLabel = new Label("Type a surname:");
+        surNameBox = new TextBox();
+
         passwordLabel = new Label("Type a password:");
         passwordBox = new PasswordTextBox();
 
@@ -77,6 +89,10 @@ public class RegisterPage {
 
         panel.add(loginLabel);
         panel.add(loginBox);
+        panel.add(nameLabel);
+        panel.add(nameBox);
+        panel.add(surNameLabel);
+        panel.add(surNameBox);
         panel.add(passwordLabel);
         panel.add(passwordBox);
         panel.add(confirmPasswordLabel);
@@ -106,7 +122,7 @@ public class RegisterPage {
                 }
 
                 String hash = new MD5hashing().getMD5(passwordBox.getText());
-                WorkerService.App.getInstance().registerNewUser(loginBox.getText(), hash, emailBox.getText(), new AsyncCallback<Boolean>() {
+                WorkerService.App.getInstance().registerNewUser(loginBox.getText(), nameBox.getText(), surNameBox.getText(), hash, emailBox.getText(), new AsyncCallback<Boolean>() {
                     public void onSuccess(Boolean result) {
                         if (result) {
                             Window.alert("Registered successful!");

@@ -103,7 +103,7 @@ public class HibernateWorker implements Serializable {
         return ans;
     }
 
-    public Boolean registerNewUser(String login, String passwd, String eMail)
+    public Boolean registerNewUser(String login, String name, String surname, String passwd, String eMail)
     {
         if (getUserByLogin(login) != null) {
             return false;
@@ -114,6 +114,8 @@ public class HibernateWorker implements Serializable {
 
         UserEntity newUser = new UserEntity();
         newUser.setLogin(login);
+        newUser.setName(name);
+        newUser.setSurname(surname);
         newUser.setPassword(passwd);
         newUser.setEmail(eMail);
         newUser.setRef(generateNewRef());

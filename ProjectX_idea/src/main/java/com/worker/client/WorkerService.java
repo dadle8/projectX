@@ -22,7 +22,7 @@ public interface WorkerService extends RemoteService {
     ArrayList<DoublePoint> getPath(Integer id);
     boolean Auth(String login, String passwd);
     UserEntity loginServer(String login ,String passwd);
-    Boolean registerNewUser(String login, String passwd, String eMail);
+    Boolean registerNewUser(String login, String name, String surname, String passwd, String eMail);
     UserEntity loginFromSessionServer();
     boolean changePassword(String name, String newPassword);
     UserEntity getUserFromCurrentSession();

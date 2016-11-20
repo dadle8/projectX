@@ -20,7 +20,7 @@ public interface WorkerServiceAsync {
     void getPath(Integer id, AsyncCallback<ArrayList<DoublePoint>> async);
     void Auth(String login, String passwd, AsyncCallback<Boolean> async);
     void loginServer(String login, String passwd, AsyncCallback<UserEntity> async);
-    void registerNewUser(String login, String passwd, String eMail, AsyncCallback<Boolean> async);
+    void registerNewUser(String login, String name, String surname, String passwd, String eMail, AsyncCallback<Boolean> async);
     void loginFromSessionServer(AsyncCallback<UserEntity> async);
     void changePassword(String name, String newPassword, AsyncCallback<Boolean> async);
     void logout(AsyncCallback<Void> async);

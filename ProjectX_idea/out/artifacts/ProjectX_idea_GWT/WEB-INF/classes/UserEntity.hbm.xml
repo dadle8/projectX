@@ -21,7 +21,7 @@
             <column name="loggedIn" sql-type="tinyint(1)"/>
         </property>
         <property name="sessionId">
-            <column name="sessionId" sql-type="varchar(16)" length="16" not-null="true"/>
+            <column name="sessionId" sql-type="varchar(16)" length="16"/>
         </property>
         <property name="ref">
             <column name="ref" sql-type="varchar(32)" length="32" not-null="true"/>
