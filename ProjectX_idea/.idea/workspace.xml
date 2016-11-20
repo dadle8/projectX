@@ -2,37 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3d38d495-773b-417a-a46d-ab600fc69b27" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/WEB-INF/classes/com/worker/DB_managing/HibernateWorker.class" afterPath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/WEB-INF/classes/com/worker/DB_managing/HibernateWorker.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/WEB-INF/classes/com/worker/client/RegisterPage$1$1.class" afterPath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/WEB-INF/classes/com/worker/client/RegisterPage$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/WEB-INF/classes/com/worker/client/RegisterPage$1.class" afterPath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/WEB-INF/classes/com/worker/client/RegisterPage$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/WEB-INF/classes/com/worker/client/RegisterPage$2.class" afterPath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/WEB-INF/classes/com/worker/client/RegisterPage$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/WEB-INF/classes/com/worker/client/RegisterPage$3.class" afterPath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/WEB-INF/classes/com/worker/client/RegisterPage$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/WEB-INF/classes/com/worker/client/RegisterPage$4.class" afterPath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/WEB-INF/classes/com/worker/client/RegisterPage$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/WEB-INF/classes/com/worker/client/RegisterPage.class" afterPath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/WEB-INF/classes/com/worker/client/RegisterPage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/WEB-INF/classes/com/worker/client/WorkerService.class" afterPath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/WEB-INF/classes/com/worker/client/WorkerService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/WEB-INF/classes/com/worker/client/WorkerServiceAsync.class" afterPath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/WEB-INF/classes/com/worker/client/WorkerServiceAsync.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/WEB-INF/classes/com/worker/server/WorkerServiceImpl.class" afterPath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/WEB-INF/classes/com/worker/server/WorkerServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/DB_managing/HibernateWorker.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/DB_managing/HibernateWorker.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/RegisterPage$1$1.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/RegisterPage$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/RegisterPage$1.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/RegisterPage$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/RegisterPage$2.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/RegisterPage$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/RegisterPage$3.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/RegisterPage$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/RegisterPage$4.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/RegisterPage$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/RegisterPage.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/RegisterPage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/WorkerService.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/WorkerService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/WorkerServiceAsync.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/WorkerServiceAsync.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/server/WorkerServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/server/WorkerServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/WEB-INF/classes/UserEntity.hbm.xml" afterPath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/WEB-INF/classes/UserEntity.hbm.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/Worker/Worker.nocache.js" afterPath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/Worker/Worker.nocache.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/Worker/compilation-mappings.txt" afterPath="$PROJECT_DIR$/out/artifacts/ProjectX_idea_GWT/Worker/compilation-mappings.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worker/DB_managing/HibernateWorker.java" afterPath="$PROJECT_DIR$/src/main/java/com/worker/DB_managing/HibernateWorker.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worker/client/RegisterPage.java" afterPath="$PROJECT_DIR$/src/main/java/com/worker/client/RegisterPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worker/client/WorkerService.java" afterPath="$PROJECT_DIR$/src/main/java/com/worker/client/WorkerService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worker/client/WorkerServiceAsync.java" afterPath="$PROJECT_DIR$/src/main/java/com/worker/client/WorkerServiceAsync.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worker/server/WorkerServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/worker/server/WorkerServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/UserEntity.hbm.xml" afterPath="$PROJECT_DIR$/src/main/resources/UserEntity.hbm.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/UserEntity.hbm.xml" afterPath="$PROJECT_DIR$/target/classes/UserEntity.hbm.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/89e1c849-0cf7-42d6-b236-8bc69c19da9d.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/89e1c849-0cf7-42d6-b236-8bc69c19da9d.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/bb96e8e7-d77b-4809-bdf2-c11a19f66b07.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/bb96e8e7-d77b-4809-bdf2-c11a19f66b07.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worker/client/ChatPage.java" afterPath="$PROJECT_DIR$/src/main/java/com/worker/client/ChatPage.java" />
     </list>
     <ignored path="ProjectX.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,7 +19,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -56,6 +28,7 @@
     <option name="SORT_POSITIONED" value="false" />
     <option name="SHOW_TABLE_DETAILS" value="true" />
     <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
     <PATH>
       <PATH_ELEMENT>
         <option name="myItemId" />
@@ -72,9 +45,27 @@
       <file leaf-file-name="WorkerServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/server/WorkerServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
+            <state relative-caret-position="935">
               <caret line="76" column="5" selection-start-line="76" selection-start-column="5" selection-end-line="76" selection-end-column="5" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#1080#1081#0" expanded="false" />
+                <element signature="e#1122#1123#0" expanded="false" />
+                <element signature="e#1406#1407#0" expanded="false" />
+                <element signature="e#1434#1435#0" expanded="false" />
+                <element signature="e#2636#2637#0" expanded="false" />
+                <element signature="e#2686#2687#0" expanded="false" />
+                <element signature="e#2718#2719#0" expanded="false" />
+                <element signature="e#2757#2758#0" expanded="false" />
+                <element signature="e#2802#2803#0" expanded="false" />
+                <element signature="e#2845#2846#0" expanded="false" />
+                <element signature="e#5659#5660#0" expanded="false" />
+                <element signature="e#5724#5725#0" expanded="false" />
+                <element signature="e#5781#5782#0" expanded="false" />
+                <element signature="e#5851#5852#0" expanded="false" />
+                <element signature="e#6219#6220#0" expanded="false" />
+                <element signature="e#6296#6297#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -89,24 +80,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HibernateWorker.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/DB_managing/HibernateWorker.java">
+      <file leaf-file-name="ChatPage.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/ChatPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="117" column="36" selection-start-line="117" selection-start-column="36" selection-end-line="117" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="-3043">
+              <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MessagesEntity.hbm.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/MessagesEntity.hbm.xml">
+      <file leaf-file-name="HibernateWorker.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/DB_managing/HibernateWorker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="52" selection-start-line="14" selection-start-column="52" selection-end-line="14" selection-end-column="52" />
-              <folding />
+            <state relative-caret-position="1819">
+              <caret line="119" column="32" selection-start-line="119" selection-start-column="32" selection-end-line="119" selection-end-column="32" />
+              <folding>
+                <element signature="e#14170#14171#0" expanded="false" />
+                <element signature="e#14204#14205#0" expanded="false" />
+                <marker date="1479667956929" expanded="true" signature="40:398" ph="..." />
+                <marker date="1479667956929" expanded="true" signature="400:446" ph="/**...*/" />
+                <marker date="1479667956929" expanded="true" signature="649:657" ph="{...}" />
+                <marker date="1479667956929" expanded="true" signature="720:1219" ph="{...}" />
+                <marker date="1479667956929" expanded="true" signature="1279:1870" ph="{...}" />
+                <marker date="1479667956929" expanded="true" signature="1876:2039" ph="/**...*/" />
+                <marker date="1479667956929" expanded="true" signature="2081:2440" ph="{...}" />
+                <marker date="1479667956929" expanded="true" signature="2493:3070" ph="{...}" />
+                <marker date="1479667956929" expanded="true" signature="3111:3771" ph="{...}" />
+                <marker date="1479667956929" expanded="true" signature="4199:4440" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -124,9 +126,21 @@
       <file leaf-file-name="UserEntity.hbm.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/UserEntity.hbm.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="29" column="42" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
-              <folding />
+            <state relative-caret-position="476">
+              <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
+              <folding>
+                <marker date="1479667956988" expanded="true" signature="203:1454" ph="..." />
+                <marker date="1479667956988" expanded="true" signature="287:1433" ph="..." />
+                <marker date="1479667956988" expanded="true" signature="310:375" ph="..." />
+                <marker date="1479667956988" expanded="true" signature="407:497" ph="..." />
+                <marker date="1479667956988" expanded="true" signature="532:625" ph="..." />
+                <marker date="1479667956988" expanded="true" signature="657:763" ph="..." />
+                <marker date="1479667956988" expanded="true" signature="798:878" ph="..." />
+                <marker date="1479667956988" expanded="true" signature="914:1008" ph="..." />
+                <marker date="1479667956988" expanded="true" signature="1038:1142" ph="..." />
+                <marker date="1479667956988" expanded="true" signature="1173:1278" ph="..." />
+                <marker date="1479667956988" expanded="true" signature="1312:1420" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -134,18 +148,56 @@
       <file leaf-file-name="UserEntity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/DB_classes/UserEntity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
+            <state relative-caret-position="918">
               <caret line="78" column="41" selection-start-line="78" selection-start-column="41" selection-end-line="78" selection-end-column="41" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#590#591#0" expanded="false" />
+                <element signature="e#615#616#0" expanded="false" />
+                <element signature="e#648#649#0" expanded="false" />
+                <element signature="e#676#677#0" expanded="false" />
+                <element signature="e#778#779#0" expanded="false" />
+                <element signature="e#806#807#0" expanded="false" />
+                <element signature="e#848#849#0" expanded="false" />
+                <element signature="e#882#883#0" expanded="false" />
+                <element signature="e#990#991#0" expanded="false" />
+                <element signature="e#1021#1022#0" expanded="false" />
+                <element signature="e#1069#1070#0" expanded="false" />
+                <element signature="e#1109#1110#0" expanded="false" />
+                <element signature="e#1210#1211#0" expanded="false" />
+                <element signature="e#1238#1239#0" expanded="false" />
+                <element signature="e#1280#1281#0" expanded="false" />
+                <element signature="e#1314#1315#0" expanded="false" />
+                <element signature="e#1407#1408#0" expanded="false" />
+                <element signature="e#1438#1439#0" expanded="false" />
+                <element signature="e#1484#1485#0" expanded="false" />
+                <element signature="e#1524#1525#0" expanded="false" />
+                <element signature="e#1633#1634#0" expanded="false" />
+                <element signature="e#1665#1666#0" expanded="false" />
+                <element signature="e#1715#1716#0" expanded="false" />
+                <element signature="e#1757#1758#0" expanded="false" />
+                <element signature="e#1854#1855#0" expanded="false" />
+                <element signature="e#1880#1881#0" expanded="false" />
+                <element signature="e#1918#1919#0" expanded="false" />
+                <element signature="e#1948#1949#0" expanded="false" />
+                <element signature="e#3348#3349#0" expanded="false" />
+                <element signature="e#3375#3376#0" expanded="false" />
+                <element signature="e#3415#3416#0" expanded="false" />
+                <element signature="e#3447#3448#0" expanded="false" />
+                <element signature="e#3552#3553#0" expanded="false" />
+                <element signature="e#3582#3583#0" expanded="false" />
+                <element signature="e#3628#3629#0" expanded="false" />
+                <element signature="e#3666#3667#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RegisterPage.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RegisterPage.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/RegisterPage.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="476">
-              <caret line="115" column="17" selection-start-line="115" selection-start-column="17" selection-end-line="115" selection-end-column="17" />
+              <caret line="131" column="17" selection-start-line="131" selection-start-column="17" selection-end-line="131" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -154,8 +206,8 @@
       <file leaf-file-name="WorkerService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/WorkerService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+            <state relative-caret-position="238">
+              <caret line="25" column="18" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -164,8 +216,8 @@
       <file leaf-file-name="WorkerServiceAsync.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/WorkerServiceAsync.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="23" column="65" selection-start-line="23" selection-start-column="65" selection-end-line="23" selection-end-column="65" />
+            <state relative-caret-position="238">
+              <caret line="24" column="65" selection-start-line="24" selection-start-column="65" selection-end-line="24" selection-end-column="65" />
               <folding />
             </state>
           </provider>
@@ -233,7 +285,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/worker/Worker.gwt.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/worker/client/DoublePoint.java" />
         <option value="$PROJECT_DIR$/src/main/resources/FriendEntity.hbm.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/worker/client/ChatPage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/worker/client/BasicMapWidget.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/worker/client/MapPage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/worker/DB_classes/UserEntity.java" />
@@ -244,18 +295,20 @@
         <option value="$PROJECT_DIR$/src/main/java/com/worker/client/FriendshipInvitesWidget.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/worker/client/ShowFriendsWidget.java" />
         <option value="$PROJECT_DIR$/src/main/resources/UserEntity.hbm.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/worker/client/RegisterPage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/worker/server/WorkerServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/worker/DB_managing/HibernateWorker.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/worker/client/WorkerService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/worker/client/WorkerServiceAsync.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/worker/client/RegisterPage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/worker/client/ChatPage.java" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" />
-  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -282,8 +335,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1696" />
-    <option name="height" value="1066" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -329,7 +382,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -518,8 +573,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -584,8 +637,13 @@
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
       <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
       <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="DEBUGGER_TYPE" value="Java" />
       <option name="USE_LAST_SELECTED_DEVICE" value="false" />
       <option name="PREFERRED_AVD" value="" />
+      <Java />
+      <Profilers>
+        <option name="GAPID_DISABLE_PCS" value="false" />
+      </Profilers>
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
       <method />
@@ -604,8 +662,13 @@
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
       <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
       <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="DEBUGGER_TYPE" value="Java" />
       <option name="USE_LAST_SELECTED_DEVICE" value="false" />
       <option name="PREFERRED_AVD" value="" />
+      <Java />
+      <Profilers>
+        <option name="GAPID_DISABLE_PCS" value="false" />
+      </Profilers>
       <method />
     </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
@@ -881,45 +944,12 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
-      <method />
-    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
-      <method />
-    </configuration>
-    <configuration default="true" type="ScalaTestRunConfiguration" factoryName="ScalaTest">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <setting name="path" value="" />
-      <setting name="package" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workingDirectory" value="" />
-      <setting name="searchForTest" value="Across module dependencies" />
-      <setting name="testName" value="" />
-      <setting name="testKind" value="Class" />
-      <setting name="showProgressMessages" value="true" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="Specs2RunConfiguration" factoryName="Specs2">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <setting name="path" value="" />
-      <setting name="package" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workingDirectory" value="" />
-      <setting name="searchForTest" value="Across module dependencies" />
-      <setting name="testName" value="" />
-      <setting name="testKind" value="Class" />
-      <setting name="showProgressMessages" value="true" />
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -1000,38 +1030,10 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <working-directory>$PROJECT_DIR$</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <envs />
-      <ui>bdd</ui>
-      <extra-mocha-options />
-      <test-kind>DIRECTORY</test-kind>
-      <test-directory />
-      <recursive>false</recursive>
-      <method />
-    </configuration>
     <configuration default="true" type="osgi.bnd.run" factoryName="Run Launcher">
       <method />
     </configuration>
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
-      <method />
-    </configuration>
-    <configuration default="true" type="uTestRunConfiguration" factoryName="utest">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <setting name="path" value="" />
-      <setting name="package" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workingDirectory" value="" />
-      <setting name="searchForTest" value="Across module dependencies" />
-      <setting name="testName" value="" />
-      <setting name="testKind" value="Class" />
-      <setting name="showProgressMessages" value="true" />
-      <envs />
       <method />
     </configuration>
     <configuration default="false" name="Worker" type="GWT.ConfigurationType" factoryName="GWT Configuration">
@@ -1168,6 +1170,7 @@
       <workItem from="1479422028883" duration="1986000" />
       <workItem from="1479498641256" duration="12709000" />
       <workItem from="1479666772426" duration="918000" />
+      <workItem from="1479668215924" duration="4251000" />
     </task>
     <task id="LOCAL-00001" summary="Long way to synchronizatinz with db">
       <created>1478290293792</created>
@@ -1229,7 +1232,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="183283000" />
+    <option name="totallyTimeSpent" value="187534000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1241,7 +1244,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1066" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1251,21 +1254,21 @@
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15191898" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15191898" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997833" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3215434" sideWeight="0.4978678" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3206934" sideWeight="0.4978678" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33152762" sideWeight="0.4914712" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33226153" sideWeight="0.4914712" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21954161" sideWeight="0.34670946" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2200489" sideWeight="0.6532905" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2196162" sideWeight="0.6532905" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5080386" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5080386" order="6" side_tool="true" content_ui="tabs" />
@@ -1546,14 +1549,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/ChatPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2276">
-          <caret line="114" column="58" selection-start-line="114" selection-start-column="41" selection-end-line="114" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/ProfilePage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="393">
@@ -1567,11 +1562,11 @@
         <state relative-caret-position="629">
           <caret line="46" column="62" selection-start-line="46" selection-start-column="52" selection-end-line="46" selection-end-column="62" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1242#1243#0" expanded="true" />
-            <element signature="e#1322#1323#0" expanded="true" />
-            <element signature="e#2030#2031#0" expanded="true" />
-            <element signature="e#2150#2151#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1242#1243#0" expanded="false" />
+            <element signature="e#1322#1323#0" expanded="false" />
+            <element signature="e#2030#2031#0" expanded="false" />
+            <element signature="e#2150#2151#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1581,11 +1576,11 @@
         <state relative-caret-position="646">
           <caret line="50" column="33" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#983#984#0" expanded="true" />
-            <element signature="e#1047#1048#0" expanded="true" />
-            <element signature="e#1674#1675#0" expanded="true" />
-            <element signature="e#1778#1779#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#983#984#0" expanded="false" />
+            <element signature="e#1047#1048#0" expanded="false" />
+            <element signature="e#1674#1675#0" expanded="false" />
+            <element signature="e#1778#1779#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1595,9 +1590,9 @@
         <state relative-caret-position="527">
           <caret line="42" column="36" selection-start-line="42" selection-start-column="36" selection-end-line="42" selection-end-column="36" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1075#1076#0" expanded="true" />
-            <element signature="e#1139#1140#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1075#1076#0" expanded="false" />
+            <element signature="e#1139#1140#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1624,14 +1619,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/BasicMapWidget.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="48" column="38" selection-start-line="48" selection-start-column="38" selection-end-line="48" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/MessagesEntity.hbm.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -1642,9 +1629,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/DB_classes/UserEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
+        <state relative-caret-position="918">
           <caret line="78" column="41" selection-start-line="78" selection-start-column="41" selection-end-line="78" selection-end-column="41" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#590#591#0" expanded="false" />
+            <element signature="e#615#616#0" expanded="false" />
+            <element signature="e#648#649#0" expanded="false" />
+            <element signature="e#676#677#0" expanded="false" />
+            <element signature="e#778#779#0" expanded="false" />
+            <element signature="e#806#807#0" expanded="false" />
+            <element signature="e#848#849#0" expanded="false" />
+            <element signature="e#882#883#0" expanded="false" />
+            <element signature="e#990#991#0" expanded="false" />
+            <element signature="e#1021#1022#0" expanded="false" />
+            <element signature="e#1069#1070#0" expanded="false" />
+            <element signature="e#1109#1110#0" expanded="false" />
+            <element signature="e#1210#1211#0" expanded="false" />
+            <element signature="e#1238#1239#0" expanded="false" />
+            <element signature="e#1280#1281#0" expanded="false" />
+            <element signature="e#1314#1315#0" expanded="false" />
+            <element signature="e#1407#1408#0" expanded="false" />
+            <element signature="e#1438#1439#0" expanded="false" />
+            <element signature="e#1484#1485#0" expanded="false" />
+            <element signature="e#1524#1525#0" expanded="false" />
+            <element signature="e#1633#1634#0" expanded="false" />
+            <element signature="e#1665#1666#0" expanded="false" />
+            <element signature="e#1715#1716#0" expanded="false" />
+            <element signature="e#1757#1758#0" expanded="false" />
+            <element signature="e#1854#1855#0" expanded="false" />
+            <element signature="e#1880#1881#0" expanded="false" />
+            <element signature="e#1918#1919#0" expanded="false" />
+            <element signature="e#1948#1949#0" expanded="false" />
+            <element signature="e#3348#3349#0" expanded="false" />
+            <element signature="e#3375#3376#0" expanded="false" />
+            <element signature="e#3415#3416#0" expanded="false" />
+            <element signature="e#3447#3448#0" expanded="false" />
+            <element signature="e#3552#3553#0" expanded="false" />
+            <element signature="e#3582#3583#0" expanded="false" />
+            <element signature="e#3628#3629#0" expanded="false" />
+            <element signature="e#3666#3667#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1658,50 +1683,107 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/UserEntity.hbm.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="29" column="42" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
-          <folding />
+        <state relative-caret-position="476">
+          <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
+          <folding>
+            <marker date="1479667956988" expanded="true" signature="203:1454" ph="..." />
+            <marker date="1479667956988" expanded="true" signature="287:1433" ph="..." />
+            <marker date="1479667956988" expanded="true" signature="310:375" ph="..." />
+            <marker date="1479667956988" expanded="true" signature="407:497" ph="..." />
+            <marker date="1479667956988" expanded="true" signature="532:625" ph="..." />
+            <marker date="1479667956988" expanded="true" signature="657:763" ph="..." />
+            <marker date="1479667956988" expanded="true" signature="798:878" ph="..." />
+            <marker date="1479667956988" expanded="true" signature="914:1008" ph="..." />
+            <marker date="1479667956988" expanded="true" signature="1038:1142" ph="..." />
+            <marker date="1479667956988" expanded="true" signature="1173:1278" ph="..." />
+            <marker date="1479667956988" expanded="true" signature="1312:1420" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/DB_managing/HibernateWorker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="117" column="36" selection-start-line="117" selection-start-column="36" selection-end-line="117" selection-end-column="36" />
+        <state relative-caret-position="1819">
+          <caret line="119" column="32" selection-start-line="119" selection-start-column="32" selection-end-line="119" selection-end-column="32" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#14170#14171#0" expanded="false" />
+            <element signature="e#14204#14205#0" expanded="false" />
+            <marker date="1479667956929" expanded="true" signature="40:398" ph="..." />
+            <marker date="1479667956929" expanded="true" signature="400:446" ph="/**...*/" />
+            <marker date="1479667956929" expanded="true" signature="649:657" ph="{...}" />
+            <marker date="1479667956929" expanded="true" signature="720:1219" ph="{...}" />
+            <marker date="1479667956929" expanded="true" signature="1279:1870" ph="{...}" />
+            <marker date="1479667956929" expanded="true" signature="1876:2039" ph="/**...*/" />
+            <marker date="1479667956929" expanded="true" signature="2081:2440" ph="{...}" />
+            <marker date="1479667956929" expanded="true" signature="2493:3070" ph="{...}" />
+            <marker date="1479667956929" expanded="true" signature="3111:3771" ph="{...}" />
+            <marker date="1479667956929" expanded="true" signature="4199:4440" ph="{...}" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/WorkerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/WorkerServiceAsync.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="23" column="65" selection-start-line="23" selection-start-column="65" selection-end-line="23" selection-end-column="65" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/server/WorkerServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
+        <state relative-caret-position="935">
           <caret line="76" column="5" selection-start-line="76" selection-start-column="5" selection-end-line="76" selection-end-column="5" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1080#1081#0" expanded="false" />
+            <element signature="e#1122#1123#0" expanded="false" />
+            <element signature="e#1406#1407#0" expanded="false" />
+            <element signature="e#1434#1435#0" expanded="false" />
+            <element signature="e#2636#2637#0" expanded="false" />
+            <element signature="e#2686#2687#0" expanded="false" />
+            <element signature="e#2718#2719#0" expanded="false" />
+            <element signature="e#2757#2758#0" expanded="false" />
+            <element signature="e#2802#2803#0" expanded="false" />
+            <element signature="e#2845#2846#0" expanded="false" />
+            <element signature="e#5659#5660#0" expanded="false" />
+            <element signature="e#5724#5725#0" expanded="false" />
+            <element signature="e#5781#5782#0" expanded="false" />
+            <element signature="e#5851#5852#0" expanded="false" />
+            <element signature="e#6219#6220#0" expanded="false" />
+            <element signature="e#6296#6297#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/RegisterPage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
-          <caret line="115" column="17" selection-start-line="115" selection-start-column="17" selection-end-line="115" selection-end-column="17" />
+          <caret line="131" column="17" selection-start-line="131" selection-start-column="17" selection-end-line="131" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/WorkerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="25" column="18" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/WorkerServiceAsync.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="24" column="65" selection-start-line="24" selection-start-column="65" selection-end-line="24" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/BasicMapWidget.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="48" column="38" selection-start-line="48" selection-start-column="38" selection-end-line="48" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/ChatPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3043">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding />
         </state>
       </provider>

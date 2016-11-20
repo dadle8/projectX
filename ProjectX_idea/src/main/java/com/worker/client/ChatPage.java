@@ -10,6 +10,7 @@ import com.google.gwt.i18n.client.DefaultDateTimeFormatInfo;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
+import com.sun.prism.Material;
 import com.worker.DB_classes.UserEntity;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -75,11 +76,12 @@ public class ChatPage {
     /**
      * This timer for blocking sendMessageBtn until RPC returned.
      */
-    private  boolean abortFlag = false;
+    private boolean sendMessageBtnFlag = true;
+    private boolean getHistoryMessagesFlag = true;
     Timer tmForSendBtn = new Timer() {
         @Override
         public void run() {
-            if(abortFlag) {
+            if(sendMessageBtnFlag) {
                 sendMessageBtn.setEnabled(true);
                 tmForSendBtn.cancel();
             }
@@ -136,6 +138,7 @@ public class ChatPage {
 
         chat = new VerticalPanel();
         scrollPanel = new ScrollPanel();
+        scrollPanel.setAlwaysShowScrollBars(true);
         buttonsPanel = new HorizontalPanel();
 
         messages = new HTML();
@@ -205,7 +208,7 @@ public class ChatPage {
                             users.getSelectedItemText(), new AsyncCallback<Boolean>() {
                         public void onFailure(Throwable caught) {
                             GWT.log("Error in 'sendMessageBtn.addClickHandler' when 'saveNewMessage'.\n" + caught.toString());
-                            abortFlag = true;
+                            sendMessageBtnFlag = true;
                         }
 
                         public void onSuccess(Boolean result) {
@@ -213,7 +216,7 @@ public class ChatPage {
                                     + message.getText() + " | " + formatDate(new Timestamp(new java.util.Date().getTime())) + "</p>");
                             message.setText("");
                             scrollPanel.scrollToBottom();
-                            abortFlag = true;
+                            sendMessageBtnFlag = true;
                         }
                     });
                 }
@@ -234,7 +237,6 @@ public class ChatPage {
                                         timestampList.set(users.getSelectedIndex(), Timestamp.valueOf(result[0]));
                                         messages.setHTML(result[1]);
                                         scrollPanel.scrollToBottom();
-
                                     }
                                 }
                             });
@@ -244,13 +246,15 @@ public class ChatPage {
 
         scrollPanel.addScrollHandler(new ScrollHandler() {
             public void onScroll(ScrollEvent event) {
-                if (scrollPanel.getVerticalScrollPosition() == scrollPanel.getMinimumVerticalScrollPosition()) {
+                if (getHistoryMessagesFlag && scrollPanel.getVerticalScrollPosition() == scrollPanel.getMinimumVerticalScrollPosition()) {
                     final int oldMaxScrollPosition = scrollPanel.getMaximumVerticalScrollPosition();
+                    getHistoryMessagesFlag = false;
 
                     WorkerService.App.getInstance().getMessageHistory(CurrentUser.getId(), users.getSelectedItemText(),
                             timestampList.get(users.getSelectedIndex()), users.getSelectedIndex(), new AsyncCallback<String[]>() {
                                 public void onFailure(Throwable caught) {
                                     GWT.log("Error in 'scrollPanel.addScrollHandler' when 'getMessageHistory'" + caught.toString());
+                                    getHistoryMessagesFlag = true;
                                 }
 
                                 public void onSuccess(String[] result) {
@@ -258,6 +262,7 @@ public class ChatPage {
                                         timestampList.set(users.getSelectedIndex(), Timestamp.valueOf(result[0]));
                                         messages.setHTML(result[1] + messages.getHTML());
                                         scrollPanel.setVerticalScrollPosition(scrollPanel.getMaximumVerticalScrollPosition() - oldMaxScrollPosition);
+                                        getHistoryMessagesFlag = true;
                                     }
                                 }
                             });
