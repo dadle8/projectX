@@ -23,39 +23,47 @@ public class Worker implements EntryPoint {
     Timer tmr = new Timer() {
         @Override
         public void run() {
-            if (Cookies.getCookie("longSID") == "" || Cookies.getCookie("longSID") == null)
-            {
-                return;
-            }
-            Geolocation geo = Geolocation.getIfSupported();
-            if (geo == null)
-            {
-                Window.alert("GEO NOT SUPPORTED");
-            }
-            geo.getCurrentPosition(new Callback<Position, PositionError>()
-            {
-
-                public void onSuccess(Position result)
-                {
-                    WorkerService.App.getInstance().addCurrentGeo(result.getCoordinates().getLatitude(), result.getCoordinates().getLongitude(), Window.Navigator.getUserAgent(), new AsyncCallback<Boolean>() {
-                        public void onFailure(Throwable caught) {
-                            Window.alert("SMTH GOES WRONG!");
-                        }
-
-                        public void onSuccess(Boolean result) {
-                            if (result)
-                            {
-                                //Window.alert("GEO SET SUCCESSFUL");
-                            } else {
-                                //Window.alert("SAME GEO");
-                            }
-                        }
-                    });
+            WorkerService.App.getInstance().getUserFromCurrentSession(new AsyncCallback<UserEntity>() {
+                public void onFailure(Throwable caught) {
+                    Window.alert("SMTH GOES WRONG WITH GETTINGUSERFROMSESSION");
                 }
 
-                public void onFailure(PositionError reason)
-                {
-                    Window.alert(reason.getMessage());
+                public void onSuccess(UserEntity result) {
+                    if (result == null)
+                    {
+                        return;
+                    }
+                    Geolocation geo = Geolocation.getIfSupported();
+                    if (geo == null)
+                    {
+                        Window.alert("GEO NOT SUPPORTED");
+                    }
+                    geo.getCurrentPosition(new Callback<Position, PositionError>()
+                    {
+
+                        public void onSuccess(Position result)
+                        {
+                            WorkerService.App.getInstance().addCurrentGeo(result.getCoordinates().getLatitude(), result.getCoordinates().getLongitude(), Window.Navigator.getUserAgent(), new AsyncCallback<Boolean>() {
+                                public void onFailure(Throwable caught) {
+                                    Window.alert("SMTH GOES WRONG!");
+                                }
+
+                                public void onSuccess(Boolean result) {
+                                    if (result)
+                                    {
+                                        //Window.alert("GEO SET SUCCESSFUL");
+                                    } else {
+                                        //Window.alert("SAME GEO");
+                                    }
+                                }
+                            });
+                        }
+
+                        public void onFailure(PositionError reason)
+                        {
+                            Window.alert(reason.getMessage());
+                        }
+                    });
                 }
             });
         }
