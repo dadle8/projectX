@@ -1,12 +1,15 @@
 package com.worker.DB_managing;
 
+import com.google.gwt.user.client.Window;
 import com.worker.DB_classes.FriendEntity;
+import com.worker.DB_classes.GeoEntity;
 import com.worker.DB_classes.MessagesEntity;
 import com.worker.DB_classes.UserEntity;
 import com.worker.client.DoublePoint;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +27,55 @@ public class HibernateWorker implements Serializable {
 
     }
 
+    public Boolean addGeo(UserEntity usr, double latitude, double longitude, String userAgent)
+    {
+        Session session = factory.openSession();
+        List<Object[]> coords = session.createQuery("SELECT G.latitude, G.longitude FROM com.worker.DB_classes.GeoEntity G ORDER BY G.time DESC").list();
+
+        if (!coords.isEmpty()) {
+            double lastLatitude = (Double) coords.get(0)[0];
+            double lastLongitude = (Double) coords.get(0)[1];
+            if (lastLatitude == latitude && lastLongitude == longitude) {
+                return false;
+            }
+        }
+        GeoEntity newGeo = new GeoEntity();
+        newGeo.setLatitude(latitude);
+        newGeo.setLongitude(longitude);
+        newGeo.setTime(new Timestamp(new java.util.Date().getTime()));
+        newGeo.setUserid(usr.getId());
+
+        userAgent = userAgent.substring(0, Math.min(userAgent.length(), 511));
+        System.err.println(userAgent);
+        newGeo.setDevice(userAgent);
+
+        session.beginTransaction();
+        session.save(newGeo);
+        session.getTransaction().commit();
+        session.close();
+        return true;
+    }
+
+    public void setUserSession(UserEntity usr, String sessionId)
+    {
+        Session session = factory.openSession();
+        session.beginTransaction();
+        session.createQuery("UPDATE com.worker.DB_classes.UserEntity U SET U.sessionId = :sessionId WHERE U.login = :login").setParameter("sessionId", sessionId).setParameter("login", usr.getLogin()).executeUpdate();
+        session.createQuery("UPDATE com.worker.DB_classes.UserEntity U SET U.loggedIn = 1 WHERE U.login = :login").setParameter("login", usr.getLogin()).executeUpdate();
+        session.close();
+        return;
+    }
+
+    public void clearUserSession(UserEntity usr)
+    {
+        Session session = factory.openSession();
+        session.beginTransaction();
+        session.createQuery("UPDATE com.worker.DB_classes.UserEntity U SET U.sessionId = :sessionId WHERE U.login = :login").setParameter("sessionId", null).setParameter("login", usr.getLogin()).executeUpdate();
+        session.createQuery("UPDATE com.worker.DB_classes.UserEntity U SET U.loggedIn = 0 WHERE U.login = :login").setParameter("login", usr.getLogin()).executeUpdate();
+        session.close();
+        return;
+    }
+
     public ArrayList<UserEntity> searchUsers(String str)
     {
         Session session = factory.openSession();
@@ -32,6 +84,7 @@ public class HibernateWorker implements Serializable {
         List <UserEntity> users = session.createQuery("SELECT U FROM com.worker.DB_classes.UserEntity U WHERE U.name like :pattern OR U.surname like :pattern OR U.ref like :pattern").setParameter("pattern", str).list();
         System.err.println(users.size());
         //ArrayList<UserEntity> ans = new ArrayList<UserEntity>();
+        session.close();
 
         return new ArrayList<UserEntity>(users);
     }
@@ -40,7 +93,7 @@ public class HibernateWorker implements Serializable {
     {
         Session session = factory.openSession();
 
-        List <Object[]> points = session.createQuery("SELECT G.latitude, G.longitude FROM com.worker.DB_classes.GeoEntity G WHERE G.userid = :id").setParameter("id", id).list();
+        List <Object[]> points = session.createQuery("SELECT G.latitude, G.longitude FROM com.worker.DB_classes.GeoEntity G WHERE G.userid = :id ORDER BY G.time").setParameter("id", id).setMaxResults(50).list();
         ArrayList<DoublePoint> ans = new ArrayList<DoublePoint>();
         for(Object[] point: points)
         {
@@ -50,6 +103,8 @@ public class HibernateWorker implements Serializable {
             pt.Set(latitude, longitude);
             ans.add(pt);
         }
+
+        session.close();
         return ans;
     }
 
@@ -88,19 +143,35 @@ public class HibernateWorker implements Serializable {
         return null;
     }
 
-    public String generateNewRef()
+    private String generateNewRef()
     {
         String ans = "";
         Random rnd = new Random();
-        char[] avialable = new char[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+        char[] available = new char[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
                 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
                 '!', '@', '#', ')', '%', '(', '?', ';', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', '+', '_'};
         for(int i = 0; i < 32; i++)
         {
-            ans += avialable[Math.abs(rnd.nextInt() % avialable.length)];
+            ans += available[Math.abs(rnd.nextInt() % available.length)];
         }
 
         return ans;
+    }
+
+    private String normal(String s, int len)
+    {
+        while (s.length() < len)
+        {
+            s.concat("0");
+        }
+        return s;
+    }
+
+    private String generateRandomColor()
+    {
+        Random rnd = new Random();
+        int val = rnd.nextInt(1000000);
+        return normal(Integer.toString(val), 6);
     }
 
     public Boolean registerNewUser(String login, String name, String surname, String passwd, String eMail)
@@ -110,7 +181,6 @@ public class HibernateWorker implements Serializable {
         }
 
         Session session = factory.openSession();
-        session.beginTransaction();
 
         UserEntity newUser = new UserEntity();
         newUser.setLogin(login);
@@ -119,7 +189,9 @@ public class HibernateWorker implements Serializable {
         newUser.setPassword(passwd);
         newUser.setEmail(eMail);
         newUser.setRef(generateNewRef());
+        newUser.setColor(generateRandomColor());
 
+        session.beginTransaction();
         session.save(newUser);
         session.getTransaction().commit();
         session.close();
@@ -135,7 +207,6 @@ public class HibernateWorker implements Serializable {
     public Boolean saveNewMessage(String message, int idfrom, String loginAddressee) {
         UserEntity userAddressee = getUserByLogin(loginAddressee);
         Session session = factory.openSession();
-        session.beginTransaction();
 
         MessagesEntity newMessage = new MessagesEntity();
         newMessage.setMessage(message);
@@ -144,6 +215,7 @@ public class HibernateWorker implements Serializable {
         newMessage.setIdto(userAddressee.getId());
         newMessage.setIsread(0);
 
+        session.beginTransaction();
         session.save(newMessage);
         session.getTransaction().commit();
         session.close();
@@ -167,7 +239,7 @@ public class HibernateWorker implements Serializable {
     public List getMessageHistory(int idfrom, String loginAddressee,int lengthMessageHistory, Timestamp time) {
         UserEntity userAddressee = getUserByLogin(loginAddressee);
         Session session = factory.openSession();
-        session.beginTransaction();
+
         List MessageHistory = session.createQuery("FROM com.worker.DB_classes.MessagesEntity M " +
                 "WHERE ((M.idfrom = :idto AND M.idto = :idfrom) OR (M.idfrom = :idfrom AND M.idto = :idto)) " +
                 "AND :time > M.dateMessage ORDER BY M.dateMessage DESC")
@@ -199,8 +271,6 @@ public class HibernateWorker implements Serializable {
     public List getLastUnreadMessage(int idfrom, String loginAddressee, int lengthMessageHistory) {
         UserEntity userAddressee = getUserByLogin(loginAddressee);
         Session session = factory.openSession();
-        session.beginTransaction();
-
 
         List lastmessage = session.createQuery("SELECT M.dateMessage FROM com.worker.DB_classes.MessagesEntity M " +
                 "WHERE ((M.idfrom = :idfrom AND M.idto = :idto) OR (M.idfrom = :idto AND M.idto = :idfrom AND M.isread = 1)) " +
@@ -274,7 +344,6 @@ public class HibernateWorker implements Serializable {
      */
     public List getCountOfUnreadMessages(int idto) {
         Session session = factory.openSession();
-        session.beginTransaction();
 
         List countIfUnreadMessages = session.createQuery("SELECT U.login, COUNT(*) AS C FROM " +
                 "com.worker.DB_classes.MessagesEntity M, com.worker.DB_classes.UserEntity U " +
@@ -298,7 +367,6 @@ public class HibernateWorker implements Serializable {
      */
     public List<UserEntity> getFriends(int userId) {
         Session session = factory.openSession();
-        session.beginTransaction();
 
         List<UserEntity> friends = session.createQuery("FROM com.worker.DB_classes.UserEntity U " +
                 "WHERE U.id IN (SELECT F.friendId FROM com.worker.DB_classes.FriendEntity F " +
@@ -320,7 +388,6 @@ public class HibernateWorker implements Serializable {
     public List<UserEntity> getInvites(UserEntity usr)
     {
         Session session = factory.openSession();
-        session.beginTransaction();
 
         List<UserEntity> invites = session.createQuery("FROM com.worker.DB_classes.UserEntity U " +
                 "WHERE U.id IN (SELECT F.userId FROM com.worker.DB_classes.FriendEntity F " +
@@ -343,15 +410,14 @@ public class HibernateWorker implements Serializable {
         session.beginTransaction();
 
         int res = session.createQuery("UPDATE com.worker.DB_classes.FriendEntity F SET F.accepted = 1 WHERE F.userId = :to AND F.friendId = :from").setParameter("to", to.getId()).setParameter("from", from.getId()).executeUpdate();
-        session.getTransaction().commit();
 
+        session.getTransaction().commit();
         session.close();
     }
 
     public boolean addFriend(UserEntity from, UserEntity to)
     {
         Session session = factory.openSession();
-        session.beginTransaction();
 
         List <Byte> ans = session.createQuery("SELECT F.accepted FROM com.worker.DB_classes.FriendEntity F WHERE F.userId = :from AND F.friendId = :to").setParameter("from", from.getId()).setParameter("to", to.getId()).list();
 
@@ -364,6 +430,7 @@ public class HibernateWorker implements Serializable {
         friendship.setUserId(from.getId());
         friendship.setFriendId(to.getId());
 
+        session.beginTransaction();
         session.save(friendship);
         session.getTransaction().commit();
         session.close();

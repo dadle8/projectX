@@ -1,11 +1,8 @@
 package com.worker.server;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.DefaultDateTimeFormatInfo;
-import com.google.gwt.maps.client.base.Point;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import com.google.web.bindery.requestfactory.server.Pair;
 import com.worker.DB_classes.MessagesEntity;
 import com.worker.DB_classes.UserEntity;
 import com.worker.DB_managing.HibernateWorker;
@@ -21,8 +18,13 @@ import javax.servlet.http.HttpSession;
 public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerService {
     // Implementation of sample interface method
     private HibernateWorker HW = new HibernateWorker();
-    private static long serialVersionUID = 1456105400553118785L;
+    private static long serialVersionUID = 1456105400553118L;
     private int lengthMessageHistory = 15;
+
+    public Boolean addCurrentGeo(double latitude, double longitude, String userAgent)
+    {
+        return HW.addGeo(getUserFromCurrentSession(), latitude, longitude, userAgent);
+    }
 
     public ArrayList<UserEntity> searchUsers(String str)
     {
@@ -67,6 +69,7 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
             String SessionID = generateNewSessionId();
             System.err.println("Session:   " + SessionID);
             user.setSessionId(SessionID);
+            HW.setUserSession(user, SessionID);
         }
         return user;
     }
@@ -212,6 +215,7 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
         UserEntity user = (UserEntity)session.getAttribute("user");
         user.setLoggedIn((byte)0);
         user.setSessionId("");
+        HW.clearUserSession(user);
         session.removeAttribute("user");
     }
 

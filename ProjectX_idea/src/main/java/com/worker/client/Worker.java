@@ -1,18 +1,15 @@
 package com.worker.client;
 
+import com.google.gwt.core.client.Callback;
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.maps.client.events.MapPanel;
-import com.google.gwt.user.client.Cookies;
-import com.google.gwt.user.client.Window;
+import com.google.gwt.geolocation.client.Geolocation;
+import com.google.gwt.geolocation.client.Position;
+import com.google.gwt.geolocation.client.PositionError;
+import com.google.gwt.user.client.*;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.*;
 import com.worker.DB_classes.UserEntity;
 
-import javax.enterprise.inject.New;
-import javax.servlet.http.Cookie;
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>
@@ -22,6 +19,47 @@ public class Worker implements EntryPoint {
     /**
      * This is the entry point method.
      */
+    int delayMills = 20000;
+    Timer tmr = new Timer() {
+        @Override
+        public void run() {
+            if (Cookies.getCookie("longSID") == "" || Cookies.getCookie("longSID") == null)
+            {
+                return;
+            }
+            Geolocation geo = Geolocation.getIfSupported();
+            if (geo == null)
+            {
+                Window.alert("GEO NOT SUPPORTED");
+            }
+            geo.getCurrentPosition(new Callback<Position, PositionError>()
+            {
+
+                public void onSuccess(Position result)
+                {
+                    WorkerService.App.getInstance().addCurrentGeo(result.getCoordinates().getLatitude(), result.getCoordinates().getLongitude(), Window.Navigator.getUserAgent(), new AsyncCallback<Boolean>() {
+                        public void onFailure(Throwable caught) {
+                            Window.alert("SMTH GOES WRONG!");
+                        }
+
+                        public void onSuccess(Boolean result) {
+                            if (result)
+                            {
+                                //Window.alert("GEO SET SUCCESSFUL");
+                            } else {
+                                //Window.alert("SAME GEO");
+                            }
+                        }
+                    });
+                }
+
+                public void onFailure(PositionError reason)
+                {
+                    Window.alert(reason.getMessage());
+                }
+            });
+        }
+    };
 
     ArrayList<Integer> AllowedUnAuth = new ArrayList<Integer>() {{
         add(0);
@@ -97,11 +135,11 @@ public class Worker implements EntryPoint {
         return false;
     }
 
-    private void BuildPage(String sessionID) {
+    private void BuildPage() {
 
-        if (Cookies.getCookie("NextPage") == null)
-        {
+        if (Cookies.getCookie("NextPage") == null) {
             buildNewPage(0);
+            return;
         }
 
         WorkerService.App.getInstance().loginFromSessionServer(new AsyncCallback<UserEntity>() {
@@ -136,13 +174,15 @@ public class Worker implements EntryPoint {
     }
 
     public void onModuleLoad() {
-        String sessionID = Cookies.getCookie("longSID");
+        tmr.run();
+        tmr.scheduleRepeating(delayMills);
+        //Window.alert(Window.Navigator.getUserAgent());
         /*if (sessionID != null)
         {
             checkWithServerIfSessionIdIsStillLegal(sessionID);
         } else {
             displayLoginWindow();
         }*/
-        BuildPage(sessionID);
+        BuildPage();
     }
 }

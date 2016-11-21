@@ -13,6 +13,7 @@ import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpSession;
 
 public interface WorkerServiceAsync {
+    void addCurrentGeo(double latitude, double longitude, String userAgent, AsyncCallback<Boolean> async);
     void confirmFriendship(UserEntity usr, AsyncCallback<Void> async);
     void getInvites(AsyncCallback<List<UserEntity>> async);
     void addFriend(UserEntity usr, AsyncCallback<Boolean> async);

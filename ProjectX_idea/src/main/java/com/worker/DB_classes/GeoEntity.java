@@ -2,6 +2,7 @@ package com.worker.DB_classes;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by AsmodeusX on 16.11.2016.
@@ -13,7 +14,7 @@ public class GeoEntity {
     private Double latitude;
     private Double longitude;
     private Integer userid;
-    private Date time;
+    private Timestamp time;
     private String device;
 
     @Id
@@ -58,16 +59,16 @@ public class GeoEntity {
 
     @Basic
     @Column(name = "time", nullable = true)
-    public Date getTime() {
+    public Timestamp getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(Timestamp time) {
         this.time = time;
     }
 
     @Basic
-    @Column(name = "device", nullable = true, length = 128)
+    @Column(name = "device", nullable = true, length = 512)
     public String getDevice() {
         return device;
     }

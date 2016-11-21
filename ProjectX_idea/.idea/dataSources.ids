@@ -43,7 +43,7 @@
         <data-type>datetime</data-type>
       </column>
       <column id="16" parent="3" name="device">
-        <data-type>varchar(128)</data-type>
+        <data-type>varchar(512)</data-type>
       </column>
       <key id="17" parent="3" name="PRIMARY">
         <columns>id</columns>
@@ -119,11 +119,15 @@
       <column id="35" parent="5" name="surname">
         <data-type>varchar(32)</data-type>
       </column>
-      <key id="36" parent="5" name="PRIMARY">
+      <column id="36" parent="5" name="color">
+        <mandatory>1</mandatory>
+        <data-type>varchar(6)</data-type>
+      </column>
+      <key id="37" parent="5" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <column id="37" parent="6" name="xxx">
+      <column id="38" parent="6" name="xxx">
         <mandatory>1</mandatory>
         <data-type>datetime</data-type>
       </column>

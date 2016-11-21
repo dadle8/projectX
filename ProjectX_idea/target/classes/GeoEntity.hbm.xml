@@ -21,7 +21,7 @@
             <column name="time" sql-type="date" not-null="true"/>
         </property>
         <property name="device">
-            <column name="device" sql-type="varchar(128)" length="128" not-null="true"/>
+            <column name="device" sql-type="varchar(512)" length="512" not-null="true"/>
         </property>
     </class>
 </hibernate-mapping>

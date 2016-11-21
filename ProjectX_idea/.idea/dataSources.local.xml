@@ -2,21 +2,12 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="MySQL - projectx@localhost" uuid="bb96e8e7-d77b-4809-bdf2-c11a19f66b07">
-      <database-info product="MySQL" version="5.7.11" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
-        <extra-name-characters>#@</extra-name-characters>
-        <identifier-quote-string>`</identifier-quote-string>
-      </database-info>
-      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
     </data-source>
     <data-source name="hibernate.cfg.xml/Hibernate" uuid="89e1c849-0cf7-42d6-b236-8bc69c19da9d">
-      <database-info product="MySQL" version="5.7.16-log" jdbc-version="4.1" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-6.0.2 ( Revision: c6da0fe501ad43d4ed6483b60ea796dc9fbe2d7b )">
-        <extra-name-characters>#@</extra-name-characters>
-        <identifier-quote-string>`</identifier-quote-string>
-      </database-info>
-      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
       <user-name>root</user-name>
+      <user-password>dfc0dfcedfc8dfc9df90dfc7dfd3dfd9dfdbdfc6df90df85df85dfc6dfc5dfc9dfcbdfc6dfc2dfc5dfd9dfdedf90df99df99df9adf9cdf85dfdadfd8dfc5dfc0dfcfdfc9dfdedfd2</user-password>
     </data-source>
   </component>
 </project>

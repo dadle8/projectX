@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 @RemoteServiceRelativePath("WorkerService")
 public interface WorkerService extends RemoteService {
+    Boolean addCurrentGeo(double latitude, double longitude, String userAgent);
     void confirmFriendship(UserEntity usr);
     List<UserEntity> getInvites();
     boolean addFriend(UserEntity usr);
