@@ -239,6 +239,7 @@ public class HibernateWorker implements Serializable {
     public List getMessageHistory(int idfrom, String loginAddressee,int lengthMessageHistory, Timestamp time) {
         UserEntity userAddressee = getUserByLogin(loginAddressee);
         Session session = factory.openSession();
+        session.beginTransaction();
 
         List MessageHistory = session.createQuery("FROM com.worker.DB_classes.MessagesEntity M " +
                 "WHERE ((M.idfrom = :idto AND M.idto = :idfrom) OR (M.idfrom = :idfrom AND M.idto = :idto)) " +
@@ -271,7 +272,7 @@ public class HibernateWorker implements Serializable {
     public List getLastUnreadMessage(int idfrom, String loginAddressee, int lengthMessageHistory) {
         UserEntity userAddressee = getUserByLogin(loginAddressee);
         Session session = factory.openSession();
-
+        session.beginTransaction();
         List lastmessage = session.createQuery("SELECT M.dateMessage FROM com.worker.DB_classes.MessagesEntity M " +
                 "WHERE ((M.idfrom = :idfrom AND M.idto = :idto) OR (M.idfrom = :idto AND M.idto = :idfrom AND M.isread = 1)) " +
                 "ORDER BY M.dateMessage DESC")
