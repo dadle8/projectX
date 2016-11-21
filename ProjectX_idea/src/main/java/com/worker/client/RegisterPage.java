@@ -3,14 +3,9 @@ package com.worker.client;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Cookies;
-import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
-import com.worker.DB_classes.UserEntity;
-
-import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by AsmodeusX on 06.11.2016.
@@ -24,7 +19,7 @@ public class RegisterPage {
     private Label nameLabel = null;
     private TextBox nameBox = null;
 
-    private Label surNameLabel = null;
+    private Label surnameLabel = null;
     private TextBox surNameBox = null;
 
     private Label passwordLabel = null;
@@ -54,8 +49,9 @@ public class RegisterPage {
     {
         this.setElements();
         this.setHandlers();
-        RootPanel.get().clear();
-        RootPanel.get().add(this.MakeWrapper());
+
+        RootPanel.get("root-div").clear();
+        RootPanel.get("root-div").add(this.MakeWrapper());
     }
 
     private void setElements()
@@ -72,7 +68,7 @@ public class RegisterPage {
         nameLabel = new Label("Type a name:");
         nameBox = new TextBox();
 
-        surNameLabel = new Label("Type a surname:");
+        surnameLabel = new Label("Type a surname:");
         surNameBox = new TextBox();
 
         passwordLabel = new Label("Type a password:");
@@ -91,7 +87,7 @@ public class RegisterPage {
         panel.add(loginBox);
         panel.add(nameLabel);
         panel.add(nameBox);
-        panel.add(surNameLabel);
+        panel.add(surnameLabel);
         panel.add(surNameBox);
         panel.add(passwordLabel);
         panel.add(passwordBox);
@@ -161,6 +157,7 @@ public class RegisterPage {
     private VerticalPanel MakeWrapper()
     {
         VerticalPanel Wrapper = new VerticalPanel();
+        Wrapper.addStyleName("register-page");
         Wrapper.add(this.regForm);
         return Wrapper;
     }

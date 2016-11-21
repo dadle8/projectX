@@ -22,12 +22,9 @@ public class LoginPage {
     private Label label = null;
     private Button submit = null;
     private Button register = null;
-    private Image logo = null;
-    private HTML upperBound = null;
-    private HTML lowerBound = null;
+    private HTML logo = null;
     private VerticalPanel contentPanel = null;
     private HorizontalPanel buttonsPanel = null;
-    private Integer boundHeight = 20;
 
     public LoginPage()
     {
@@ -42,13 +39,11 @@ public class LoginPage {
     public void Build()
     {
         this.initElements();
-        this.setStyle();
         this.setDependences();
         this.setHandlers();
 
-        RootPanel.get().clear();
-        RootPanel.get().getElement().getStyle().setProperty("backgroundColor", "#fff5fa");
-        RootPanel.get().add(this.MakeWrapper());
+        RootPanel.get("root-div").clear();
+        RootPanel.get("root-div").add(this.MakeWrapper());
     }
 
     private void initElements()
@@ -60,54 +55,16 @@ public class LoginPage {
         contentPanel = new VerticalPanel();
 
         loginBox = new TextBox();
+        loginBox.getElement().setAttribute("placeholder","login");
         passwordBox = new PasswordTextBox();
+        passwordBox.getElement().setAttribute("placeholder","password");
         label = new Label("SMTH is here.");
-        submit = new Button("");
-        register = new Button("");
+        submit = new Button("Submit");
+        register = new Button("Register");
 
         buttonsPanel = new HorizontalPanel();
 
-        logo = new Image("./images/logo.png");
-    }
-
-    private void setStyle()
-    {
-        String authFormBackgroundColor = "#080245";
-        upperBound = new HTML("<div style='top: 0;width: 100%;height: " + this.boundHeight + "px;background-color: #080245;'></div>");
-        lowerBound = new HTML("<div style='bottom: 0;width: 100%;height: " + this.boundHeight + "px;background-color: #080245;'></div>");
-
-        authForm.getElement().getStyle().setBackgroundColor(authFormBackgroundColor);
-        authForm.getElement().getStyle().setProperty("borderRadius", "10px");
-        authForm.getElement().getStyle().setProperty("margin", "0 20% 0 20%");
-        authForm.getElement().getStyle().setProperty("padding", "20px 0 20px 0");
-        authForm.getElement().getStyle().setProperty("minWidth", "500px");
-        authForm.getElement().getStyle().setProperty("minHeight", "200px");
-
-        contentPanel.getElement().getStyle().setProperty("width", "100%");
-        contentPanel.getElement().getStyle().setProperty("padding", "0 60px 0 60px");
-
-        loginBox.getElement().getStyle().setBackgroundImage("url('./images/user.png')");
-        loginBox.getElement().getStyle().setProperty("backgroundRepeat", "no-repeat");
-        loginBox.getElement().getStyle().setProperty("backgroundPosition", "10px 3px");
-        loginBox.getElement().getStyle().setProperty("paddingLeft", "50px");
-        loginBox.getElement().getStyle().setProperty("width", "calc(100% - 60px)"); //50 padding + 10 rounded corners
-
-        passwordBox.getElement().getStyle().setBackgroundImage("url('./images/pass.png')");
-        passwordBox.getElement().getStyle().setProperty("backgroundRepeat", "no-repeat");
-        passwordBox.getElement().getStyle().setProperty("backgroundPosition", "10px 3px");
-        passwordBox.getElement().getStyle().setProperty("paddingLeft", "50px");
-        passwordBox.getElement().getStyle().setProperty("width", "calc(100% - 60px)");
-
-        submit.getElement().setClassName("loginButton");
-
-        register.getElement().setClassName("registerButton");
-
-        label.getElement().getStyle().setColor("#FFFFFF");
-
-        buttonsPanel.getElement().getStyle().setProperty("width", "100%");
-
-        logo.getElement().getStyle().setProperty("height", "100%");
-        logo.getElement().getStyle().setProperty("minHeight", "214px");
+        logo = new HTML("<div class='logo'></div>");
     }
 
     private void setDependences()
@@ -118,9 +75,6 @@ public class LoginPage {
 
         buttonsPanel.add(submit);
         buttonsPanel.add(register);
-        buttonsPanel.setCellHorizontalAlignment(submit, HasAlignment.ALIGN_LEFT);
-        buttonsPanel.setCellHorizontalAlignment(register, HasAlignment.ALIGN_RIGHT);
-
         contentPanel.add(buttonsPanel);
 
         authForm.setWidget(contentPanel);
@@ -179,14 +133,9 @@ public class LoginPage {
     private VerticalPanel MakeWrapper()
     {
         VerticalPanel Wrapper = new VerticalPanel();
-        Wrapper.setHeight(Window.getClientHeight() + "px");
-        Wrapper.setWidth(Window.getClientWidth() + "px");
-        Wrapper.setHorizontalAlignment(HasAlignment.ALIGN_CENTER);
-        Wrapper.add(this.upperBound);
+        Wrapper.addStyleName("login-page");
         Wrapper.add(this.authForm);
         Wrapper.add(this.logo);
-        Wrapper.setVerticalAlignment(HasAlignment.ALIGN_BOTTOM); //прижимаем к низу нижнюю границу
-        Wrapper.add(this.lowerBound);
         return Wrapper;
     }
 }

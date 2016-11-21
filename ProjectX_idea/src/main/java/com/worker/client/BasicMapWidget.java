@@ -139,8 +139,8 @@ public class BasicMapWidget extends Composite {
         opts.setMapTypeId(MapTypeId.HYBRID);
 
         mapWidget = new MapWidget(opts);
+        mapWidget.addStyleName("basic-map-widget");
         pWidget.add(mapWidget);
-        mapWidget.setSize(Window.getClientWidth() + "px", Window.getClientHeight() + "px");
 
         mapWidget.addClickHandler(new ClickMapHandler() {
             public void onEvent(ClickMapEvent event) {

@@ -10,7 +10,7 @@ import com.google.gwt.i18n.client.DefaultDateTimeFormatInfo;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
-import com.sun.prism.Material;
+//import com.sun.prism.Material;
 import com.worker.DB_classes.UserEntity;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -106,8 +106,8 @@ public class ChatPage {
                     setUsers(CurrentUser.getLogin());
                     setHandlers();
 
-                    RootPanel.get().clear();
-                    RootPanel.get().add(MakeWrapper());
+                    RootPanel.get("root-div").clear();
+                    RootPanel.get("root-div").add(MakeWrapper());
                 }
             }
         });
@@ -271,12 +271,15 @@ public class ChatPage {
         });
     }
 
-    private HorizontalPanel MakeWrapper() {
-        HorizontalPanel Wrapper = new HorizontalPanel();
-        Wrapper.add(this.Menu.Build());
+    private VerticalPanel MakeWrapper() {
+        VerticalPanel Wrapper = new VerticalPanel();
+        HorizontalPanel HorizonWrapper = new HorizontalPanel();
+        Wrapper.addStyleName("chat-page");
+        Wrapper.add(this.Menu.Build("Chat"));
         Wrapper.add(this.usersPanel);
         Wrapper.add(this.chat);
         Wrapper.add(this.UnreadMessages.Build());
+        Wrapper.add(HorizonWrapper);
         return Wrapper;
     }
 
