@@ -34,10 +34,10 @@ public interface WorkerServiceAsync {
 
     void getLastUnreadMessage(int idfrom, String loginAddressee, String messages, AsyncCallback<String> async);
 
-    void getMessageHistory(int idfrom, String loginAddressee, Timestamp time, int i, AsyncCallback<String[]> async);
+    void getMessageHistory(int idfrom, String loginAddressee, Timestamp time, AsyncCallback<String[]> async);
 
 
-    void getCountOfUnreadMessages(int idto, AsyncCallback<String[]> async);
+    void getCountOfUnreadMessages(int idto, AsyncCallback<String[][]> async);
 
     void getFriends(AsyncCallback<List<UserEntity>> async);
 }

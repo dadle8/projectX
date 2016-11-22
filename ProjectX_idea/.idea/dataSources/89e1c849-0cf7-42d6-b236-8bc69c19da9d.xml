@@ -1,127 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="hibernate.cfg.xml/Hibernate">
-  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
-    <schema id="1" name="projectx">
-      <visible>1</visible>
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1" name="projectx">
+      <Current>1</Current>
+      <Visible>1</Visible>
     </schema>
-    <schema id="2" name="information_schema"/>
-    <schema id="3" name="mysql"/>
-    <schema id="4" name="performance_schema"/>
-    <schema id="5" name="shop"/>
-    <schema id="6" name="sys"/>
-    <table id="7" parent="1" name="messages"/>
-    <table id="8" parent="1" name="user"/>
-    <table id="9" parent="1" name="geo"/>
-    <table id="10" parent="1" name="friend"/>
-    <column id="11" parent="7" name="id">
-      <mandatory>1</mandatory>
-      <data-type>int(11)|0</data-type>
-      <sequence-identity>1</sequence-identity>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="mysql"/>
+    <schema id="5" parent="1" name="performance_schema"/>
+    <schema id="6" parent="1" name="shop"/>
+    <schema id="7" parent="1" name="sys"/>
+    <table id="8" parent="2" name="friend"/>
+    <table id="9" parent="2" name="geo"/>
+    <table id="10" parent="2" name="messages"/>
+    <table id="11" parent="2" name="user"/>
+    <column id="12" parent="8" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
     </column>
-    <column id="12" parent="7" name="message">
-      <mandatory>1</mandatory>
-      <data-type>varchar(1024)|0</data-type>
+    <column id="13" parent="8" name="userId">
+      <Position>2</Position>
+      <DataType>int(6) unsigned|0</DataType>
     </column>
-    <column id="13" parent="7" name="datemessage">
-      <mandatory>1</mandatory>
-      <data-type>datetime|0</data-type>
+    <column id="14" parent="8" name="friendId">
+      <Position>3</Position>
+      <DataType>int(6) unsigned|0</DataType>
     </column>
-    <column id="14" parent="7" name="isread">
-      <mandatory>1</mandatory>
-      <data-type>tinyint(1)|0</data-type>
+    <column id="15" parent="8" name="accepted">
+      <Position>4</Position>
+      <DataType>tinyint(1)|0</DataType>
     </column>
-    <column id="15" parent="7" name="idfrom">
-      <mandatory>1</mandatory>
-      <data-type>int(11)|0</data-type>
+    <column id="16" parent="9" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="16" parent="7" name="idto">
-      <mandatory>1</mandatory>
-      <data-type>int(11)|0</data-type>
+    <column id="17" parent="9" name="latitude">
+      <Position>2</Position>
+      <DataType>double|0</DataType>
     </column>
-    <index id="17" parent="7" name="idfrom">
-      <columns>idfrom</columns>
-      <desc-columns></desc-columns>
+    <column id="18" parent="9" name="longitude">
+      <Position>3</Position>
+      <DataType>double|0</DataType>
+    </column>
+    <column id="19" parent="9" name="userid">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="20" parent="9" name="time">
+      <Position>5</Position>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="21" parent="9" name="device">
+      <Position>6</Position>
+      <DataType>varchar(512)|0</DataType>
+    </column>
+    <key id="22" parent="9" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="23" parent="10" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="24" parent="10" name="message">
+      <Position>2</Position>
+      <DataType>varchar(1024)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="25" parent="10" name="datemessage">
+      <Position>3</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="26" parent="10" name="isread">
+      <Position>4</Position>
+      <DataType>tinyint(1)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="27" parent="10" name="idfrom">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="28" parent="10" name="idto">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="29" parent="10" name="idfrom">
+      <ColNames>idfrom</ColNames>
     </index>
-    <index id="18" parent="7" name="idto">
-      <columns>idto</columns>
-      <desc-columns></desc-columns>
+    <index id="30" parent="10" name="idto">
+      <ColNames>idto</ColNames>
     </index>
-    <key id="19" parent="7" name="PRIMARY">
-      <columns>id</columns>
-      <primary>1</primary>
+    <key id="31" parent="10" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
     </key>
-    <column id="20" parent="8" name="id">
-      <mandatory>1</mandatory>
-      <data-type>int(11)|0</data-type>
-      <sequence-identity>1</sequence-identity>
+    <column id="32" parent="11" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="21" parent="8" name="login">
-      <mandatory>1</mandatory>
-      <data-type>varchar(32)|0</data-type>
+    <column id="33" parent="11" name="login">
+      <Position>2</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="22" parent="8" name="password">
-      <mandatory>1</mandatory>
-      <data-type>varchar(32)|0</data-type>
+    <column id="34" parent="11" name="password">
+      <Position>3</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="23" parent="8" name="email">
-      <data-type>varchar(32)|0</data-type>
+    <column id="35" parent="11" name="email">
+      <Position>4</Position>
+      <DataType>varchar(32)|0</DataType>
     </column>
-    <column id="24" parent="8" name="loggedIn">
-      <mandatory>1</mandatory>
-      <data-type>tinyint(1)|0</data-type>
-      <default-expression>&apos;0&apos;</default-expression>
+    <column id="36" parent="11" name="loggedIn">
+      <Position>5</Position>
+      <DataType>tinyint(1)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="25" parent="8" name="sessionId">
-      <data-type>varchar(16)|0</data-type>
+    <column id="37" parent="11" name="sessionId">
+      <Position>6</Position>
+      <DataType>varchar(16)|0</DataType>
     </column>
-    <column id="26" parent="8" name="ref">
-      <data-type>varchar(32)|0</data-type>
+    <column id="38" parent="11" name="ref">
+      <Position>7</Position>
+      <DataType>varchar(32)|0</DataType>
     </column>
-    <column id="27" parent="8" name="name">
-      <data-type>varchar(32)|0</data-type>
+    <column id="39" parent="11" name="name">
+      <Position>8</Position>
+      <DataType>varchar(32)|0</DataType>
     </column>
-    <column id="28" parent="8" name="surname">
-      <data-type>varchar(32)|0</data-type>
+    <column id="40" parent="11" name="surname">
+      <Position>9</Position>
+      <DataType>varchar(32)|0</DataType>
     </column>
-    <key id="29" parent="8" name="PRIMARY">
-      <columns>id</columns>
-      <primary>1</primary>
+    <column id="41" parent="11" name="color">
+      <Position>10</Position>
+      <DataType>varchar(6)|0</DataType>
+    </column>
+    <key id="42" parent="11" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
     </key>
-    <column id="30" parent="9" name="id">
-      <mandatory>1</mandatory>
-      <data-type>int(11)|0</data-type>
-      <sequence-identity>1</sequence-identity>
-    </column>
-    <column id="31" parent="9" name="latitude">
-      <data-type>double|0</data-type>
-    </column>
-    <column id="32" parent="9" name="longitude">
-      <data-type>double|0</data-type>
-    </column>
-    <column id="33" parent="9" name="userid">
-      <data-type>int(11)|0</data-type>
-    </column>
-    <column id="34" parent="9" name="time">
-      <data-type>datetime|0</data-type>
-    </column>
-    <column id="35" parent="9" name="device">
-      <data-type>varchar(128)|0</data-type>
-    </column>
-    <key id="36" parent="9" name="PRIMARY">
-      <columns>id</columns>
-      <primary>1</primary>
-    </key>
-    <column id="37" parent="10" name="id">
-      <data-type>int(11)|0</data-type>
-    </column>
-    <column id="38" parent="10" name="userId">
-      <data-type>int(6) unsigned|0</data-type>
-    </column>
-    <column id="39" parent="10" name="friendId">
-      <data-type>int(6) unsigned|0</data-type>
-    </column>
-    <column id="40" parent="10" name="accepted">
-      <data-type>tinyint(1)|0</data-type>
-    </column>
   </database-model>
 </dataSource>

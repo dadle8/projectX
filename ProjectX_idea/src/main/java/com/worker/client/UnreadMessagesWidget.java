@@ -1,50 +1,70 @@
 package com.worker.client;
 
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.*;
 import com.worker.DB_classes.UserEntity;
+
+import java.sql.Timestamp;
 
 /**
  * Created by Слава on 16.11.2016.
  */
 public class UnreadMessagesWidget {
-    private VerticalPanel panel = null;
-    private ListBox users = null;
+    private VerticalPanel usersPanel = null;
     private Label label = null;
 
-    private static UserEntity CurrentUser = null;
+    private UserEntity CurrentUser = null;
+    private VerticalPanel users = null;
 
     public UnreadMessagesWidget() {}
 
-    public UnreadMessagesWidget(UserEntity CurrentUser) {
+    public UnreadMessagesWidget(UserEntity CurrentUser, VerticalPanel users){
         this.CurrentUser = CurrentUser;
+        this.users = users;
     }
 
-    int delayMillis  =  2000;
+    int delayMillis  =  1500;
 
     Timer tm = new Timer() {
         @Override
         public void run() {
-            WorkerService.App.getInstance().getCountOfUnreadMessages(CurrentUser.getId(), new AsyncCallback<String[]>() {
+            WorkerService.App.getInstance().getCountOfUnreadMessages(CurrentUser.getId(), new AsyncCallback<String[][]>() {
                 public void onFailure(Throwable caught) {
-
+                    GWT.log("Error in 'tm.run()' in 'getCountOfUnreadMessages'\n" + caught.toString());
                 }
 
-                public void onSuccess(String[] result) {
+                public void onSuccess(String[][] result) {
                     if(result != null) {
-                        users.clear();
-                        for(String str : result) {
-                            users.addItem(str);
+                        usersPanel.clear();
+                        usersPanel.add(label);
+
+                        for(int i = 0;i < result.length; i++) {
+                            final Button user = new Button(result[i][0] + result[i][1]);
+                            user.setTitle(result[i][0]);
+                            user.addClickHandler(new ClickHandler() {
+                                @Override
+                                public void onClick(ClickEvent event) {
+                                    for(int i = 0; i < users.getWidgetCount(); i++) {
+                                        Button bt = (Button) users.getWidget(i);
+                                        if(bt.getText() == user.getTitle()) {
+                                            bt.click();
+                                        }
+                                    }
+                                }
+                            });
+                            usersPanel.add(user);
                         }
-                        users.setVisibleItemCount(result.length);
-                        panel.setVisible(true);
+                        if(!usersPanel.isVisible()) {
+                            usersPanel.setVisible(true);
+                        }
                     }
                     else {
-                        panel.setVisible(false);
+                        usersPanel.setVisible(false);
                     }
                 }
             });
@@ -59,20 +79,19 @@ public class UnreadMessagesWidget {
 
         tm.scheduleRepeating(delayMillis);
 
-        return panel;
+        return usersPanel;
     }
 
     private void initElements() {
-        panel = new VerticalPanel();
-        users = new ListBox();
+        usersPanel = new VerticalPanel();
         label = new Label("Unread messages");
     }
 
     private void setDependences() {
-        panel.add(label);
-        panel.add(users);
+        usersPanel.add(label);
+        usersPanel.add(label);
 
-        panel.setVisible(false);
+        usersPanel.setVisible(false);
     }
 
     private void setStyle() {

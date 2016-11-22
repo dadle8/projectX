@@ -36,6 +36,7 @@ public class HibernateWorker implements Serializable {
             double lastLatitude = (Double) coords.get(0)[0];
             double lastLongitude = (Double) coords.get(0)[1];
             if (lastLatitude == latitude && lastLongitude == longitude) {
+                session.close();
                 return false;
             }
         }

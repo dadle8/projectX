@@ -116,7 +116,7 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
         return null;
     }
 
-    public String[] getMessageHistory(int idfrom, String loginAddressee, Timestamp time, int i) {
+    public String[] getMessageHistory(int idfrom, String loginAddressee, Timestamp time) {
         List messageHistory =  HW.getMessageHistory(idfrom,loginAddressee, lengthMessageHistory, time);
 
         if(messageHistory != null) {
@@ -141,15 +141,16 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
         return null;
     }
 
-    public String[] getCountOfUnreadMessages(int idto) {
+    public String[][] getCountOfUnreadMessages(int idto) {
         List<Object[]> countUnreadMessages = HW.getCountOfUnreadMessages(idto);
 
         if(countUnreadMessages != null) {
-            String[] res = new String[countUnreadMessages.size()];
+            String[][] res = new String[countUnreadMessages.size()][2];
             int i = 0;
 
             for (Object[] obj : countUnreadMessages) {
-                res[i] = obj[0] + ": " + obj[1];
+                res[i][0] = obj[0].toString();
+                res[i][1] = ": " + obj[1];
                 i++;
             }
             return  res;
