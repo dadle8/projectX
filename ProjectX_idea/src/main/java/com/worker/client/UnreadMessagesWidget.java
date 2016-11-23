@@ -53,6 +53,7 @@ public class UnreadMessagesWidget {
                                         Button bt = (Button) users.getWidget(i);
                                         if(bt.getText() == user.getTitle()) {
                                             bt.click();
+                                            break;
                                         }
                                     }
                                 }
