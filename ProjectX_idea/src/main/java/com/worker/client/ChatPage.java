@@ -13,7 +13,6 @@ import com.google.gwt.user.client.ui.*;
 //import com.sun.prism.Material;
 import com.worker.DB_classes.UserEntity;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,12 +31,11 @@ public class ChatPage {
     private MenuWidget Menu = new MenuWidget();
     private UnreadMessagesWidget UnreadMessages = null;
 
-    private VerticalPanel usersPanel = null;
-    private ListBox users = null;
-
+    private VerticalPanel users = null;
     private VerticalPanel chat = null;
     private ScrollPanel scrollPanel = null;
     private HorizontalPanel buttonsPanel = null;
+
     private HTML messages = null;
     private TextBox message = null;
     private Button sendMessageBtn = null;
@@ -45,10 +43,11 @@ public class ChatPage {
 
     /**
      *  This ArrayList to store the earliest time displayed message.
-     *  timestampList[users.getSelectedIndex()] - time for users.getSelectedItemText().
+     *  earlyDateMessage - time for user.
      */
-    private List<Timestamp> timestampList = new ArrayList<Timestamp>();
-    private static UserEntity CurrentUser = null;
+    private Timestamp earlyDateMessage = null;
+    private UserEntity CurrentUser = null;
+    private String addressee = null;
 
     /**
      * Timer to display unread messages every 'delayMillis' ms.
@@ -58,7 +57,7 @@ public class ChatPage {
         @Override
         public void run() {
             WorkerService.App.getInstance().getLastUnreadMessage(CurrentUser.getId(),
-                    users.getSelectedItemText(), messages.getHTML(), new AsyncCallback<String>() {
+                    addressee, messages.getHTML(), new AsyncCallback<String>() {
                 public void onFailure(Throwable caught) {
                     GWT.log("Error in 'tm.run' when 'getLastUnreadMessage'.\n" + caught.toString());
                 }
@@ -114,27 +113,60 @@ public class ChatPage {
     }
 
     private void setUsers(String login) {
-        WorkerService.App.getInstance().getAllUsers(login,new AsyncCallback<List>() {
+        WorkerService.App.getInstance().getFriends(new AsyncCallback<List<UserEntity>>() {
             public void onFailure(Throwable caught) {
                 GWT.log("Error in 'setUsers' when 'getAllUsers'.\n" + caught.toString());
             }
 
-            public void onSuccess(List result) {
-                for(int i = 0; i < result.size(); i++)
-                {
-                    users.addItem((String) result.get(i));
-                    timestampList.add(i, new Timestamp(new java.util.Date().getTime()));
+            public void onSuccess(List<UserEntity> result) {
+                if (result != null) {
+                    users.clear();
+                    for (UserEntity userEntity : result) {
+                        final Button user = new Button(userEntity.getLogin());
+
+                        user.addClickHandler(new ClickHandler() {
+                            public void onClick(ClickEvent event) {
+                                if (tm.isRunning()) {
+                                    tm.cancel();
+                                }
+                                addressee = user.getText();
+
+                                WorkerService.App.getInstance().getMessageHistory(CurrentUser.getId(), addressee,
+                                        new Timestamp(new java.util.Date().getTime()), new AsyncCallback<String[]>() {
+                                            public void onFailure(Throwable caught) {
+                                                GWT.log("Error in 'user.addClickHandler' when 'getFriend'.\n" + caught.toString());
+                                            }
+
+                                            public void onSuccess(String[] result) {
+                                                if (result != null) {
+                                                    earlyDateMessage = Timestamp.valueOf(result[0]);
+                                                    messages.setHTML(result[1]);
+                                                } else {
+                                                    messages.setHTML("");
+                                                }
+
+                                                if (!chat.isVisible()) {
+                                                    chat.setVisible(true);
+                                                }
+
+                                                getHistoryMessagesFlag = true;
+                                                scrollPanel.scrollToBottom();
+                                                tm.scheduleRepeating(delayMillis);
+                                            }
+                                        });
+                            }
+                        });
+                        users.add(user);
+                    }
+                    earlyDateMessage = new Timestamp(new java.util.Date().getTime());
                 }
-                users.setVisibleItemCount(users.getItemCount());
             }
         });
     }
 
     private void initElements() {
-        UnreadMessages = new UnreadMessagesWidget(CurrentUser);
-
-        usersPanel = new VerticalPanel();
-        users = new ListBox();
+        users = new VerticalPanel();
+        UnreadMessages = new UnreadMessagesWidget(CurrentUser, users);
 
         chat = new VerticalPanel();
         scrollPanel = new ScrollPanel();
@@ -149,8 +181,6 @@ public class ChatPage {
     }
 
     private void setDependences() {
-        usersPanel.add(users);
-
         buttonsPanel.add(sendMessageBtn);
         buttonsPanel.add(cleanHistoryBtn);
         scrollPanel.add(messages);
@@ -169,34 +199,6 @@ public class ChatPage {
         messages.getElement().getStyle().setProperty("width","320px");
     }
     private void setHandlers() {
-        users.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                if(tm.isRunning()) {
-                    tm.cancel();
-                }
-
-                WorkerService.App.getInstance().getMessageHistory(CurrentUser.getId(), users.getSelectedItemText(),
-                        new Timestamp(new java.util.Date().getTime()), users.getSelectedIndex(), new AsyncCallback<String[]>() {
-                            public void onFailure(Throwable caught) {
-                                GWT.log("Error in 'users.addClickHandler' when 'getMessageHistory'.\n" + caught.toString());
-                            }
-
-                            public void onSuccess(String[] result) {
-                                if(result != null) {
-                                    timestampList.set(users.getSelectedIndex(), Timestamp.valueOf(result[0]));
-                                    messages.setHTML(result[1]);
-                                }
-                                else {
-                                    messages.setHTML("");
-                                }
-
-                                chat.setVisible(true);
-                                scrollPanel.scrollToBottom();
-                                tm.scheduleRepeating(delayMillis);
-                            }
-                        });
-            }
-        });
 
         sendMessageBtn.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
@@ -205,7 +207,7 @@ public class ChatPage {
                     tmForSendBtn.scheduleRepeating(delayMillis/4);
 
                     WorkerService.App.getInstance().saveNewMessage(message.getText(), CurrentUser.getId(),
-                            users.getSelectedItemText(), new AsyncCallback<Boolean>() {
+                            addressee, new AsyncCallback<Boolean>() {
                         public void onFailure(Throwable caught) {
                             GWT.log("Error in 'sendMessageBtn.addClickHandler' when 'saveNewMessage'.\n" + caught.toString());
                             sendMessageBtnFlag = true;
@@ -226,15 +228,16 @@ public class ChatPage {
         cleanHistoryBtn.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 if(!messages.getHTML().equals("")) {
-                    WorkerService.App.getInstance().getMessageHistory(CurrentUser.getId(), users.getSelectedItemText(),
-                            new Timestamp(new java.util.Date().getTime()), users.getSelectedIndex(), new AsyncCallback<String[]>() {
+                    WorkerService.App.getInstance().getMessageHistory(CurrentUser.getId(), addressee,
+                            new Timestamp(new java.util.Date().getTime()), new AsyncCallback<String[]>() {
                                 public void onFailure(Throwable caught) {
                                    GWT.log("Error in 'cleanHistoryBtn.addClickHandler' when 'getMessageHistory'" + caught.toString());
                                 }
 
                                 public void onSuccess(String[] result) {
                                     if (result != null) {
-                                        timestampList.set(users.getSelectedIndex(), Timestamp.valueOf(result[0]));
+                                        earlyDateMessage = Timestamp.valueOf(result[0]);
+                                        getHistoryMessagesFlag = true;
                                         messages.setHTML(result[1]);
                                         scrollPanel.scrollToBottom();
                                     }
@@ -250,8 +253,8 @@ public class ChatPage {
                     final int oldMaxScrollPosition = scrollPanel.getMaximumVerticalScrollPosition();
                     getHistoryMessagesFlag = false;
 
-                    WorkerService.App.getInstance().getMessageHistory(CurrentUser.getId(), users.getSelectedItemText(),
-                            timestampList.get(users.getSelectedIndex()), users.getSelectedIndex(), new AsyncCallback<String[]>() {
+                    WorkerService.App.getInstance().getMessageHistory(CurrentUser.getId(), addressee,
+                            earlyDateMessage, new AsyncCallback<String[]>() {
                                 public void onFailure(Throwable caught) {
                                     GWT.log("Error in 'scrollPanel.addScrollHandler' when 'getMessageHistory'" + caught.toString());
                                     getHistoryMessagesFlag = true;
@@ -259,7 +262,7 @@ public class ChatPage {
 
                                 public void onSuccess(String[] result) {
                                     if(result != null) {
-                                        timestampList.set(users.getSelectedIndex(), Timestamp.valueOf(result[0]));
+                                        earlyDateMessage = Timestamp.valueOf(result[0]);
                                         messages.setHTML(result[1] + messages.getHTML());
                                         scrollPanel.setVerticalScrollPosition(scrollPanel.getMaximumVerticalScrollPosition() - oldMaxScrollPosition);
                                         getHistoryMessagesFlag = true;
@@ -276,7 +279,7 @@ public class ChatPage {
         HorizontalPanel HorizonWrapper = new HorizontalPanel();
         Wrapper.addStyleName("chat-page");
         Wrapper.add(this.Menu.Build("Chat"));
-        HorizonWrapper.add(this.usersPanel);
+        HorizonWrapper.add(this.users);
         HorizonWrapper.add(this.chat);
         Wrapper.add(this.UnreadMessages.Build());
         Wrapper.add(HorizonWrapper);

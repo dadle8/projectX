@@ -13,6 +13,7 @@ import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpSession;
 
 public interface WorkerServiceAsync {
+    void addCurrentGeo(double latitude, double longitude, String userAgent, AsyncCallback<Boolean> async);
     void confirmFriendship(UserEntity usr, AsyncCallback<Void> async);
     void getInvites(AsyncCallback<List<UserEntity>> async);
     void addFriend(UserEntity usr, AsyncCallback<Boolean> async);
@@ -33,10 +34,10 @@ public interface WorkerServiceAsync {
 
     void getLastUnreadMessage(int idfrom, String loginAddressee, String messages, AsyncCallback<String> async);
 
-    void getMessageHistory(int idfrom, String loginAddressee, Timestamp time, int i, AsyncCallback<String[]> async);
+    void getMessageHistory(int idfrom, String loginAddressee, Timestamp time, AsyncCallback<String[]> async);
 
 
-    void getCountOfUnreadMessages(int idto, AsyncCallback<String[]> async);
+    void getCountOfUnreadMessages(int idto, AsyncCallback<String[][]> async);
 
     void getFriends(AsyncCallback<List<UserEntity>> async);
 }

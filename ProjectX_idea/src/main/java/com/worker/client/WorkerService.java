@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 @RemoteServiceRelativePath("WorkerService")
 public interface WorkerService extends RemoteService {
+    Boolean addCurrentGeo(double latitude, double longitude, String userAgent);
     void confirmFriendship(UserEntity usr);
     List<UserEntity> getInvites();
     boolean addFriend(UserEntity usr);
@@ -30,8 +31,8 @@ public interface WorkerService extends RemoteService {
     List getAllUsers(String login);
     Boolean saveNewMessage(String message, int idfrom, String loginAddressee);
     String getLastUnreadMessage(int idfrom, String loginAddressee, String messages);
-    String[] getMessageHistory(int idfrom, String loginAddressee, Timestamp time, int i);
-    String[] getCountOfUnreadMessages(int idto);
+    String[] getMessageHistory(int idfrom, String loginAddressee, Timestamp time);
+    String[][] getCountOfUnreadMessages(int idto);
     List<UserEntity> getFriends();
     public static class App {
         private static WorkerServiceAsync ourInstance = GWT.create(WorkerService.class);

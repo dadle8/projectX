@@ -19,6 +19,7 @@ public class UserEntity implements IsSerializable {
     private String ref;
     private String name;
     private String surname;
+    private String color;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -138,5 +139,15 @@ public class UserEntity implements IsSerializable {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    @Basic
+    @Column(name = "color", nullable = false, length = 6)
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }

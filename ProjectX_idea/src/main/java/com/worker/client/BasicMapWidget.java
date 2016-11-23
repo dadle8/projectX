@@ -34,8 +34,10 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.web.bindery.requestfactory.server.Pair;
+import com.worker.DB_classes.UserEntity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BasicMapWidget extends Composite {
 
@@ -43,7 +45,7 @@ public class BasicMapWidget extends Composite {
     private MapWidget mapWidget;
     private Point centerPoint;
 
-    private Marker markerBasic;
+    //private Marker markerBasic;
 
     public BasicMapWidget(Point pt) {
         pWidget = new VerticalPanel();
@@ -61,14 +63,42 @@ public class BasicMapWidget extends Composite {
         //drawMapAds();
 
         //loop for friendlist
-        WorkerService.App.getInstance().getPath(1, new AsyncCallback<ArrayList<DoublePoint>>() {
+        drawBasicMarker(centerPoint.getX(), centerPoint.getY(), "Me");
+        WorkerService.App.getInstance().getUserFromCurrentSession(new AsyncCallback<UserEntity>() {
             public void onFailure(Throwable caught) {
-                Window.alert("SMTH GOES WRONG!" + caught.toString());
+                Window.alert("SMTH GOES WRONG WHEN DRAWING SELF TRAJECTORY!");
             }
 
-            public void onSuccess(ArrayList<DoublePoint> result) {
-                drawBasicMarker(centerPoint.getX(), centerPoint.getY());
-                drawPath(result);
+            public void onSuccess(final UserEntity usr) {
+                WorkerService.App.getInstance().getPath(usr.getId(), new AsyncCallback<ArrayList<DoublePoint>>() {
+                    public void onFailure(Throwable caught) {
+                        Window.alert("SMTH GOES WRONG WHEN GETTING SELF PATH!" + caught.toString());
+                    }
+
+                    public void onSuccess(ArrayList<DoublePoint> result) {
+                        drawPath(usr.getColor(), result);
+                    }
+                });
+            }
+        });
+        WorkerService.App.getInstance().getFriends(new AsyncCallback<List<UserEntity>>() {
+            public void onFailure(Throwable caught) {
+                Window.alert("SMTH GOES WRONG!");
+            }
+
+            public void onSuccess(List<UserEntity> result) {
+                for(final UserEntity usr : result) {
+                    WorkerService.App.getInstance().getPath(usr.getId(), new AsyncCallback<ArrayList<DoublePoint>>() {
+                        public void onFailure(Throwable caught) {
+                            Window.alert("SMTH GOES WRONG!" + caught.toString());
+                        }
+
+                        public void onSuccess(ArrayList<DoublePoint> result) {
+                            drawBasicMarker(result.get(result.size() - 1).getX(), result.get(result.size() - 1).getY(), usr.getName() + " " + usr.getSurname());
+                            drawPath(usr.getColor(), result);
+                        }
+                    });
+                }
             }
         });
     }
@@ -85,30 +115,34 @@ public class BasicMapWidget extends Composite {
         return coords;
     }
 
-    private void drawPath(ArrayList<DoublePoint> points) {
+    private void drawPath(String color, ArrayList<DoublePoint> points) {
         PolylineOptions pathOpts = PolylineOptions.newInstance();
 
         LatLng[] coords = arrayListToLatLngArray(points);
         JsArray<LatLng> pathPoints = ArrayHelper.toJsArray(coords);
         pathOpts.setPath(pathPoints);
         pathOpts.setMap(mapWidget);
-        pathOpts.setStrokeColor("red");
+        pathOpts.setStrokeColor("#" + color);
 
         Polyline path = Polyline.newInstance(pathOpts);
     }
 
 
-    private void drawBasicMarker(double x, double y) {
+    private void drawBasicMarker(double x, double y, String caption) {
         LatLng center = LatLng.newInstance(x, y);
         MarkerOptions options = MarkerOptions.newInstance();
         options.setPosition(center);
-        options.setAnimation(Animation.BOUNCE);
+        //options.setAnimation(Animation.BOUNCE);
         //options.setIcon("./images/user.png");
-        options.setTitle("Hello World");
+        options.setTitle(caption);
+        if (caption != "Me")
+        {
+            options.setIcon("./images/blue-dot.png");
+        }
 
         //options.setAnimation(Animation.BOUNCE|DROP);
 
-        markerBasic = Marker.newInstance(options);
+        final Marker markerBasic = Marker.newInstance(options);
         markerBasic.setMap(mapWidget);
 
         markerBasic.addClickHandler(new ClickMapHandler() {
@@ -123,7 +157,7 @@ public class BasicMapWidget extends Composite {
             return;
         }
 
-        HTML html = new HTML("You clicked on: " + mouseEvent.getLatLng().getToString());
+        HTML html = new HTML(marker.getTitle() + " is on " + mouseEvent.getLatLng().getToString());
 
         InfoWindowOptions options = InfoWindowOptions.newInstance();
         options.setContent(html);
