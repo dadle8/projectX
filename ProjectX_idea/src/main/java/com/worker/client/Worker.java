@@ -19,7 +19,7 @@ public class Worker implements EntryPoint {
     /**
      * This is the entry point method.
      */
-    int delayMills = 20000;
+    int delayMills = 60000; //per 1 minute
     Timer tmr = new Timer() {
         @Override
         public void run() {

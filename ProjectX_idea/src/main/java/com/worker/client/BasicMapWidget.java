@@ -64,6 +64,23 @@ public class BasicMapWidget extends Composite {
 
         //loop for friendlist
         drawBasicMarker(centerPoint.getX(), centerPoint.getY(), "Me");
+        WorkerService.App.getInstance().getUserFromCurrentSession(new AsyncCallback<UserEntity>() {
+            public void onFailure(Throwable caught) {
+                Window.alert("SMTH GOES WRONG WHEN DRAWING SELF TRAJECTORY!");
+            }
+
+            public void onSuccess(final UserEntity usr) {
+                WorkerService.App.getInstance().getPath(usr.getId(), new AsyncCallback<ArrayList<DoublePoint>>() {
+                    public void onFailure(Throwable caught) {
+                        Window.alert("SMTH GOES WRONG WHEN GETTING SELF PATH!" + caught.toString());
+                    }
+
+                    public void onSuccess(ArrayList<DoublePoint> result) {
+                        drawPath(usr.getColor(), result);
+                    }
+                });
+            }
+        });
         WorkerService.App.getInstance().getFriends(new AsyncCallback<List<UserEntity>>() {
             public void onFailure(Throwable caught) {
                 Window.alert("SMTH GOES WRONG!");
