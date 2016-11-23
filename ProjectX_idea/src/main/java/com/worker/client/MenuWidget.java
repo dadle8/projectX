@@ -86,6 +86,7 @@ public class MenuWidget {
     private VerticalPanel MakeWrapper()
     {
         VerticalPanel Wrapper = new VerticalPanel();
+        Wrapper.addStyleName("menu-widget");
         HorizontalPanel HorizonWrapper = new HorizontalPanel();
         HorizonWrapper.add(this.toProfilePage);
         HorizonWrapper.add(this.toChatPage);

@@ -276,8 +276,8 @@ public class ChatPage {
         HorizontalPanel HorizonWrapper = new HorizontalPanel();
         Wrapper.addStyleName("chat-page");
         Wrapper.add(this.Menu.Build("Chat"));
-        Wrapper.add(this.usersPanel);
-        Wrapper.add(this.chat);
+        HorizonWrapper.add(this.usersPanel);
+        HorizonWrapper.add(this.chat);
         Wrapper.add(this.UnreadMessages.Build());
         Wrapper.add(HorizonWrapper);
         return Wrapper;

@@ -136,6 +136,7 @@ fieldset[disabled] .gwt-Button.active {
     border-bottom: 1px gray dashed;
     width: 100%;
     box-sizing: border-box;
+    margin-bottom: 10px;
 }
 
 .login-page {
@@ -161,4 +162,8 @@ fieldset[disabled] .gwt-Button.active {
 .basic-map-widget {
     width: 680px;
     height: 70vh;
+}
+
+.menu-widget {
+
 }
