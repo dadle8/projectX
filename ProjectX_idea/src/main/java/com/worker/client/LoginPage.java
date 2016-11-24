@@ -1,6 +1,5 @@
 package com.worker.client;
 
-        import com.google.gwt.dom.client.Style;
         import com.google.gwt.event.dom.client.ClickEvent;
         import com.google.gwt.event.dom.client.ClickHandler;
         import com.google.gwt.user.client.Cookies;
@@ -9,22 +8,28 @@ package com.worker.client;
         import com.google.gwt.user.client.ui.*;
         import com.worker.DB_classes.UserEntity;
 
-        import javax.persistence.criteria.Root;
         import java.util.Date;
 
 /**
  * Created by AsmodeusX on 07.11.2016.
  */
 public class LoginPage {
+
+    private FlowPanel content = null;
+
+    private HTMLPanel headerTitle = null;
+    private FlowPanel logo = null;
+
     private FormPanel authForm = null;
+    private FlowPanel formContainer = null;
+
     private TextBox loginBox = null;
     private PasswordTextBox passwordBox = null;
     private Label label = null;
     private Button submit = null;
     private Button register = null;
-    private HTML logo = null;
-    private VerticalPanel contentPanel = null;
-    private HorizontalPanel buttonsPanel = null;
+
+
 
     public LoginPage()
     {
@@ -38,46 +43,51 @@ public class LoginPage {
 
     public void Build()
     {
-        this.initElements();
-        this.setDependences();
+        this.setElements();
         this.setHandlers();
 
         RootPanel.get("root-div").clear();
-        RootPanel.get("root-div").add(this.MakeWrapper());
+        RootPanel.get("root-div").add(this.content);
     }
 
-    private void initElements()
+    private void setElements()
     {
+        content = new FlowPanel();
+        content.addStyleName("login-page");
+
+        headerTitle = new HTMLPanel("h1", "PartyCoon");
+        logo = new FlowPanel();
+        logo.addStyleName("logo");
+
         authForm = new FormPanel();
         authForm.setEncoding(FormPanel.ENCODING_MULTIPART);
         authForm.setMethod(FormPanel.METHOD_POST);
 
-        contentPanel = new VerticalPanel();
+        formContainer = new FlowPanel();
 
         loginBox = new TextBox();
-        loginBox.getElement().setAttribute("placeholder","login");
+        loginBox.getElement().setAttribute("placeholder","Login");
+
         passwordBox = new PasswordTextBox();
-        passwordBox.getElement().setAttribute("placeholder","password");
+        passwordBox.getElement().setAttribute("placeholder","Password");
+
         label = new Label("SMTH is here.");
         submit = new Button("Submit");
         register = new Button("Register");
 
-        buttonsPanel = new HorizontalPanel();
+        //Dependencies
 
-        logo = new HTML("<div class='logo'></div>");
-    }
+        content.add(headerTitle);
+        content.add(logo);
+        content.add(authForm);
 
-    private void setDependences()
-    {
-        contentPanel.add(loginBox);
-        contentPanel.add(passwordBox);
-        contentPanel.add(label);
+        authForm.setWidget(formContainer);
 
-        buttonsPanel.add(submit);
-        buttonsPanel.add(register);
-        contentPanel.add(buttonsPanel);
-
-        authForm.setWidget(contentPanel);
+        formContainer.add(loginBox);
+        formContainer.add(passwordBox);
+        formContainer.add(label);
+        formContainer.add(submit);
+        formContainer.add(register);
     }
 
     private void setHandlers() {
@@ -128,14 +138,7 @@ public class LoginPage {
                 //label.setText(event.getResults());
             }
         });
+
     }
 
-    private VerticalPanel MakeWrapper()
-    {
-        VerticalPanel Wrapper = new VerticalPanel();
-        Wrapper.addStyleName("login-page");
-        Wrapper.add(this.authForm);
-        Wrapper.add(this.logo);
-        return Wrapper;
-    }
 }

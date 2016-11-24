@@ -15,10 +15,16 @@ import java.util.Date;
  * Created by AsmodeusX on 08.11.2016.
  */
 public class MenuWidget {
+
+    private FlowPanel content = null;
+
+    private FlowPanel logo = null;
+
     private Button toProfilePage = null;
     private Button toChatPage = null;
     private Button logOut = null;
     private Button toMapPage = null;
+
     private Label TitleLabel = null;
 
     public MenuWidget()
@@ -31,22 +37,34 @@ public class MenuWidget {
         Window.Location.reload();
     }
 
-    public VerticalPanel Build(String title)
+    public FlowPanel Build(String title)
     {
         this.setElements();
         this.setHandlers();
         this.TitleLabel.setText(title);
-        return this.MakeWrapper();
+        return this.content;
     }
 
     private void setElements()
     {
-        this.toProfilePage = new Button("Profile");
-        this.toChatPage = new Button("Chat");
-        this.logOut = new Button("Logout");
-        this.toMapPage = new Button("Map");
-        this.TitleLabel = new Label("Default");
-        this.TitleLabel.addStyleName("menu-label-title");
+        content = new FlowPanel();
+        content.addStyleName("menu-widget");
+
+        logo = new FlowPanel();
+        logo.addStyleName("logo-header");
+        toProfilePage = new Button("Profile");
+        toChatPage = new Button("Chat");
+        logOut = new Button("Logout");
+        toMapPage = new Button("Map");
+        TitleLabel = new Label("Default");
+        TitleLabel.addStyleName("menu-label-title");
+
+        content.add(logo);
+        content.add(toProfilePage);
+        content.add(toChatPage);
+        content.add(toMapPage);
+        content.add(logOut);
+        content.add(TitleLabel);
     }
 
     private void setHandlers()
@@ -83,17 +101,4 @@ public class MenuWidget {
         });
     }
 
-    private VerticalPanel MakeWrapper()
-    {
-        VerticalPanel Wrapper = new VerticalPanel();
-        Wrapper.addStyleName("menu-widget");
-        HorizontalPanel HorizonWrapper = new HorizontalPanel();
-        HorizonWrapper.add(this.toProfilePage);
-        HorizonWrapper.add(this.toChatPage);
-        HorizonWrapper.add(this.toMapPage);
-        HorizonWrapper.add(this.logOut);
-        Wrapper.add(HorizonWrapper);
-        Wrapper.add(TitleLabel);
-        return Wrapper;
-    }
 }

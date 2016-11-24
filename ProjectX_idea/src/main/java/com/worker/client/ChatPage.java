@@ -99,8 +99,8 @@ public class ChatPage {
                 if (user != null) {
                     CurrentUser = user;
 
-                    initElements();
-                    setDependences();
+                    setElements();
+                    setDependencies();
                     setStyle();
                     setUsers(CurrentUser.getLogin());
                     setHandlers();
@@ -164,7 +164,7 @@ public class ChatPage {
         });
     }
 
-    private void initElements() {
+    private void setElements() {
         users = new VerticalPanel();
         UnreadMessages = new UnreadMessagesWidget(CurrentUser, users);
 
@@ -180,7 +180,7 @@ public class ChatPage {
         cleanHistoryBtn = new Button("Clean history");
     }
 
-    private void setDependences() {
+    private void setDependencies() {
         buttonsPanel.add(sendMessageBtn);
         buttonsPanel.add(cleanHistoryBtn);
         scrollPanel.add(messages);

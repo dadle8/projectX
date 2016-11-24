@@ -11,28 +11,36 @@ import com.google.gwt.user.client.ui.*;
  * Created by AsmodeusX on 06.11.2016.
  */
 public class RegisterPage {
-    private FormPanel regForm = null;
 
-    private Label loginLabel = null;
+    private FlowPanel content = null;
+
+    private FlowPanel headerPanel = null;
+    private HTMLPanel headerTitle = null;
+    private FlowPanel logo = null;
+
+    private FormPanel regForm = null;
+    private FlowPanel formContainer = null;
+
+    private HTMLPanel loginLabel = null;
     private TextBox loginBox = null;
 
-    private Label nameLabel = null;
+    private HTMLPanel nameLabel = null;
     private TextBox nameBox = null;
 
-    private Label surnameLabel = null;
-    private TextBox surNameBox = null;
+    private HTMLPanel surnameLabel = null;
+    private TextBox surnameBox = null;
 
-    private Label passwordLabel = null;
+    private HTMLPanel passwordLabel = null;
     private PasswordTextBox passwordBox = null;
 
-    private Label confirmPasswordLabel = null;
+    private HTMLPanel confirmPasswordLabel = null;
     private PasswordTextBox confirmPasswordBox = null;
 
-    private Label emailLabel = null;
+    private HTMLPanel emailLabel = null;
     private TextBox emailBox = null;
 
     private Button submit = null;
-    private Button loginForm = null;
+    private Button linkToLogin = null;
 
     public RegisterPage()
     {
@@ -51,58 +59,81 @@ public class RegisterPage {
         this.setHandlers();
 
         RootPanel.get("root-div").clear();
-        RootPanel.get("root-div").add(this.MakeWrapper());
+        RootPanel.get("root-div").add(this.content);
     }
 
     private void setElements()
     {
+        content = new FlowPanel();
+        content.addStyleName("register-page");
+
+        headerPanel = new FlowPanel();
+        headerPanel.addStyleName("header-panel");
+        headerTitle = new HTMLPanel("h1", "PartyCoon");
+        logo = new FlowPanel();
+        logo.addStyleName("logo-header");
+
         regForm = new FormPanel();
         regForm.setEncoding(FormPanel.ENCODING_MULTIPART);
         regForm.setMethod(FormPanel.METHOD_POST);
 
-        VerticalPanel panel = new VerticalPanel();
+        formContainer = new FlowPanel();
 
-        loginLabel = new Label("Type a login:");
+        loginLabel = new HTMLPanel("label", "Login");
         loginBox = new TextBox();
+        loginBox.getElement().setAttribute("placeholder", "Login");
 
-        nameLabel = new Label("Type a name:");
+        nameLabel = new HTMLPanel("label", "Your name");
         nameBox = new TextBox();
+        nameBox.getElement().setAttribute("placeholder", "Name");
 
-        surnameLabel = new Label("Type a surname:");
-        surNameBox = new TextBox();
+        surnameLabel = new HTMLPanel("label","Surname");
+        surnameBox = new TextBox();
+        surnameBox.getElement().setAttribute("placeholder", "Surname");
 
-        passwordLabel = new Label("Type a password:");
+        passwordLabel = new HTMLPanel("label", "Password");
         passwordBox = new PasswordTextBox();
+        passwordBox.getElement().setAttribute("placeholder", "Password");
 
-        confirmPasswordLabel = new Label("Confirm a password:");
+        confirmPasswordLabel = new HTMLPanel("label", "Confirm password");
         confirmPasswordBox = new PasswordTextBox();
+        confirmPasswordBox.getElement().setAttribute("placeholder", "Password confirm");
 
-        emailLabel = new Label("Type an E-Mail:");
+        emailLabel = new HTMLPanel("label", "EMail:");
         emailBox = new TextBox();
+        emailBox.getElement().setAttribute("placeholder", "Email");
 
         submit = new Button("Submit");
-        loginForm = new Button("LoginForm");
+        linkToLogin = new Button("Login");
 
-        panel.add(loginLabel);
-        panel.add(loginBox);
-        panel.add(nameLabel);
-        panel.add(nameBox);
-        panel.add(surnameLabel);
-        panel.add(surNameBox);
-        panel.add(passwordLabel);
-        panel.add(passwordBox);
-        panel.add(confirmPasswordLabel);
-        panel.add(confirmPasswordBox);
-        panel.add(emailLabel);
-        panel.add(emailBox);
-        panel.add(submit);
-        panel.add(loginForm);
+        // Dependencies
 
-        regForm.setWidget(panel);
+        content.add(headerPanel);
+        content.add(regForm);
+
+        headerPanel.add(logo);
+        headerPanel.add(headerTitle);
+
+        regForm.setWidget(formContainer);
+
+        formContainer.add(loginLabel);
+        formContainer.add(nameLabel);
+        formContainer.add(surnameLabel);
+        formContainer.add(passwordLabel);
+        formContainer.add(confirmPasswordLabel);
+        formContainer.add(emailLabel);
+        formContainer.add(submit);
+        formContainer.add(linkToLogin);
+
+        loginLabel.add(loginBox);
+        nameLabel.add(nameBox);
+        surnameLabel.add(surnameBox);
+        passwordLabel.add(passwordBox);
+        confirmPasswordLabel.add(confirmPasswordBox);
+        emailLabel.add(emailBox);
     }
 
-    private void setHandlers()
-    {
+    private void setHandlers(){
         regForm.addSubmitHandler(new FormPanel.SubmitHandler() {
             public void onSubmit(FormPanel.SubmitEvent event) {
                 if (loginBox.getText().length() == 0) {
@@ -118,7 +149,7 @@ public class RegisterPage {
                 }
 
                 String hash = new MD5hashing().getMD5(passwordBox.getText());
-                WorkerService.App.getInstance().registerNewUser(loginBox.getText(), nameBox.getText(), surNameBox.getText(), hash, emailBox.getText(), new AsyncCallback<Boolean>() {
+                WorkerService.App.getInstance().registerNewUser(loginBox.getText(), nameBox.getText(), surnameBox.getText(), hash, emailBox.getText(), new AsyncCallback<Boolean>() {
                     public void onSuccess(Boolean result) {
                         if (result) {
                             Window.alert("Registered successful!");
@@ -141,7 +172,7 @@ public class RegisterPage {
             }
         });
 
-        loginForm.addClickHandler(new ClickHandler() {
+        linkToLogin.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 generateNextPage(0);
             }
@@ -154,11 +185,4 @@ public class RegisterPage {
         });
     }
 
-    private VerticalPanel MakeWrapper()
-    {
-        VerticalPanel Wrapper = new VerticalPanel();
-        Wrapper.addStyleName("register-page");
-        Wrapper.add(this.regForm);
-        return Wrapper;
-    }
 }
