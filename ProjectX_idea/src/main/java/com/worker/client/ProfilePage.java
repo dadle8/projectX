@@ -13,18 +13,24 @@ import com.worker.DB_classes.UserEntity;
  * Created by AsmodeusX on 06.11.2016.
  */
 public class ProfilePage {
+
     private static UserEntity CurrentUser = null;
+
     private MenuWidget Menu = new MenuWidget();
+
+    private FriendshipInvitesWidget Invites = new FriendshipInvitesWidget();
     private FindFriendsWidget FindFriends = new FindFriendsWidget();
     private ShowFriendsWidget ShowFriends = new ShowFriendsWidget();
-    private FriendshipInvitesWidget Invites = new FriendshipInvitesWidget();
-    private HTML content = null;
+
+    private FlowPanel content = null;
+    private FlowPanel innerContent = null;
 
     public ProfilePage()
     {
 
     }
 
+    // never used?
     private void generateNextPage(Integer id)
     {
         Cookies.setCookie("NextPage", id.toString());
@@ -45,7 +51,7 @@ public class ProfilePage {
                     setHandlers();
 
                     RootPanel.get("root-div").get().clear();
-                    RootPanel.get("root-div").add(MakeWrapper());
+                    RootPanel.get("root-div").add(content);
                 }
             }
         });
@@ -53,27 +59,25 @@ public class ProfilePage {
 
     private void setElements()
     {
-        this.content = new HTML(
-                "<p><strong>Login:</strong> " + CurrentUser.getLogin() + "</p>" +
-                        "<strong>Password:</strong> " + CurrentUser.getPassword() + "</p>" +
-                        "<strong>eMail:</strong> " + CurrentUser.getEmail() + "</p>" +
-                        "<strong>ref:</strong> " + CurrentUser.getRef() + "</p>"
-        );
+        content = new FlowPanel();
+        innerContent = new FlowPanel();
+        innerContent.addStyleName("profile-page");
+
+        content.add(Menu.Build("Profile"));
+        content.add(innerContent);
+
+        innerContent.add(new HTMLPanel("p", "<strong>Login:</strong> " + CurrentUser.getLogin()));
+        innerContent.add(new HTMLPanel("p", "<strong>Password:</strong> " + CurrentUser.getPassword()));
+        innerContent.add(new HTMLPanel("p", "<strong>eMail:</strong> " + CurrentUser.getEmail()));
+        innerContent.add(new HTMLPanel("p", "<strong>ref:</strong> " + CurrentUser.getRef()));
+
+        content.add(this.Invites.Build());
+        content.add(this.FindFriends.Build());
+        content.add(this.ShowFriends.Build());
     }
 
     private void setHandlers()
     {
     }
 
-    private VerticalPanel MakeWrapper()
-    {
-        VerticalPanel Wrapper = new VerticalPanel();
-        Wrapper.addStyleName("profile-page");
-        Wrapper.add(this.Menu.Build("Profile"));
-        Wrapper.add(this.content);
-        Wrapper.add(this.Invites.Build());
-        Wrapper.add(this.FindFriends.Build());
-        Wrapper.add(this.ShowFriends.Build());
-        return Wrapper;
-    }
 }

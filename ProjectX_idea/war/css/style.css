@@ -66,6 +66,8 @@ body
     ) 0 100% / 100% .6em no-repeat;
     background-color: #ffffff;
     padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 @media screen and (max-width:800px) {
@@ -184,16 +186,6 @@ fieldset[disabled] .gwt-Button.active {
     vertical-align: middle;
 }
 
-.menu-label-title {
-    font-weight: bold;
-    font-size: 20px;
-    padding: 11px 23px;
-    border-bottom: 1px gray dashed;
-    width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 10px;
-}
-
 /******************************************/
 
 .login-page {
@@ -244,6 +236,10 @@ fieldset[disabled] .gwt-Button.active {
 
 }
 
+.profile-page p{
+    text-align: left;
+}
+
 /******************************************/
 
 .map-page {
@@ -266,5 +262,45 @@ fieldset[disabled] .gwt-Button.active {
 /******************************************/
 
 .menu-widget {
+    width: 100%;
     margin-top: 10px;
+    display: inline-block;
+}
+
+.menu-widget h1 {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 11px 23px;
+    border-bottom: 1px gray dashed;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/******************************************/
+
+.invites-widget{
+    text-align:left;
+}
+
+.invites-widget h1{
+    font-weight: bold;
+    font-size: 20px;
+    padding: 11px 23px;
+    border-bottom: 1px gray dashed;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.invites-widget div{
+    text-align: left;
+    display:inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.invites-widget button{
+    display: inline-block;
 }

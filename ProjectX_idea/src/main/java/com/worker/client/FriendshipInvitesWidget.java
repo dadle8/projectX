@@ -14,24 +14,33 @@ import java.util.List;
  * Created by AsmodeusX on 19.11.2016.
  */
 public class FriendshipInvitesWidget {
+
+    private FlowPanel content = null;
     private Label caption = null;
-    private VerticalPanel invites = null;
+    private FlowPanel invites = null;
 
     public FriendshipInvitesWidget()
     {
     }
 
-    public HorizontalPanel Build()
+    public FlowPanel Build()
     {
         this.setElements();
         this.setHandlers();
-        return this.MakeWrapper();
+        return content;
     }
 
     private void setElements()
     {
-        this.caption = new Label("Invites:");
-        this.invites = new VerticalPanel();
+        content = new FlowPanel();
+        content.addStyleName("invites-widget");
+
+        // Dependencies
+
+        content.add(new HTMLPanel("h1", "Invites"));
+
+        invites = new FlowPanel();
+
         WorkerService.App.getInstance().getInvites(new AsyncCallback<List<UserEntity>>() {
             public void onFailure(Throwable caught) {
                 Window.alert("SMTH GOES WRONG!");
@@ -41,9 +50,10 @@ public class FriendshipInvitesWidget {
                 invites.clear();
                 for(final UserEntity usr : result)
                 {
-                    HorizontalPanel friendPanel = new HorizontalPanel();
-                    Button addFriendButton = new Button("CONFIRM");
-                    addFriendButton.addClickHandler(new ClickHandler() {
+                    FlowPanel newInvite = new FlowPanel();
+                    Button confirmButton = new Button("Confirm");
+                    FlowPanel userInfo = new FlowPanel();
+                    confirmButton.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
                             WorkerService.App.getInstance().confirmFriendship(usr, new AsyncCallback<Void>() {
                                 public void onFailure(Throwable caught) {
@@ -56,12 +66,19 @@ public class FriendshipInvitesWidget {
                             });
                         }
                     });
-                    friendPanel.add(new HTML("Name: " + usr.getName() + "</br> Surname: " + usr.getSurname() + "</br> Ref: " + usr.getRef() + "<hr>"));
-                    friendPanel.add(addFriendButton);
-                    invites.add(friendPanel);
+                    userInfo.add(new HTMLPanel("p", "<strong>Name:</strong> " + usr.getName()));
+                    userInfo.add(new HTMLPanel("p", "<strong>Surname:</strong> " + usr.getSurname()));
+                    userInfo.add(new HTMLPanel("p", "<strong>Ref:</strong> " + usr.getRef()));
+
+                    newInvite.add(userInfo);
+                    newInvite.add(confirmButton);
+
+                    invites.add(newInvite);
                 }
             }
         });
+
+        content.add(invites);
     }
 
     private void setHandlers()
@@ -69,11 +86,4 @@ public class FriendshipInvitesWidget {
 
     }
 
-    private HorizontalPanel MakeWrapper()
-    {
-        HorizontalPanel Wrapper = new HorizontalPanel();
-        Wrapper.add(caption);
-        Wrapper.add(invites);
-        return Wrapper;
-    }
 }

@@ -1,15 +1,11 @@
 package com.worker.client;
 
-import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
-import com.worker.DB_classes.UserEntity;
-
-import java.util.Date;
 
 /**
  * Created by AsmodeusX on 08.11.2016.
@@ -25,8 +21,6 @@ public class MenuWidget {
     private Button logOut = null;
     private Button toMapPage = null;
 
-    private Label TitleLabel = null;
-
     public MenuWidget()
     {
     }
@@ -39,13 +33,12 @@ public class MenuWidget {
 
     public FlowPanel Build(String title)
     {
-        this.setElements();
+        this.setElements(title);
         this.setHandlers();
-        this.TitleLabel.setText(title);
         return this.content;
     }
 
-    private void setElements()
+    private void setElements(String title)
     {
         content = new FlowPanel();
         content.addStyleName("menu-widget");
@@ -56,15 +49,13 @@ public class MenuWidget {
         toChatPage = new Button("Chat");
         logOut = new Button("Logout");
         toMapPage = new Button("Map");
-        TitleLabel = new Label("Default");
-        TitleLabel.addStyleName("menu-label-title");
 
         content.add(logo);
         content.add(toProfilePage);
         content.add(toChatPage);
         content.add(toMapPage);
         content.add(logOut);
-        content.add(TitleLabel);
+        content.add(new HTMLPanel("h1", title));
     }
 
     private void setHandlers()
