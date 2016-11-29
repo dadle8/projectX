@@ -52,7 +52,7 @@ public class ChatPage {
     /**
      * Timer to display unread messages every 'delayMillis' ms.
      */
-    int delayMillis  = 2000;
+    int delayMillis  = 1500;
     Timer tm = new Timer() {
         @Override
         public void run() {
@@ -102,7 +102,7 @@ public class ChatPage {
                     setElements();
                     setDependencies();
                     setStyle();
-                    setUsers(CurrentUser.getLogin());
+                    setUsers();
                     setHandlers();
 
                     RootPanel.get("root-div").clear();
@@ -112,7 +112,7 @@ public class ChatPage {
         });
     }
 
-    private void setUsers(String login) {
+    private void setUsers() {
         WorkerService.App.getInstance().getFriends(new AsyncCallback<List<UserEntity>>() {
             public void onFailure(Throwable caught) {
                 GWT.log("Error in 'setUsers' when 'getAllUsers'.\n" + caught.toString());
@@ -152,6 +152,7 @@ public class ChatPage {
                                                 getHistoryMessagesFlag = true;
                                                 scrollPanel.scrollToBottom();
                                                 tm.scheduleRepeating(delayMillis);
+                                                tm.run();
                                             }
                                         });
                             }
@@ -281,7 +282,8 @@ public class ChatPage {
         Wrapper.add(this.Menu.Build("Chat"));
         HorizonWrapper.add(this.users);
         HorizonWrapper.add(this.chat);
-        Wrapper.add(this.UnreadMessages.Build());
+        HorizonWrapper.add(this.UnreadMessages.Build());
+       // Wrapper.add(this.UnreadMessages.Build());
         Wrapper.add(HorizonWrapper);
         return Wrapper;
     }

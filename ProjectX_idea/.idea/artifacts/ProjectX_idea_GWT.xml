@@ -10,7 +10,7 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="gwt-ajaxloader-1.1.0" />
           <element id="library" level="project" name="gwt-maps-api-3.10.0-alpha-8-SNAPSHOT" />
-          <element id="library" level="project" name="gwt-user (2)" />
+          <element id="library" level="project" name="gwt-user" />
           <element id="library" level="project" name="Hibernate 5.2.3-5.2.3" />
           <element id="library" level="project" name="mysql-connector-java-6.0.2" />
         </element>

@@ -41,7 +41,6 @@ public class UnreadMessagesWidget {
                 public void onSuccess(String[][] result) {
                     if(result != null) {
                         usersPanel.clear();
-                        usersPanel.add(label);
 
                         for(int i = 0;i < result.length; i++) {
                             final Button user = new Button(result[i][0] + result[i][1]);
@@ -73,14 +72,16 @@ public class UnreadMessagesWidget {
     };
 
     public VerticalPanel Build() {
+        VerticalPanel Wrapper = new VerticalPanel();
         initElements();
         setDependences();
         setStyle();
         setHandlers();
 
         tm.scheduleRepeating(delayMillis);
-
-        return usersPanel;
+        Wrapper.add(label);
+        Wrapper.add(usersPanel);
+        return Wrapper;
     }
 
     private void initElements() {

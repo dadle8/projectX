@@ -7,15 +7,65 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d38d495-773b-417a-a46d-ab600fc69b27" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/gwt_user__2_.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/BasicMapWidget$1.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/BasicMapWidget$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/BasicMapWidget$2.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/BasicMapWidget$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/BasicMapWidget$3.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/BasicMapWidget$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/BasicMapWidget$4.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/BasicMapWidget$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/BasicMapWidget$5.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/BasicMapWidget$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/BasicMapWidget$6.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/BasicMapWidget$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/BasicMapWidget$7.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/BasicMapWidget$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/BasicMapWidget.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/BasicMapWidget.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage$1$1.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage$1$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage$1.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage$2.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage$3.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage$4.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage$5$1.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage$5$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage$5.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage$6$1.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage$6$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage$6.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage$7$1.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage$7$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage$7.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage$8.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/ChatPage.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/FriendshipInvitesWidget$1$1$1.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/FriendshipInvitesWidget$1$1$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/FriendshipInvitesWidget$1$1.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/FriendshipInvitesWidget$1$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/FriendshipInvitesWidget$1.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/FriendshipInvitesWidget$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/FriendshipInvitesWidget.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/FriendshipInvitesWidget.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/LoginPage$1$1.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/LoginPage$1$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/LoginPage$1.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/LoginPage$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/LoginPage$2.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/LoginPage$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/LoginPage$3.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/LoginPage$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/LoginPage$4.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/LoginPage$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/LoginPage.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/LoginPage.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/MapPage$1.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/MapPage$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/MenuWidget$1.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/MenuWidget$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/MenuWidget$2.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/MenuWidget$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/MenuWidget$3.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/MenuWidget$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/MenuWidget$4$1.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/MenuWidget$4$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/MenuWidget$4.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/MenuWidget$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/MenuWidget.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/MenuWidget.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/ProfilePage$1.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/ProfilePage$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/ProfilePage.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/ProfilePage.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/RegisterPage$1$1.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/RegisterPage$1$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/RegisterPage$1.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/RegisterPage$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/RegisterPage$2.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/RegisterPage$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/RegisterPage$3.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/RegisterPage$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/RegisterPage$4.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/RegisterPage$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/RegisterPage.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/RegisterPage.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/UnreadMessagesWidget$1$1.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/UnreadMessagesWidget$1$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/UnreadMessagesWidget$1.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/UnreadMessagesWidget$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/UnreadMessagesWidget.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/UnreadMessagesWidget.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/worker/client/Worker.class" afterPath="$PROJECT_DIR$/target/classes/com/worker/client/Worker.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/ProjectX_idea_GWT.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/ProjectX_idea_GWT.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/89e1c849-0cf7-42d6-b236-8bc69c19da9d.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/89e1c849-0cf7-42d6-b236-8bc69c19da9d.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/bb96e8e7-d77b-4809-bdf2-c11a19f66b07.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/bb96e8e7-d77b-4809-bdf2-c11a19f66b07.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worker/DB_managing/HibernateWorker.java" afterPath="$PROJECT_DIR$/src/main/java/com/worker/DB_managing/HibernateWorker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ProjectX_idea.iml" afterPath="$PROJECT_DIR$/ProjectX_idea.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worker/client/ChatPage.java" afterPath="$PROJECT_DIR$/src/main/java/com/worker/client/ChatPage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worker/client/UnreadMessagesWidget.java" afterPath="$PROJECT_DIR$/src/main/java/com/worker/client/UnreadMessagesWidget.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worker/client/WorkerService.java" afterPath="$PROJECT_DIR$/src/main/java/com/worker/client/WorkerService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worker/client/WorkerServiceAsync.java" afterPath="$PROJECT_DIR$/src/main/java/com/worker/client/WorkerServiceAsync.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/worker/server/WorkerServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/worker/server/WorkerServiceImpl.java" />
     </list>
     <ignored path="ProjectX.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,50 +109,17 @@
       <file leaf-file-name="ChatPage.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/ChatPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-              <folding>
-                <element signature="e#1875#2552#0" expanded="true" />
-                <element signature="e#2551#2552#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="projectx.friend" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/42cb1983/89e1c849-0cf7-42d6-b236-8bc69c19da9d/projectx.friend">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="200">
+              <caret line="54" column="27" lean-forward="false" selection-start-line="54" selection-start-column="27" selection-end-line="54" selection-end-column="27" />
               <folding />
             </state>
           </provider>
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
         </entry>
       </file>
-      <file leaf-file-name="projectx.user" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/42cb1983/89e1c849-0cf7-42d6-b236-8bc69c19da9d/projectx.user">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UnreadMessagesWidget.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UnreadMessagesWidget.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/UnreadMessagesWidget.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-357">
+            <state relative-caret-position="250">
               <caret line="30" column="28" lean-forward="false" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -111,11 +128,50 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WorkerServiceImpl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WorkerServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/server/WorkerServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+            <state relative-caret-position="172">
+              <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#1120#1121#0" expanded="false" />
+                <element signature="e#1162#1163#0" expanded="false" />
+                <element signature="e#1275#1288#0" expanded="false" />
+                <element signature="e#1446#1447#0" expanded="false" />
+                <element signature="e#1474#1475#0" expanded="false" />
+                <element signature="e#2724#2725#0" expanded="false" />
+                <element signature="e#2774#2775#0" expanded="false" />
+                <element signature="e#2806#2807#0" expanded="false" />
+                <element signature="e#2845#2846#0" expanded="false" />
+                <element signature="e#2890#2891#0" expanded="false" />
+                <element signature="e#2933#2934#0" expanded="false" />
+                <element signature="e#5788#5789#0" expanded="false" />
+                <element signature="e#5853#5854#0" expanded="false" />
+                <element signature="e#5910#5911#0" expanded="false" />
+                <element signature="e#5980#5981#0" expanded="false" />
+                <element signature="e#6348#6349#0" expanded="false" />
+                <element signature="e#6425#6426#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserEntity.hbm.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/UserEntity.hbm.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="26" column="28" lean-forward="false" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProjectX_idea.iml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ProjectX_idea.iml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -124,9 +180,15 @@
       <file leaf-file-name="FindFriendsWidget.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/FindFriendsWidget.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
+            <state relative-caret-position="925">
               <caret line="46" column="62" lean-forward="false" selection-start-line="46" selection-start-column="52" selection-end-line="46" selection-end-column="62" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#1242#1243#0" expanded="false" />
+                <element signature="e#1322#1323#0" expanded="false" />
+                <element signature="e#2030#2031#0" expanded="false" />
+                <element signature="e#2150#2151#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -134,9 +196,13 @@
       <file leaf-file-name="WorkerService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/WorkerService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
+            <state relative-caret-position="575">
               <caret line="34" column="14" lean-forward="false" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#1772#1773#0" expanded="false" />
+                <element signature="e#1814#1815#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -144,9 +210,11 @@
       <file leaf-file-name="WorkerServiceAsync.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/WorkerServiceAsync.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
+            <state relative-caret-position="725">
               <caret line="39" column="68" lean-forward="false" selection-start-line="39" selection-start-column="68" selection-end-line="39" selection-end-column="68" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -154,9 +222,14 @@
       <file leaf-file-name="HibernateWorker.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/DB_managing/HibernateWorker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2598">
-              <caret line="220" column="0" lean-forward="false" selection-start-line="220" selection-start-column="0" selection-end-line="220" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="25">
+              <caret line="138" column="0" lean-forward="false" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#4056#4069#0" expanded="false" />
+                <element signature="e#16968#16969#0" expanded="false" />
+                <element signature="e#17002#17003#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -194,7 +267,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/war/Worker_old.html" />
         <option value="$PROJECT_DIR$/war/Worker_old1.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/worker/server/User.java" />
         <option value="/Hibernate QL Fragment (HibernateWorker.java:483).hql" />
@@ -243,8 +315,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/worker/server/WorkerServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/worker/client/WorkerServiceAsync.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/worker/client/WorkerService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/worker/client/UnreadMessagesWidget.java" />
+        <option value="$PROJECT_DIR$/ProjectX_idea.iml" />
         <option value="$PROJECT_DIR$/src/main/java/com/worker/client/ChatPage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/worker/client/UnreadMessagesWidget.java" />
       </list>
     </option>
   </component>
@@ -297,10 +370,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="82" />
+    <option name="y" value="-11" />
+    <option name="width" value="1849" />
+    <option name="height" value="1102" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -337,8 +410,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -589,6 +660,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -598,9 +671,9 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.17471264" />
+    <property name="project.structure.side.proportion" value="0.2559387" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="JPA.DatabaseSchemaImportDialog" value="bb96e8e7-d77b-4809-bdf2-c11a19f66b07" />
@@ -1211,6 +1284,7 @@
       <workItem from="1479768630103" duration="2442000" />
       <workItem from="1479833818376" duration="127000" />
       <workItem from="1479834311888" duration="12641000" />
+      <workItem from="1480447428147" duration="1751000" />
     </task>
     <task id="LOCAL-00001" summary="Long way to synchronizatinz with db">
       <created>1478290293792</created>
@@ -1272,7 +1346,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="222500000" />
+    <option name="totallyTimeSpent" value="224251000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1284,38 +1358,37 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="82" y="-11" width="1849" height="1102" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33226153" sideWeight="0.5110024" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3318535" sideWeight="0.5110024" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290461" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12686567" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15085287" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15082528" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22834645" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31852654" sideWeight="0.4978678" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31837606" sideWeight="0.4978678" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33152762" sideWeight="0.48899755" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34406215" sideWeight="0.48899755" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23039807" sideWeight="0.35473517" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23294243" sideWeight="0.64526486" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29083666" sideWeight="0.64526486" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5080386" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32719395" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5080386" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hibernate Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3279743" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1324,6 +1397,7 @@
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290461" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32719395" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1414,13 +1488,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/LoginService.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/LoginServiceAsync.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/server/LoginServiceImpl.java" />
-    <entry file="file://$PROJECT_DIR$/ProjectX_idea.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/war/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -1574,19 +1641,7 @@
           <caret line="35" column="21" lean-forward="false" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="false" />
-            <element signature="e#4113#4114#0" expanded="false" />
-            <element signature="e#4162#4163#0" expanded="false" />
-            <element signature="e#4281#4282#0" expanded="false" />
-            <element signature="e#4332#4333#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/UserEntity.hbm.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="71" lean-forward="false" selection-start-line="23" selection-start-column="71" selection-end-line="23" selection-end-column="71" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1662,12 +1717,6 @@
           <caret line="59" column="51" lean-forward="false" selection-start-line="59" selection-start-column="36" selection-end-line="59" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="false" />
-            <element signature="e#983#984#0" expanded="false" />
-            <element signature="e#1047#1048#0" expanded="false" />
-            <element signature="e#1406#2081#0" expanded="false" />
-            <element signature="e#1674#1675#0" expanded="false" />
-            <element signature="e#1778#1779#0" expanded="false" />
-            <element signature="e#2080#2081#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1698,88 +1747,113 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/FindFriendsWidget.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
+        <state relative-caret-position="925">
           <caret line="46" column="62" lean-forward="false" selection-start-line="46" selection-start-column="52" selection-end-line="46" selection-end-column="62" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1242#1243#0" expanded="false" />
+            <element signature="e#1322#1323#0" expanded="false" />
+            <element signature="e#2030#2031#0" expanded="false" />
+            <element signature="e#2150#2151#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/42cb1983/89e1c849-0cf7-42d6-b236-8bc69c19da9d/projectx.user">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/42cb1983/89e1c849-0cf7-42d6-b236-8bc69c19da9d/projectx.friend">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="dbDummy://dbtable:/42cb1983/89e1c849-0cf7-42d6-b236-8bc69c19da9d/projectx.user" />
+    <entry file="dbDummy://dbtable:/42cb1983/89e1c849-0cf7-42d6-b236-8bc69c19da9d/projectx.friend" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/WorkerServiceAsync.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
+        <state relative-caret-position="725">
           <caret line="39" column="68" lean-forward="false" selection-start-line="39" selection-start-column="68" selection-end-line="39" selection-end-column="68" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/WorkerService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
+        <state relative-caret-position="575">
           <caret line="34" column="14" lean-forward="false" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1772#1773#0" expanded="false" />
+            <element signature="e#1814#1815#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProjectX_idea.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/DB_managing/HibernateWorker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="138" column="0" lean-forward="false" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#4056#4069#0" expanded="false" />
+            <element signature="e#16968#16969#0" expanded="false" />
+            <element signature="e#17002#17003#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/server/WorkerServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1120#1121#0" expanded="false" />
+            <element signature="e#1162#1163#0" expanded="false" />
+            <element signature="e#1275#1288#0" expanded="false" />
+            <element signature="e#1446#1447#0" expanded="false" />
+            <element signature="e#1474#1475#0" expanded="false" />
+            <element signature="e#2724#2725#0" expanded="false" />
+            <element signature="e#2774#2775#0" expanded="false" />
+            <element signature="e#2806#2807#0" expanded="false" />
+            <element signature="e#2845#2846#0" expanded="false" />
+            <element signature="e#2890#2891#0" expanded="false" />
+            <element signature="e#2933#2934#0" expanded="false" />
+            <element signature="e#5788#5789#0" expanded="false" />
+            <element signature="e#5853#5854#0" expanded="false" />
+            <element signature="e#5910#5911#0" expanded="false" />
+            <element signature="e#5980#5981#0" expanded="false" />
+            <element signature="e#6348#6349#0" expanded="false" />
+            <element signature="e#6425#6426#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/UserEntity.hbm.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="26" column="28" lean-forward="false" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/ChatPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding>
-            <element signature="e#1875#2552#0" expanded="true" />
-            <element signature="e#2551#2552#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="200">
+          <caret line="54" column="27" lean-forward="false" selection-start-line="54" selection-start-column="27" selection-end-line="54" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/client/UnreadMessagesWidget.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-357">
+        <state relative-caret-position="250">
           <caret line="30" column="28" lean-forward="false" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/DB_managing/HibernateWorker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2598">
-          <caret line="220" column="0" lean-forward="false" selection-start-line="220" selection-start-column="0" selection-end-line="220" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/worker/server/WorkerServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1793,7 +1867,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.17471264" />
+                <option value="0.2559387" />
                 <option value="0.5" />
               </list>
             </option>
@@ -1817,7 +1891,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.17471264" />
+                <option value="0.2559387" />
               </list>
             </option>
           </splitter-proportions>
@@ -1837,11 +1911,11 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>ProjectX_idea</last-edited>
+          <last-edited>GWT|ProjectX_idea</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.17471264" />
+                <option value="0.2559387" />
               </list>
             </option>
           </splitter-proportions>
@@ -1849,11 +1923,11 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>gwt-ajaxloader-1.1.0</last-edited>
+          <last-edited>mysql-connector-java-6.0.2</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.17471264" />
+                <option value="0.2559387" />
               </list>
             </option>
           </splitter-proportions>
