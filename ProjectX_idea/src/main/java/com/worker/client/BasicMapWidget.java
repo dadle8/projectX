@@ -28,11 +28,7 @@ import com.google.gwt.maps.client.events.position.PositionChangeMapHandler;
 import com.google.gwt.maps.client.overlays.*;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.*;
 import com.google.web.bindery.requestfactory.server.Pair;
 import com.worker.DB_classes.UserEntity;
 
@@ -41,14 +37,14 @@ import java.util.List;
 
 public class BasicMapWidget extends Composite {
 
-    private final VerticalPanel pWidget;
+    private final FlowPanel pWidget;
     private MapWidget mapWidget;
     private Point centerPoint;
 
     //private Marker markerBasic;
 
     public BasicMapWidget(Point pt) {
-        pWidget = new VerticalPanel();
+        pWidget = new FlowPanel();
         initWidget(pWidget);
         centerPoint = pt;
 

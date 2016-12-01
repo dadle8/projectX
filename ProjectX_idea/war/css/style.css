@@ -10,46 +10,61 @@ html{
 }
 
 .logo{
-    outline: 1px solid #ffffff;
+    width: 306px;
+    height: 329px;
+
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
     margin-bottom: 10px;
-    height: 329px;
-    width: 306px;
-    background: url("/images/logo.png");
+
+    outline: 1px solid #ffffff;
+
     text-align: center;
+
+    background: url("/images/logo.png");
 }
 
 .logo-header{
-    outline: 1px solid #ffffff;
+    width: 47px;
+    height: 49px;
+
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
     margin-bottom: 10px;
-    height: 49px;
-    width: 47px;
-    background: url("/images/logo.png");
+
     text-align: center;
-    background-size: contain;
-    background-repeat: no-repeat;
     display: inline-block;
     vertical-align: middle;
+    outline: 1px solid #ffffff;
+
+    background: url("/images/logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 body
 {
-    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
     margin: 0;
+    padding: 0;
+
     background-image: url("/images/space-bckg.jpg");
     background-position: 50% 50%;
     background-attachment: fixed;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 #root-div{
-    text-align: center;
     margin-left: auto;
     margin-right: auto;
+
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    text-align: center;
+
     background:linear-gradient(90deg,
     #9262D2 20%,
     #773DC5 20%, #773DC5 40%,
@@ -65,15 +80,27 @@ body
             #39087A 80%
     ) 0 100% / 100% .6em no-repeat;
     background-color: #ffffff;
-    padding-bottom: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
 }
 
 @media screen and (max-width:800px) {
+    body{
+        overflow-x: hidden;
+    }
+
     #root-div{
-        width: 100vw;
+        max-width: 100vw;
         min-height: 100vh;
+    }
+
+    .menu-widget button{
+        min-width:90%;
+        max-width: 100%;
+        border: none;
+        border-radius: 0px;
+
+        margin-left:auto;
+        margin-right: auto;
+        display: block;
     }
 }
 
@@ -96,16 +123,21 @@ body
 */
 
 .gwt-Button {
+    min-width: 110px;
+
+    margin: 2px;
+    padding: 11px 23px;
+
+    border-color: #611BBD;
+    border-width: 2px;
+    border-radius: 9px;
+
+    box-sizing: content-box;
+
     color: #130269;
     background-color: #fff;
-    border-color: #611BBD;
-    padding: 11px 23px;
-    border-width: 2px;
-    margin: 2px;
-    box-sizing: content-box;
-    border-radius: 9px;
-    min-width: 110px;
     font-size: 14px;
+    cursor: pointer;
 }
 
 .gwt-Button:hover,
@@ -154,27 +186,26 @@ fieldset[disabled] .gwt-Button.active {
 
 */
 .gwt-TextBox, .gwt-PasswordTextBox{
-    padding: 6px 12px;
-    font-size: 14px;
+    max-width: 450px;
     line-height: 1.42857143;
+
+    margin: 10px;
+    padding: 6px 12px;
+
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    display: block;
+    font-size: 14px;
     color: #555;
     background-color: #fff;
     background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    margin: 10px;
-    max-width: 450px;
-    display: block;
 }
 
 .registerLabels{
     margin-left: 30px;
-}
-
-.error-box{
-
 }
 
 .header-panel{
@@ -198,15 +229,19 @@ fieldset[disabled] .gwt-Button.active {
 
 .login-page input{
     width: 300px;
-    display: block;
+
     margin-left: auto;
     margin-right: auto;
+
+    display: block;
 }
 
 .login-page .gwt-Button{
     width: 148px;
-    display: inline-block;
+
     padding: 11px 3px;
+
+    display: inline-block;
 }
 
 /******************************************/
@@ -217,13 +252,16 @@ fieldset[disabled] .gwt-Button.active {
 
 .register-page label{
     width: 600px;
-    display: block;
+
     margin-right: 10px;
+
+    display: block;
     text-align: right;
 }
 
 .register-page input{
     width: 170px;
+
     display: inline-block;
 }
 
@@ -255,8 +293,8 @@ fieldset[disabled] .gwt-Button.active {
 /******************************************/
 
 .basic-map-widget {
-    width: 780px;
-    height: 70vh;
+    width: 100%;
+    height: 90vh;
 }
 
 /******************************************/
@@ -264,43 +302,81 @@ fieldset[disabled] .gwt-Button.active {
 .menu-widget {
     width: 100%;
     margin-top: 10px;
+
     display: inline-block;
+    text-align: center;
 }
 
-.menu-widget h1 {
+.menu-widget h1,
+.profile-widget h1{
+    width: 100%;
+
+    margin-bottom: 10px;
+    padding: 11px 23px;
+
+    border-bottom: 1px gray dashed;
+
     font-weight: bold;
     font-size: 20px;
-    padding: 11px 23px;
-    border-bottom: 1px gray dashed;
-    width: 100%;
+
     box-sizing: border-box;
-    margin-bottom: 10px;
     text-align: left;
 }
 
 /******************************************/
 
-.invites-widget{
+.profile-widget {
     text-align:left;
 }
 
-.invites-widget h1{
-    font-weight: bold;
-    font-size: 20px;
-    padding: 11px 23px;
-    border-bottom: 1px gray dashed;
-    width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 10px;
-    text-align: left;
+.profile-widget  p{
+    width: 350px;
+
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.invites-widget div{
+.profile-widget div{
+    margin-right: 10px;
+
     text-align: left;
     display:inline-block;
     vertical-align: middle;
-    margin-right: 10px;
 }
-.invites-widget button{
+
+.profile-widget >div>div{
+    width: 100%;
+
+    margin-bottom: 10px;
+    padding-left: 10px;
+
+    display: block;
+    border-left: 4px solid #9262D2;
+
+    background-color: rgba(146, 98, 210, 0.23);
+}
+
+.profile-widget button{
+    width: 120px;
+
+    padding: 11px 5px;
+
     display: inline-block;
+    vertical-align: middle;
+}
+
+/******************************************/
+
+.find-friends-widget>button,
+.find-friends-widget>input{
+    display: inline-block;
+}
+
+.invites-widget {
+
+}
+
+.friends-list-widget {
+
 }

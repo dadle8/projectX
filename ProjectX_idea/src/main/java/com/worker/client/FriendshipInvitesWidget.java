@@ -16,7 +16,6 @@ import java.util.List;
 public class FriendshipInvitesWidget {
 
     private FlowPanel content = null;
-    private Label caption = null;
     private FlowPanel invites = null;
 
     public FriendshipInvitesWidget()
@@ -33,6 +32,7 @@ public class FriendshipInvitesWidget {
     private void setElements()
     {
         content = new FlowPanel();
+        content.addStyleName("profile-widget");
         content.addStyleName("invites-widget");
 
         // Dependencies

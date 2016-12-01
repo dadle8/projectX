@@ -13,26 +13,38 @@ import java.util.ArrayList;
  * Created by AsmodeusX on 19.11.2016.
  */
 public class FindFriendsWidget {
+
+    private FlowPanel content = null;
     private TextBox textBox = null;
     private Button searchButton = null;
-    private VerticalPanel searchResult = null;
+    private FlowPanel searchResult = null;
 
     public FindFriendsWidget()
     {
     }
 
-    public HorizontalPanel Build()
+    public FlowPanel Build()
     {
         this.setElements();
         this.setHandlers();
-        return this.MakeWrapper();
+        return content;
     }
 
     private void setElements()
     {
-        this.textBox = new TextBox();
-        this.searchButton = new Button("Search");
-        this.searchResult = new VerticalPanel();
+        content = new FlowPanel();
+        content.addStyleName("profile-widget");
+        content.addStyleName("find-friends-widget");
+
+        textBox = new TextBox();
+        searchButton = new Button("Search");
+        searchResult = new FlowPanel();
+
+        // Dependencies
+
+        content.add(new HTMLPanel("h1", "Find friends"));
+        content.add(textBox);
+        content.add(searchButton);
     }
 
     private void setHandlers()
@@ -48,8 +60,9 @@ public class FindFriendsWidget {
                         searchResult.clear();
                         for(final UserEntity usr : result)
                         {
-                            HorizontalPanel friendPanel = new HorizontalPanel();
-                            Button addFriendButton = new Button("ADD");
+                            FlowPanel friendPanel = new FlowPanel();
+                            Button addFriendButton = new Button("Add");
+                            FlowPanel userInfo = new FlowPanel();
                             addFriendButton.addClickHandler(new ClickHandler() {
                                 public void onClick(ClickEvent event) {
                                     WorkerService.App.getInstance().addFriend(usr, new AsyncCallback<Boolean>() {
@@ -69,22 +82,20 @@ public class FindFriendsWidget {
                                     });
                                 }
                             });
-                            friendPanel.add(new HTML("Name: " + usr.getName() + "</br> Surname: " + usr.getSurname() + "</br> Ref: " + usr.getRef() + "<hr>"));
+                            userInfo.add(new HTMLPanel("p", "<strong>Name:</strong> " + usr.getName()));
+                            userInfo.add(new HTMLPanel("p", "<strong>Surname:</strong> " + usr.getSurname()));
+                            userInfo.add(new HTMLPanel("p", "<strong>Ref:</strong> " + usr.getRef()));
+
+                            friendPanel.add(userInfo);
                             friendPanel.add(addFriendButton);
+
                             searchResult.add(friendPanel);
                         }
                     }
                 });
             }
         });
-    }
 
-    private HorizontalPanel MakeWrapper()
-    {
-        HorizontalPanel Wrapper = new HorizontalPanel();
-        Wrapper.add(textBox);
-        Wrapper.add(searchButton);
-        Wrapper.add(searchResult);
-        return Wrapper;
+        content.add(searchResult);
     }
 }

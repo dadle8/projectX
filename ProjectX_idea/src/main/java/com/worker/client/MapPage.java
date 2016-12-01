@@ -20,6 +20,11 @@ import java.util.ArrayList;
  */
 public class MapPage {
 
+    private MenuWidget Menu = new MenuWidget();
+
+    private FlowPanel content = null;
+    private FlowPanel innerContent = null;
+
     private void draw() {
         Geolocation geo = Geolocation.getIfSupported();
         if (geo == null)
@@ -32,14 +37,17 @@ public class MapPage {
             public void onSuccess(Position result)
             {
                 BasicMapWidget wMap = new BasicMapWidget(Point.newInstance(result.getCoordinates().getLatitude(), result.getCoordinates().getLongitude()));
-                MenuWidget Menu = new MenuWidget();
-                VerticalPanel Wrapper = new VerticalPanel();
-                Wrapper.addStyleName("map-page");
-                Wrapper.add(Menu.Build("Map"));
-                Wrapper.add(wMap);
+                Menu = new MenuWidget();
+                content = new FlowPanel();
+                innerContent = new FlowPanel();
+                innerContent.addStyleName("map-page");
+
+                content.add(Menu.Build("Map"));
+                content.add(innerContent);
+                innerContent.add(wMap);
 
                 RootPanel.get("root-div").clear();
-                RootPanel.get("root-div").add(Wrapper);
+                RootPanel.get("root-div").add(content);
             }
 
             public void onFailure(PositionError reason)

@@ -46,7 +46,7 @@ public class UnreadMessagesWidget {
                             final Button user = new Button(result[i][0] + result[i][1]);
                             user.setTitle(result[i][0]);
                             user.addClickHandler(new ClickHandler() {
-                                @Override
+                                //@Override
                                 public void onClick(ClickEvent event) {
                                     for(int i = 0; i < users.getWidgetCount(); i++) {
                                         Button bt = (Button) users.getWidget(i);

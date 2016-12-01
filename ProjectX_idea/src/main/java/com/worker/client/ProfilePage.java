@@ -72,8 +72,8 @@ public class ProfilePage {
         innerContent.add(new HTMLPanel("p", "<strong>ref:</strong> " + CurrentUser.getRef()));
 
         content.add(this.Invites.Build());
-        content.add(this.FindFriends.Build());
         content.add(this.ShowFriends.Build());
+        content.add(this.FindFriends.Build());
     }
 
     private void setHandlers()

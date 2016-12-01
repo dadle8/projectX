@@ -15,25 +15,34 @@ import java.util.*;
  * Created by AsmodeusX on 19.11.2016.
  */
 public class ShowFriendsWidget {
-    private Label caption = null;
-    private VerticalPanel friendsList = null;
+
+    private FlowPanel content = null;
+    private FlowPanel friendsList = null;
 
 
     public ShowFriendsWidget()
     {
     }
 
-    public VerticalPanel Build()
+    public FlowPanel Build()
     {
         this.setElements();
         this.setHandlers();
-        return this.MakeWrapper();
+        return content;
     }
 
     private void setElements()
     {
-        this.caption = new Label("Friends:");
-        this.friendsList = new VerticalPanel();
+        content = new FlowPanel();
+        content.addStyleName("profile-widget");
+        content.addStyleName("friends-list-widget");
+
+        friendsList = new FlowPanel();
+
+        // Dependencies
+
+        content.add(new HTMLPanel("h1", "Friends"));
+
         WorkerService.App.getInstance().getFriends(new AsyncCallback<List<UserEntity>>() {
             public void onFailure(Throwable caught) {
                 Window.alert("SMTH GOES WRONG!");
@@ -43,22 +52,24 @@ public class ShowFriendsWidget {
                 friendsList.clear();
                 for(UserEntity usr : result)
                 {
-                    friendsList.add(new HTML("Name: " + usr.getName() + "</br> Surname: " + usr.getSurname() + "</br> Ref: " + usr.getRef() + "<hr>"));
+                    FlowPanel userInfo = new FlowPanel();
+                    userInfo.add(new HTMLPanel("p", "<strong>Name:</strong> " + usr.getName()));
+                    userInfo.add(new HTMLPanel("p", "<strong>Surname:</strong> " + usr.getSurname()));
+                    userInfo.add(new HTMLPanel("p", "<strong>Ref:</strong> " + usr.getRef()));
+
+                    FlowPanel buffer = new FlowPanel();
+                    buffer.add(userInfo);
+
+                    friendsList.add(buffer);
                 }
             }
         });
+
+        content.add(friendsList);
     }
 
     private void setHandlers()
     {
 
-    }
-
-    private VerticalPanel MakeWrapper()
-    {
-        VerticalPanel Wrapper = new VerticalPanel();
-        Wrapper.add(caption);
-        Wrapper.add(friendsList);
-        return Wrapper;
     }
 }
