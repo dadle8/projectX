@@ -1,32 +1,70 @@
+/*
+
+    Base styles
+
+*/
+
+html{
+    margin: 0;
+    padding: 0;
+}
+
 .logo{
-    outline: 1px solid #f9e1ed;
+    width: 306px;
+    height: 329px;
+
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
     margin-bottom: 10px;
-    height: 329px;
-    width: 306px;
-    background: url("/images/logo.png");
+
+    outline: 1px solid #ffffff;
+
     text-align: center;
+
+    background: url("/images/logo.png");
+}
+
+.logo-header{
+    width: 47px;
+    height: 49px;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+    outline: 1px solid #ffffff;
+
+    background: url("/images/logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 body
 {
-    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
     margin: 0;
+    padding: 0;
+
     background-image: url("/images/space-bckg.jpg");
     background-position: 50% 50%;
     background-attachment: fixed;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 #root-div{
-    padding: 10px;
-    margin-top:5vh;
-    text-align: center;
     margin-left: auto;
     margin-right: auto;
-    width: 700px;
-    min-height: 90vh;
+
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    text-align: center;
+
     background:linear-gradient(90deg,
     #9262D2 20%,
     #773DC5 20%, #773DC5 40%,
@@ -41,7 +79,36 @@ body
             #490B9C 60%, #490B9C 80%,
             #39087A 80%
     ) 0 100% / 100% .6em no-repeat;
-    background-color: #f9e1ed;
+    background-color: #ffffff;
+}
+
+@media screen and (max-width:800px) {
+    body{
+        overflow-x: hidden;
+    }
+
+    #root-div{
+        max-width: 100vw;
+        min-height: 100vh;
+    }
+
+    .menu-widget button{
+        min-width:90%;
+        max-width: 100%;
+        border: none;
+        border-radius: 0px;
+
+        margin-left:auto;
+        margin-right: auto;
+        display: block;
+    }
+}
+
+@media screen and (min-width:801px) {
+    #root-div {
+        width: 800px;
+        min-height: 95vh;
+    }
 }
 
 #root-div table,
@@ -49,20 +116,28 @@ body
     margin: auto;
 }
 
-.gwt-Label{
+/*
 
-}
+    Buttons styles
+
+*/
 
 .gwt-Button {
-    color: #ffffff;
-    background-color: #611BBD;
-    border-color: #130269;
-    padding: 11px 23px;
-    border-width: 1px;
+    min-width: 110px;
+
     margin: 2px;
+    padding: 11px 23px;
+
+    border-color: #611BBD;
+    border-width: 2px;
+    border-radius: 9px;
+
     box-sizing: content-box;
-    border-radius: 4px;
-    min-width: 100px;
+
+    color: #130269;
+    background-color: #fff;
+    font-size: 14px;
+    cursor: pointer;
 }
 
 .gwt-Button:hover,
@@ -105,60 +180,203 @@ fieldset[disabled] .gwt-Button.active {
     background-color: #ffffff;
 }
 
+/*
+
+    Style for inputs
+
+*/
 .gwt-TextBox, .gwt-PasswordTextBox{
-    /*height: 34px;*/
-    padding: 6px 12px;
-    font-size: 14px;
+    max-width: 450px;
     line-height: 1.42857143;
+
+    margin: 10px;
+    padding: 6px 12px;
+
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    display: block;
+    font-size: 14px;
     color: #555;
     background-color: #fff;
     background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    margin: 10px;
-    width: 300px;
 }
 
 .registerLabels{
     margin-left: 30px;
 }
 
-.error-box{
-
+.header-panel{
+    margin-top: 20px;
 }
 
-.menu-label-title {
-    font-weight: bold;
-    font-size: 20px;
-    padding: 11px 23px;
-    border-bottom: 1px gray dashed;
-    width: 100%;
-    box-sizing: border-box;
+.header-panel h1{
+    display: inline-block;
+    vertical-align: middle;
 }
+
+/******************************************/
 
 .login-page {
 
 }
 
+.login-page h1{
+    display: inline-block;
+}
+
+.login-page input{
+    width: 300px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    display: block;
+}
+
+.login-page .gwt-Button{
+    width: 148px;
+
+    padding: 11px 3px;
+
+    display: inline-block;
+}
+
+/******************************************/
+
 .register-page {
 
 }
+
+.register-page label{
+    width: 600px;
+
+    margin-right: 10px;
+
+    display: block;
+    text-align: right;
+}
+
+.register-page input{
+    width: 170px;
+
+    display: inline-block;
+}
+
+.header-panel{
+    display: inline-block;
+}
+/******************************************/
 
 .profile-page {
 
 }
 
+.profile-page p{
+    text-align: left;
+}
+
+/******************************************/
+
 .map-page {
 
 }
+
+/******************************************/
 
 .chat-page {
 
 }
 
+/******************************************/
+
 .basic-map-widget {
-    width: 680px;
-    height: 70vh;
+    width: 100%;
+    height: 90vh;
+}
+
+/******************************************/
+
+.menu-widget {
+    width: 100%;
+    margin-top: 10px;
+
+    display: inline-block;
+    text-align: center;
+}
+
+.menu-widget h1,
+.profile-widget h1{
+    width: 100%;
+
+    margin-bottom: 10px;
+    padding: 11px 23px;
+
+    border-bottom: 1px gray dashed;
+
+    font-weight: bold;
+    font-size: 20px;
+
+    box-sizing: border-box;
+    text-align: left;
+}
+
+/******************************************/
+
+.profile-widget {
+    text-align:left;
+}
+
+.profile-widget  p{
+    width: 350px;
+
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.profile-widget div{
+    margin-right: 10px;
+
+    text-align: left;
+    display:inline-block;
+    vertical-align: middle;
+}
+
+.profile-widget >div>div{
+    width: 100%;
+
+    margin-bottom: 10px;
+    padding-left: 10px;
+
+    display: block;
+    border-left: 4px solid #9262D2;
+
+    background-color: rgba(146, 98, 210, 0.23);
+}
+
+.profile-widget button{
+    width: 120px;
+
+    padding: 11px 5px;
+
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/******************************************/
+
+.find-friends-widget>button,
+.find-friends-widget>input{
+    display: inline-block;
+}
+
+.invites-widget {
+
+}
+
+.friends-list-widget {
+
 }

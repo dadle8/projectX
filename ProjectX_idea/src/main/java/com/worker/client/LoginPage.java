@@ -71,7 +71,7 @@ public class LoginPage {
         passwordBox = new PasswordTextBox();
         passwordBox.getElement().setAttribute("placeholder","Password");
 
-        label = new Label("SMTH is here.");
+        label = new Label();
         submit = new Button("Submit");
         register = new Button("Register");
 
@@ -99,7 +99,7 @@ public class LoginPage {
                     event.cancel();
                 }
                 String hash = new MD5hashing().getMD5(passwordBox.getText());
-                label.setText(loginBox.getText() + "   " + passwordBox.getValue() + "   " + passwordBox.getText() + "   " + hash);
+                //label.setText(loginBox.getText() + "   " + passwordBox.getValue() + "   " + passwordBox.getText() + "   " + hash);
                 WorkerService.App.getInstance().loginServer(loginBox.getText(), hash, new AsyncCallback<UserEntity>() {
                     public void onSuccess(UserEntity result) {
                         if (result != null && result.getLoggedIn() == 1) {

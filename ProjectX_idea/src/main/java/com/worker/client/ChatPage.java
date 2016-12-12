@@ -40,7 +40,7 @@ public class ChatPage {
     private TextBox message = null;
     private Button sendMessageBtn = null;
     private Button cleanHistoryBtn = null;
-
+    private Label Addresse = null;
     /**
      *  This ArrayList to store the earliest time displayed message.
      *  earlyDateMessage - time for user.
@@ -122,14 +122,16 @@ public class ChatPage {
                 if (result != null) {
                     users.clear();
                     for (UserEntity userEntity : result) {
-                        final Button user = new Button(userEntity.getLogin());
+                        final Button user = new Button(userEntity.getName() + " " + userEntity.getSurname());
+                        user.setTitle(userEntity.getLogin());
 
                         user.addClickHandler(new ClickHandler() {
                             public void onClick(ClickEvent event) {
                                 if (tm.isRunning()) {
                                     tm.cancel();
                                 }
-                                addressee = user.getText();
+                                Addresse.setText("Chat with: " + user.getText());
+                                addressee = user.getTitle();
 
                                 WorkerService.App.getInstance().getMessageHistory(CurrentUser.getId(), addressee,
                                         new Timestamp(new java.util.Date().getTime()), new AsyncCallback<String[]>() {
@@ -174,11 +176,12 @@ public class ChatPage {
         scrollPanel.setAlwaysShowScrollBars(true);
         buttonsPanel = new HorizontalPanel();
 
+        Addresse = new Label();
         messages = new HTML();
         message = new TextBox();
         message.setMaxLength(1024);
         sendMessageBtn = new Button("Send");
-        cleanHistoryBtn = new Button("Clean history");
+        cleanHistoryBtn = new Button("On bottom");
     }
 
     private void setDependencies() {
@@ -186,6 +189,7 @@ public class ChatPage {
         buttonsPanel.add(cleanHistoryBtn);
         scrollPanel.add(messages);
 
+        chat.add(Addresse);
         chat.add(scrollPanel);
         chat.add(message);
         chat.add(buttonsPanel);
@@ -253,7 +257,7 @@ public class ChatPage {
                 if (getHistoryMessagesFlag && scrollPanel.getVerticalScrollPosition() == scrollPanel.getMinimumVerticalScrollPosition()) {
                     final int oldMaxScrollPosition = scrollPanel.getMaximumVerticalScrollPosition();
                     getHistoryMessagesFlag = false;
-
+                    GWT.log("scroll");
                     WorkerService.App.getInstance().getMessageHistory(CurrentUser.getId(), addressee,
                             earlyDateMessage, new AsyncCallback<String[]>() {
                                 public void onFailure(Throwable caught) {

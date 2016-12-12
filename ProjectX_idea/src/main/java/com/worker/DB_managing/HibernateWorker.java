@@ -347,7 +347,7 @@ public class HibernateWorker implements Serializable {
     public List getCountOfUnreadMessages(int idto) {
         Session session = factory.openSession();
 
-        List countIfUnreadMessages = session.createQuery("SELECT U.login, COUNT(*) AS C FROM " +
+        List countIfUnreadMessages = session.createQuery("SELECT U.name, U.surname, COUNT(*) AS C FROM " +
                 "com.worker.DB_classes.MessagesEntity M, com.worker.DB_classes.UserEntity U " +
                 "WHERE M.idfrom = U.id AND M.idto= :idto AND M.isread = 0 GROUP BY M.idfrom")
                 .setParameter("idto", idto)

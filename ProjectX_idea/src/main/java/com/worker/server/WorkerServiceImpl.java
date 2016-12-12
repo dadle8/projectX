@@ -149,8 +149,8 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
             int i = 0;
 
             for (Object[] obj : countUnreadMessages) {
-                res[i][0] = obj[0].toString();
-                res[i][1] = ": " + obj[1];
+                res[i][0] = obj[0].toString() + " " + obj[1].toString();
+                res[i][1] = ": " + obj[2];
                 i++;
             }
             return  res;

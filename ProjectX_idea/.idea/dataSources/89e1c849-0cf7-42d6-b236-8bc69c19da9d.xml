@@ -10,140 +10,145 @@
     <schema id="4" parent="1" name="mysql"/>
     <schema id="5" parent="1" name="performance_schema"/>
     <schema id="6" parent="1" name="sys"/>
-    <table id="7" parent="2" name="friend"/>
-    <table id="8" parent="2" name="geo"/>
-    <table id="9" parent="2" name="messages"/>
-    <table id="10" parent="2" name="user"/>
-    <column id="11" parent="7" name="id">
+    <schema id="7" parent="1" name="shop"/>
+    <table id="8" parent="2" name="friend"/>
+    <table id="9" parent="2" name="geo"/>
+    <table id="10" parent="2" name="messages"/>
+    <table id="11" parent="2" name="user"/>
+    <column id="12" parent="8" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="12" parent="7" name="userId">
+    <column id="13" parent="8" name="userId">
       <Position>2</Position>
       <DataType>int(6) unsigned|0</DataType>
     </column>
-    <column id="13" parent="7" name="friendId">
+    <column id="14" parent="8" name="friendId">
       <Position>3</Position>
       <DataType>int(6) unsigned|0</DataType>
     </column>
-    <column id="14" parent="7" name="accepted">
+    <column id="15" parent="8" name="accepted">
       <Position>4</Position>
       <DataType>tinyint(1)|0</DataType>
     </column>
-    <column id="15" parent="8" name="id">
+    <column id="16" parent="9" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="16" parent="8" name="latitude">
+    <column id="17" parent="9" name="latitude">
       <Position>2</Position>
       <DataType>double|0</DataType>
     </column>
-    <column id="17" parent="8" name="longitude">
+    <column id="18" parent="9" name="longitude">
       <Position>3</Position>
       <DataType>double|0</DataType>
     </column>
-    <column id="18" parent="8" name="userid">
+    <column id="19" parent="9" name="userid">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="19" parent="8" name="time">
+    <column id="20" parent="9" name="time">
       <Position>5</Position>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="20" parent="8" name="device">
+    <column id="21" parent="9" name="device">
       <Position>6</Position>
-      <DataType>varchar(128)|0</DataType>
+      <DataType>varchar(512)|0</DataType>
     </column>
-    <key id="21" parent="8" name="PRIMARY">
+    <key id="22" parent="9" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="22" parent="9" name="id">
+    <column id="23" parent="10" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="23" parent="9" name="message">
+    <column id="24" parent="10" name="message">
       <Position>2</Position>
       <DataType>varchar(1024)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="24" parent="9" name="datemessage">
+    <column id="25" parent="10" name="datemessage">
       <Position>3</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="25" parent="9" name="isread">
+    <column id="26" parent="10" name="isread">
       <Position>4</Position>
       <DataType>tinyint(1)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="26" parent="9" name="idfrom">
+    <column id="27" parent="10" name="idfrom">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="27" parent="9" name="idto">
+    <column id="28" parent="10" name="idto">
       <Position>6</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="28" parent="9" name="idfrom">
+    <index id="29" parent="10" name="idfrom">
       <ColNames>idfrom</ColNames>
     </index>
-    <index id="29" parent="9" name="idto">
+    <index id="30" parent="10" name="idto">
       <ColNames>idto</ColNames>
     </index>
-    <key id="30" parent="9" name="PRIMARY">
+    <key id="31" parent="10" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="31" parent="10" name="id">
+    <column id="32" parent="11" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="32" parent="10" name="login">
+    <column id="33" parent="11" name="login">
       <Position>2</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="33" parent="10" name="password">
+    <column id="34" parent="11" name="password">
       <Position>3</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="34" parent="10" name="email">
+    <column id="35" parent="11" name="email">
       <Position>4</Position>
       <DataType>varchar(32)|0</DataType>
     </column>
-    <column id="35" parent="10" name="loggedIn">
+    <column id="36" parent="11" name="loggedIn">
       <Position>5</Position>
       <DataType>tinyint(1)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="36" parent="10" name="sessionId">
+    <column id="37" parent="11" name="sessionId">
       <Position>6</Position>
       <DataType>varchar(16)|0</DataType>
     </column>
-    <column id="37" parent="10" name="ref">
+    <column id="38" parent="11" name="ref">
       <Position>7</Position>
       <DataType>varchar(32)|0</DataType>
     </column>
-    <column id="38" parent="10" name="name">
+    <column id="39" parent="11" name="name">
       <Position>8</Position>
       <DataType>varchar(32)|0</DataType>
     </column>
-    <column id="39" parent="10" name="surname">
+    <column id="40" parent="11" name="surname">
       <Position>9</Position>
       <DataType>varchar(32)|0</DataType>
     </column>
-    <key id="40" parent="10" name="PRIMARY">
+    <column id="41" parent="11" name="color">
+      <Position>10</Position>
+      <DataType>varchar(6)|0</DataType>
+    </column>
+    <key id="42" parent="11" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
