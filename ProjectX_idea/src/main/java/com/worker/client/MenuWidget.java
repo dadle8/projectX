@@ -84,7 +84,7 @@ public class MenuWidget {
 
                     public void onSuccess(Void result) {
                         Cookies.removeCookie("longSID");
-                        Window.alert("Logout successful!");
+                        //Window.alert("Logout successful!");
                         generateNextPage(0);
                     }
                 });

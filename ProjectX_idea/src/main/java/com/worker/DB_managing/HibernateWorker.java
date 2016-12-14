@@ -1,6 +1,5 @@
 package com.worker.DB_managing;
 
-import com.google.gwt.user.client.Window;
 import com.worker.DB_classes.FriendEntity;
 import com.worker.DB_classes.GeoEntity;
 import com.worker.DB_classes.MessagesEntity;
@@ -9,7 +8,6 @@ import com.worker.client.DoublePoint;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import java.io.Serializable;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -159,20 +157,14 @@ public class HibernateWorker implements Serializable {
         return ans;
     }
 
-    private String normal(String s, int len)
-    {
-        while (s.length() < len)
-        {
-            s.concat("0");
-        }
-        return s;
-    }
-
     private String generateRandomColor()
     {
-        Random rnd = new Random();
-        int val = rnd.nextInt(1000000);
-        return normal(Integer.toString(val), 6);
+        Random randomGenerator = new Random();
+        int red = randomGenerator.nextInt(256);
+        int green = randomGenerator.nextInt(256);
+        int blue = randomGenerator.nextInt(256);
+
+        return Integer.toHexString(red) + Integer.toHexString(green) + Integer.toHexString(blue);
     }
 
     public Boolean registerNewUser(String login, String name, String surname, String passwd, String eMail)

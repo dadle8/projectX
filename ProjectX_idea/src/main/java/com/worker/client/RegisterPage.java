@@ -104,7 +104,7 @@ public class RegisterPage {
         emailBox.getElement().setAttribute("placeholder", "Email");
 
         submit = new Button("Submit");
-        linkToLogin = new Button("Login");
+        linkToLogin = new Button("Back");
 
         // Dependencies
 

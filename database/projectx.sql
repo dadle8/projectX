@@ -36,7 +36,7 @@ CREATE TABLE `friend` (
 
 LOCK TABLES `friend` WRITE;
 /*!40000 ALTER TABLE `friend` DISABLE KEYS */;
-INSERT INTO `friend` VALUES (0,1,2,1),(0,1,3,1),(0,2,3,1),(0,4,1,0),(0,4,2,1),(0,4,3,0);
+INSERT INTO `friend` VALUES (0,15,12,1),(0,16,12,1);
 /*!40000 ALTER TABLE `friend` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,7 +55,7 @@ CREATE TABLE `geo` (
   `time` datetime DEFAULT NULL,
   `device` varchar(512) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=147 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +64,7 @@ CREATE TABLE `geo` (
 
 LOCK TABLES `geo` WRITE;
 /*!40000 ALTER TABLE `geo` DISABLE KEYS */;
-INSERT INTO `geo` VALUES (4,59.83126339999,30.224679699999996,1,'2016-11-21 23:25:55','Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'),(5,59.851263399999,30.2346796999,1,'2016-11-21 23:26:00','PC'),(6,59.84126339999999,30.224679699999996,2,'2016-11-21 23:28:34','Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'),(7,59.861263399999,30.2446796999,3,'2016-11-21 23:26:10','PC'),(8,59.861263399999,30.2646796999,3,'2016-11-21 23:26:10','PC'),(9,59.861263399999,30.2846796999,4,'2016-11-21 23:26:20','PC');
+INSERT INTO `geo` VALUES (120,59.8512329,30.2533511,12,'2016-12-14 19:32:37','Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'),(121,59.866301,30.321161,15,'2016-12-10 08:22:13','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(122,59.868945,30.320709,15,'2016-12-10 08:23:01','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(123,59.878987,30.318219,15,'2016-12-10 08:24:44','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(124,59.891376,30.317961,15,'2016-12-10 08:26:11','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(125,59.906133,30.317454,15,'2016-12-10 08:28:11','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(126,59.916481,30.318538,15,'2016-12-10 08:29:54','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(127,59.926767,30.317126,15,'2016-12-10 08:31:07','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(128,59.934095,30.334524,15,'2016-12-10 08:32:27','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(129,59.956057,30.318683,15,'2016-12-10 08:35:22','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(130,59.956342,30.319259,15,'2016-12-10 08:36:22','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(131,59.956836,30.316126,15,'2016-12-10 08:37:22','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(132,59.956799,30.313619,15,'2016-12-10 08:38:22','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(133,59.957098,30.31345,15,'2016-12-10 08:39:22','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(134,59.958245,30.312755,15,'2016-12-10 08:40:22','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(135,59.957528,30.308026,15,'2016-12-10 08:41:22','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(136,59.903722,30.30071,16,'2016-12-09 17:09:31','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(137,59.907138,30.30027,16,'2016-12-09 17:10:31','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(138,59.907504,30.300045,16,'2016-12-09 17:11:31','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(139,59.916448,30.318802,16,'2016-12-09 17:13:07','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(140,59.920814,30.331601,16,'2016-12-09 17:14:42','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(141,59.927384,30.348028,16,'2016-12-09 17:16:02','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(142,59.927588,30.346687,16,'2016-12-09 17:17:02','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(143,59.926835,30.344294,16,'2016-12-09 17:18:02','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(144,59.92634,30.342481,16,'2016-12-09 17:19:02','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(145,59.926835,30.339669,16,'2016-12-09 17:20:02','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30'),(146,59.926755,30.338855,16,'2016-12-09 17:21:02','Mozilla/5.0 (Linux; U; Android 4.1.1; en-gb; Build/KLP) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30');
 /*!40000 ALTER TABLE `geo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,7 +85,7 @@ CREATE TABLE `messages` (
   PRIMARY KEY (`id`),
   KEY `idfrom` (`idfrom`),
   KEY `idto` (`idto`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +94,7 @@ CREATE TABLE `messages` (
 
 LOCK TABLES `messages` WRITE;
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
-INSERT INTO `messages` VALUES (1,'xxx','2016-11-08 00:00:00',0,1,2),(2,'xxx','2016-11-21 23:58:18',0,1,2),(3,'xxx','2016-12-12 20:43:19',0,1,2),(4,'xxx','2016-12-12 20:43:21',1,2,1),(5,'xxx','2016-12-12 20:43:23',1,2,1),(6,'xxxqwd','2016-12-12 20:43:24',1,2,1),(7,'xxx','2016-12-12 20:43:26',0,1,2),(8,'aaa','2016-12-12 20:43:28',1,2,1),(9,'bbb','2016-12-12 20:43:30',0,1,2),(10,'qwe','2016-11-21 23:58:16',0,4,1),(11,'qwe','2016-11-21 23:58:18',0,4,2),(12,'qwe','2016-11-21 23:58:20',0,4,3);
+INSERT INTO `messages` VALUES (1,'xxx','2016-11-08 00:00:00',1,1,2),(2,'xxx','2016-11-08 00:00:00',1,1,2),(3,'xxx','2016-11-08 00:00:00',1,1,2),(4,'xxx','2016-11-08 00:00:00',1,2,1),(5,'xxx','2016-11-08 00:00:00',1,2,1),(6,'xxxqwd','2016-11-08 00:00:00',1,2,1),(7,'xxx','2016-11-08 00:00:00',1,1,2),(8,'aaa','2016-11-08 00:00:00',1,2,1),(9,'bbb','2016-11-08 00:00:00',1,1,2),(10,'qwe','2016-11-21 23:58:16',0,4,1),(11,'qwe','2016-11-21 23:58:18',1,4,2),(12,'qwe','2016-11-21 23:58:20',0,4,3),(13,'Roooot','2016-11-22 16:47:14',0,7,1),(14,'Colooor','2016-11-22 16:52:48',0,7,4),(15,'Color','2016-11-22 17:47:51',0,7,4),(16,'1','2016-11-23 15:51:22',0,9,1),(17,'1','2016-11-23 15:51:26',0,9,2),(18,'ghhghg','2016-11-24 16:46:35',1,10,1),(19,'gfgf','2016-11-24 16:46:45',1,1,10);
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,7 +117,7 @@ CREATE TABLE `user` (
   `surname` varchar(32) DEFAULT NULL,
   `color` varchar(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,29 +126,8 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'root','63a9f0ea7bb98050796b649e85481845','root@root.root',0,NULL,'YlK+sv@9y68?t1o7(t7LPdbft!8#Hb_s','rnd','toor','111111'),(2,'admin','63a9f0ea7bb98050796b649e85481845','admin@root.admin',1,'1456105400553121','1bjnObjO4Zu)kRcTgNQ8(PskoXDF!ize','rnd','nimda','555555'),(3,'test','098f6bcd4621d373cade4e832627b4f6','test@test.te',0,NULL,'_-BYU%SIYa9F-srT)9q_6rfza4WzVScZ','rnd','tset','FF0000'),(4,'color','70dda5dfb8053dc6d1c492574bce9bfd','color!color.ro',0,NULL,'N5O(IX;Sa@b7ds%t-Jw)5d)QLPp)Bdkn','color','color','718146');
+INSERT INTO `user` VALUES (12,'root','63a9f0ea7bb98050796b649e85481845','root@root.ru',0,NULL,'F%h);ut(4P1CziP%-3Ye4CYE_Z0a6=5u','root','root','000000'),(13,'admin1','827ccb0eea8a706c4c34a16891f84e7b','slava@tihonov.ru',0,NULL,'K2y8F7x2RWMe8jV8UpySA5nOUeU;nbuP','Slava','Tihonov','0DD943'),(14,'admin2','827ccb0eea8a706c4c34a16891f84e7b','alex@bazanov.ru',0,NULL,'OJh6z?#Pmx-BPYoTXjLVcPOrbvN(t0=P','Alex','Bazanov','FF003C'),(15,'tester1','72a3dcef165d9122a45decf13ae20631','tester1@test.ru',0,NULL,';SmOxzb1w+0ylYAIYbYlMVzz_?++Hdk!','tester1','tester1','96530B'),(16,'tester2','2e9fcf8e3df4d415c96bcf288d5ca4ba','tester2@test.ru',0,NULL,'ujuoBXOoI+#RFA)-@5W=!bg0y;Gli%un','tester2','tester2','6BC2BD'),(17,'tester3','7effbf343c0f8ee164da2fe3ae01e8cb','tester3@test.ru',0,NULL,'S?Uv;aZZ9ZVo(O0mZTRClri#ZUm_uMy6','tester3','tester3','1215FC'),(18,'admin','827ccb0eea8a706c4c34a16891f84e7b','roman@patrikeyev.ru',0,NULL,'sqd_c71UXt8?Ae!fAEdh6y+FX5zg%RgP','Roman','Patrikeyev','9C0099'),(19,'tester4','d1af5dfeec69e0133969744c2cb8deac','tester4@test.ru',0,NULL,'2SupKnhQDCLVC8adPFqLYIO+nLVr8rzX','tester4','tester4','582398');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `xxx`
---
-
-DROP TABLE IF EXISTS `xxx`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `xxx` (
-  `xxx` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `xxx`
---
-
-LOCK TABLES `xxx` WRITE;
-/*!40000 ALTER TABLE `xxx` DISABLE KEYS */;
-/*!40000 ALTER TABLE `xxx` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -160,4 +139,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-22  0:01:45
+-- Dump completed on 2016-12-14 20:33:50
