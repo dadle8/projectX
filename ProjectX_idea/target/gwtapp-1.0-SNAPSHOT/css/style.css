@@ -1,66 +1,382 @@
-input
-{
+/*
+
+    Base styles
+
+*/
+
+html{
+    margin: 0;
+    padding: 0;
+}
+
+.logo{
+    width: 306px;
+    height: 329px;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    outline: 1px solid #ffffff;
+
+    text-align: center;
+
+    background: url("/images/logo.png");
+}
+
+.logo-header{
+    width: 47px;
+    height: 49px;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    text-align: center;
     display: inline-block;
-    margin: 4px 0 0 0;
-}
+    vertical-align: middle;
+    outline: 1px solid #ffffff;
 
-.loginButton
-{
-    background: url(../images/loginBtn.png) no-repeat;
-    width: 190px;
-    height: 50px;
-    border: none;
-    outline: none;
-}
-
-.loginButton:hover
-{
-    background: url(../images/loginBtn_hover.png);
-    border: none;
-    outline: none;
-}
-
-.loginButton:active
-{
-    background: url(../images/loginBtn_press.png);
-    border: none;
-    outline: none;
-}
-
-.registerButton
-{
-    background: url(../images/registerBtn.png) no-repeat;
-    width: 190px;
-    height: 50px;
-    border: none;
-    outline: none;
-}
-
-.registerButton:hover
-{
-    background: url(../images/registerBtn_hover.png);
-    border: none;
-    outline: none;
-}
-
-.registerButton:active
-{
-    background: url(../images/registerBtn_press.png);
-    border: none;
-    outline: none;
-}
-
-input[type=text], input[type=password]
-{
-    border-radius: 10px;
-    height: 40px;
-    width: 100%;
-    background-color: #fff5fa;
-    font-size: 27px;
+    background: url("/images/logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 body
 {
     margin: 0;
-    background-color: #f9e1ed;
+    padding: 0;
+
+    background-image: url("/images/space-bckg.jpg");
+    background-position: 50% 50%;
+    background-attachment: fixed;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+#root-div{
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    text-align: center;
+
+    background:linear-gradient(90deg,
+    #9262D2 20%,
+    #773DC5 20%, #773DC5 40%,
+    #611BBD 40%, #611BBD 60%,
+    #490B9C 60%, #490B9C 80%,
+    #39087A 80%
+    ) 0 0 / 100% .6em no-repeat,
+    linear-gradient(-90deg,
+            #9262D2 20%,
+            #773DC5 20%, #773DC5 40%,
+            #611BBD 40%, #611BBD 60%,
+            #490B9C 60%, #490B9C 80%,
+            #39087A 80%
+    ) 0 100% / 100% .6em no-repeat;
+    background-color: #ffffff;
+}
+
+@media screen and (max-width:800px) {
+    body{
+        overflow-x: hidden;
+    }
+
+    #root-div{
+        max-width: 100vw;
+        min-height: 100vh;
+    }
+
+    .menu-widget button{
+        min-width:90%;
+        max-width: 100%;
+        border: none;
+        border-radius: 0px;
+
+        margin-left:auto;
+        margin-right: auto;
+        display: block;
+    }
+}
+
+@media screen and (min-width:801px) {
+    #root-div {
+        width: 800px;
+        min-height: 95vh;
+    }
+}
+
+#root-div table,
+#root-div form{
+    margin: auto;
+}
+
+/*
+
+    Buttons styles
+
+*/
+
+.gwt-Button {
+    min-width: 110px;
+
+    margin: 2px;
+    padding: 11px 23px;
+
+    border-color: #611BBD;
+    border-width: 2px;
+    border-radius: 9px;
+
+    box-sizing: content-box;
+
+    color: #130269;
+    background-color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.gwt-Button:hover,
+.gwt-Button:focus,
+.gwt-Button:active,
+.gwt-Button.active,
+.open .dropdown-toggle.gwt-Button {
+    color: #ffffff;
+    background-color: #49247A;
+    border-color: #130269;
+}
+
+.gwt-Button:active,
+.gwt-Button.active,
+.open .dropdown-toggle.gwt-Button {
+    background-image: none;
+}
+
+.gwt-Button.disabled,
+.gwt-Button[disabled],
+fieldset[disabled] .gwt-Button,
+.gwt-Button.disabled:hover,
+.gwt-Button[disabled]:hover,
+fieldset[disabled] .gwt-Button:hover,
+.gwt-Button.disabled:focus,
+.gwt-Button[disabled]:focus,
+fieldset[disabled] .gwt-Button:focus,
+.gwt-Button.disabled:active,
+.gwt-Button[disabled]:active,
+fieldset[disabled] .gwt-Button:active,
+.gwt-Button.disabled.active,
+.gwt-Button[disabled].active,
+fieldset[disabled] .gwt-Button.active {
+    background-color: #611BBD;
+    border-color: #130269;
+}
+
+.gwt-Button .badge {
+    color: #611BBD;
+    background-color: #ffffff;
+}
+
+/*
+
+    Style for inputs
+
+*/
+.gwt-TextBox, .gwt-PasswordTextBox{
+    max-width: 450px;
+    line-height: 1.42857143;
+
+    margin: 10px;
+    padding: 6px 12px;
+
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    display: block;
+    font-size: 14px;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.registerLabels{
+    margin-left: 30px;
+}
+
+.header-panel{
+    margin-top: 20px;
+}
+
+.header-panel h1{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/******************************************/
+
+.login-page {
+
+}
+
+.login-page h1{
+    display: inline-block;
+}
+
+.login-page input{
+    width: 300px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    display: block;
+}
+
+.login-page .gwt-Button{
+    width: 148px;
+
+    padding: 11px 3px;
+
+    display: inline-block;
+}
+
+/******************************************/
+
+.register-page {
+
+}
+
+.register-page label{
+    width: 600px;
+
+    margin-right: 10px;
+
+    display: block;
+    text-align: right;
+}
+
+.register-page input{
+    width: 170px;
+
+    display: inline-block;
+}
+
+.header-panel{
+    display: inline-block;
+}
+/******************************************/
+
+.profile-page {
+
+}
+
+.profile-page p{
+    text-align: left;
+}
+
+/******************************************/
+
+.map-page {
+
+}
+
+/******************************************/
+
+.chat-page {
+
+}
+
+/******************************************/
+
+.basic-map-widget {
+    width: 100%;
+    height: 90vh;
+}
+
+/******************************************/
+
+.menu-widget {
+    width: 100%;
+    margin-top: 10px;
+
+    display: inline-block;
+    text-align: center;
+}
+
+.menu-widget h1,
+.profile-widget h1{
+    width: 100%;
+
+    margin-bottom: 10px;
+    padding: 11px 23px;
+
+    border-bottom: 1px gray dashed;
+
+    font-weight: bold;
+    font-size: 20px;
+
+    box-sizing: border-box;
+    text-align: left;
+}
+
+/******************************************/
+
+.profile-widget {
+    text-align:left;
+}
+
+.profile-widget  p{
+    width: 350px;
+
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.profile-widget div{
+    margin-right: 10px;
+
+    text-align: left;
+    display:inline-block;
+    vertical-align: middle;
+}
+
+.profile-widget >div>div{
+    width: 100%;
+
+    margin-bottom: 10px;
+    padding-left: 10px;
+
+    display: block;
+    border-left: 4px solid #9262D2;
+
+    background-color: rgba(146, 98, 210, 0.23);
+}
+
+.profile-widget button{
+    width: 120px;
+
+    padding: 11px 5px;
+
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/******************************************/
+
+.find-friends-widget>button,
+.find-friends-widget>input{
+    display: inline-block;
+}
+
+.invites-widget {
+
+}
+
+.friends-list-widget {
+
 }

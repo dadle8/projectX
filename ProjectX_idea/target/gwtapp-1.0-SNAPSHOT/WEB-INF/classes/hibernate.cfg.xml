@@ -21,6 +21,8 @@
 
         <mapping class="com.worker.DB_classes.FriendEntity"/>
         <mapping resource="FriendEntity.hbm.xml"/>
+        <mapping resource="UserEntity.hbm.xml"/>
+        <mapping resource="UserEntity.hbm.xml"/>
 
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
