@@ -15,15 +15,17 @@ import java.sql.Timestamp;
  * Created by Слава on 16.11.2016.
  */
 public class UnreadMessagesWidget {
-    private VerticalPanel usersPanel = null;
-    private Label label = null;
+
+    private FlowPanel content = null;
+
+    private FlowPanel usersPanel = null;
 
     private UserEntity CurrentUser = null;
-    private VerticalPanel users = null;
+    private FlowPanel users = null;
 
     public UnreadMessagesWidget() {}
 
-    public UnreadMessagesWidget(UserEntity CurrentUser, VerticalPanel users){
+    public UnreadMessagesWidget(UserEntity CurrentUser, FlowPanel users){
         this.CurrentUser = CurrentUser;
         this.users = users;
     }
@@ -59,48 +61,29 @@ public class UnreadMessagesWidget {
                             });
                             usersPanel.add(user);
                         }
-                        if(!usersPanel.isVisible()) {
-                            usersPanel.setVisible(true);
+                        if(!content.isVisible()) {
+                            content.setVisible(true);
                         }
                     }
                     else {
-                        usersPanel.setVisible(false);
+                        content.setVisible(false);
                     }
                 }
             });
         }
     };
 
-    public VerticalPanel Build() {
-        VerticalPanel Wrapper = new VerticalPanel();
-        initElements();
-        setDependences();
-        setStyle();
-        setHandlers();
+    public FlowPanel Build() {
+        content = new FlowPanel();
+        content.addStyleName("chat-widget");
+        content.addStyleName("unread-messages-widget");
+        usersPanel = new FlowPanel();
+        content.setVisible(false);
 
         tm.scheduleRepeating(delayMillis);
-        Wrapper.add(label);
-        Wrapper.add(usersPanel);
-        return Wrapper;
-    }
 
-    private void initElements() {
-        usersPanel = new VerticalPanel();
-        label = new Label("Unread messages");
-    }
-
-    private void setDependences() {
-        usersPanel.add(label);
-        usersPanel.add(label);
-
-        usersPanel.setVisible(false);
-    }
-
-    private void setStyle() {
-
-    }
-
-    private  void setHandlers() {
-
+        content.add(new HTMLPanel("h1", "Unread messages"));
+        content.add(usersPanel);
+        return content;
     }
 }

@@ -28,19 +28,22 @@ import java.util.List;
  *
  */
 public class ChatPage {
+
+    private FlowPanel content = null;
+
     private MenuWidget Menu = new MenuWidget();
     private UnreadMessagesWidget UnreadMessages = null;
 
-    private VerticalPanel users = null;
-    private VerticalPanel chat = null;
+    private FlowPanel users = null;
+    private FlowPanel chat = null;
     private ScrollPanel scrollPanel = null;
-    private HorizontalPanel buttonsPanel = null;
+    private FlowPanel buttonsPanel = null;
 
     private HTML messages = null;
     private TextBox message = null;
     private Button sendMessageBtn = null;
     private Button cleanHistoryBtn = null;
-    private Label Addresse = null;
+    private Label Address = null;
     /**
      *  This ArrayList to store the earliest time displayed message.
      *  earlyDateMessage - time for user.
@@ -100,13 +103,11 @@ public class ChatPage {
                     CurrentUser = user;
 
                     setElements();
-                    setDependencies();
-                    setStyle();
                     setUsers();
                     setHandlers();
 
                     RootPanel.get("root-div").clear();
-                    RootPanel.get("root-div").add(MakeWrapper());
+                    RootPanel.get("root-div").add(content);
                 }
             }
         });
@@ -130,7 +131,7 @@ public class ChatPage {
                                 if (tm.isRunning()) {
                                     tm.cancel();
                                 }
-                                Addresse.setText("Chat with: " + user.getText());
+                                Address.setText("Chat with: " + user.getText());
                                 addressee = user.getTitle();
 
                                 WorkerService.App.getInstance().getMessageHistory(CurrentUser.getId(), addressee,
@@ -168,41 +169,50 @@ public class ChatPage {
     }
 
     private void setElements() {
-        users = new VerticalPanel();
+
+        content = new FlowPanel();
+        content.addStyleName("chat-page");
+
+        users = new FlowPanel();
+        users.addStyleName("friends-list");
         UnreadMessages = new UnreadMessagesWidget(CurrentUser, users);
 
-        chat = new VerticalPanel();
-        scrollPanel = new ScrollPanel();
-        scrollPanel.setAlwaysShowScrollBars(true);
-        buttonsPanel = new HorizontalPanel();
+        chat = new FlowPanel();
+        chat.addStyleName("chat-box");
+        chat.setVisible(true);
 
-        Addresse = new Label();
+        scrollPanel = new ScrollPanel();
+        scrollPanel.addStyleName("chat-scroller");
+
+        buttonsPanel = new FlowPanel();
+
+        Address = new Label();
+
         messages = new HTML();
+
         message = new TextBox();
         message.setMaxLength(1024);
+
         sendMessageBtn = new Button("Send");
         cleanHistoryBtn = new Button("On bottom");
-    }
 
-    private void setDependencies() {
         buttonsPanel.add(sendMessageBtn);
         buttonsPanel.add(cleanHistoryBtn);
         scrollPanel.add(messages);
 
-        chat.add(Addresse);
+        //Dependencies
+
+        chat.add(Address);
         chat.add(scrollPanel);
         chat.add(message);
         chat.add(buttonsPanel);
 
-        chat.setVisible(false);
+        content.add(Menu.Build("Chat"));
+        content.add(UnreadMessages.Build());
+        content.add(users);
+        content.add(chat);
     }
 
-    private void setStyle() {
-        scrollPanel.getElement().getStyle().setProperty("width","350px");
-        scrollPanel.getElement().getStyle().setProperty("height","405px");
-
-        messages.getElement().getStyle().setProperty("width","320px");
-    }
     private void setHandlers() {
 
         sendMessageBtn.addClickHandler(new ClickHandler() {
@@ -219,7 +229,7 @@ public class ChatPage {
                         }
 
                         public void onSuccess(Boolean result) {
-                            messages.setHTML(messages.getHTML() + "<p align='right' style='overflow-wrap: break-word; width: 320px; color: #4B0082;'>"
+                            messages.setHTML(messages.getHTML() + "<p class='message-from-me'>"
                                     + message.getText() + " | " + formatDate(new Timestamp(new java.util.Date().getTime())) + "</p>");
                             message.setText("");
                             scrollPanel.scrollToBottom();
@@ -277,19 +287,6 @@ public class ChatPage {
                 }
             }
         });
-    }
-
-    private VerticalPanel MakeWrapper() {
-        VerticalPanel Wrapper = new VerticalPanel();
-        HorizontalPanel HorizonWrapper = new HorizontalPanel();
-        Wrapper.addStyleName("chat-page");
-        Wrapper.add(this.Menu.Build("Chat"));
-        HorizonWrapper.add(this.users);
-        HorizonWrapper.add(this.chat);
-        HorizonWrapper.add(this.UnreadMessages.Build());
-       // Wrapper.add(this.UnreadMessages.Build());
-        Wrapper.add(HorizonWrapper);
-        return Wrapper;
     }
 
     private String formatDate(Timestamp time) {

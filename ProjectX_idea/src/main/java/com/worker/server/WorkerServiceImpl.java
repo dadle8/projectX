@@ -107,8 +107,7 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
             history.append(messages);
             for (int i = lastUnreadMessages.size() - 1; i >= 0; i--) {
                 message = (MessagesEntity) lastUnreadMessages.get(i);
-                history.append("<p align='left' style='overflow-wrap:" +
-                        " break-word; width: 320px; color: #ff6c36;'>" + message.getMessage()
+                history.append("<p class='message-to-me'>" + message.getMessage()
                         + " | " + formatDate(message.getDateMessage()) + "</p>");
             }
             return history.toString();
@@ -128,11 +127,15 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
 
             for (int j = messageHistory.size() - 1; j >= 0; j--) {
                 message = (MessagesEntity) messageHistory.get(j);
-                if (message.getIdfrom() != idfrom) history.append("<p align='left' style='overflow-wrap:" +
+                if (message.getIdfrom() != idfrom) history.append("<p class='message-to-me'>" + message.getMessage()
+                        + " | " + formatDate(message.getDateMessage()) + "</p>");
+                else history.append("<p class='message-from-me'>"
+                        + message.getMessage() + " | " + formatDate(message.getDateMessage()) +  "</p>");
+               /* if (message.getIdfrom() != idfrom) history.append("<p align='left' style='overflow-wrap:" +
                         " break-word; width: 320px; color: #ff6c36;'>" + message.getMessage()
                         + " | " + formatDate(message.getDateMessage()) + "</p>");
                 else history.append("<p align='right' style='overflow-wrap: break-word; width: 320px; color: #4B0082;'>"
-                        + message.getMessage() + " | " + formatDate(message.getDateMessage()) +  "</p>");
+                        + message.getMessage() + " | " + formatDate(message.getDateMessage()) +  "</p>");*/
             }
             result[1] = history.toString();
 

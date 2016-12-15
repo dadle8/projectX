@@ -59,9 +59,7 @@ body
     margin-left: auto;
     margin-right: auto;
 
-    padding-bottom: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 20px;
 
     text-align: center;
 
@@ -82,6 +80,11 @@ body
     background-color: #ffffff;
 }
 
+#root-div>div{
+    width:100%;
+    border: 0px dashed;
+}
+
 @media screen and (max-width:800px) {
     body{
         overflow-x: hidden;
@@ -93,11 +96,9 @@ body
     }
 
     .menu-widget button{
-        min-width:90%;
-        max-width: 100%;
+        width: 100%;
         border: none;
         border-radius: 0px;
-
         margin-left:auto;
         margin-right: auto;
         display: block;
@@ -106,14 +107,17 @@ body
 
 @media screen and (min-width:801px) {
     #root-div {
-        width: 800px;
-        min-height: 95vh;
+        width: 90vw;
+        min-height: 90vh;
+
+        margin-top:2vh;
+        margin-bottom:2vh;
     }
 }
 
 #root-div table,
 #root-div form{
-    margin: auto;
+    /* margin: auto; */
 }
 
 /*
@@ -124,16 +128,12 @@ body
 
 .gwt-Button {
     min-width: 110px;
-
     margin: 2px;
     padding: 11px 23px;
-
     border-color: #611BBD;
     border-width: 2px;
     border-radius: 9px;
-
-    box-sizing: content-box;
-
+    /* box-sizing: content-box; */
     color: #130269;
     background-color: #fff;
     font-size: 14px;
@@ -186,15 +186,12 @@ fieldset[disabled] .gwt-Button.active {
 
 */
 .gwt-TextBox, .gwt-PasswordTextBox{
-    max-width: 450px;
+    /* max-width: 450px; */
     line-height: 1.42857143;
-
     margin: 10px;
     padding: 6px 12px;
-
     border: 1px solid #ccc;
     border-radius: 4px;
-
     display: block;
     font-size: 14px;
     color: #555;
@@ -244,6 +241,10 @@ fieldset[disabled] .gwt-Button.active {
     display: inline-block;
 }
 
+.login-page form{
+    padding-bottom: 20px;
+}
+
 /******************************************/
 
 .register-page {
@@ -251,9 +252,10 @@ fieldset[disabled] .gwt-Button.active {
 }
 
 .register-page label{
-    width: 600px;
+    max-width: 400px;
 
-    margin-right: 10px;
+    margin-right: auto;
+    margin-left: auto;
 
     display: block;
     text-align: right;
@@ -294,21 +296,24 @@ fieldset[disabled] .gwt-Button.active {
 
 .basic-map-widget {
     width: 100%;
-    height: 90vh;
+    height: 88vh;
 }
 
 /******************************************/
 
 .menu-widget {
     width: 100%;
-    margin-top: 10px;
 
     display: inline-block;
     text-align: center;
+
+    margin-left:auto;
+    margin-right:auto;
 }
 
 .menu-widget h1,
-.profile-widget h1{
+.profile-widget h1,
+.unread-messages-widget h1{
     width: 100%;
 
     margin-bottom: 10px;
@@ -338,8 +343,8 @@ fieldset[disabled] .gwt-Button.active {
 }
 
 .profile-widget div{
+    width: 100%;
     margin-right: 10px;
-
     text-align: left;
     display:inline-block;
     vertical-align: middle;
@@ -352,9 +357,9 @@ fieldset[disabled] .gwt-Button.active {
     padding-left: 10px;
 
     display: block;
-    border-left: 4px solid #9262D2;
 
     background-color: rgba(146, 98, 210, 0.23);
+    box-shadow: -4px 0 0px #9262D2;;
 }
 
 .profile-widget button{
@@ -379,4 +384,98 @@ fieldset[disabled] .gwt-Button.active {
 
 .friends-list-widget {
 
+}
+
+/******************************************/
+
+.chat-widget {
+
+}
+
+.unread-messages-widget {
+
+}
+
+.unread-messages-widget button {
+    display:block;
+    width:95%;
+    margin-left:auto;
+    margin-right:auto;
+    border: none;
+    border-radius: 0px;
+    margin-left:auto;
+    margin-right: auto;
+    display: block;
+    background-color: rgba(75, 0, 130, 0.23);
+    box-shadow: 4px 0 0 #4B0082 inset;
+}
+
+.chat-box {
+    max-height: 100vh;
+
+    width: 70%;
+
+    display: inline-block;
+}
+
+.chat-box > .gwt-Label{
+    padding: 11px 23px;
+    text-align: left;
+}
+
+.chat-box > input{
+    width: 80%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.message-from-me{
+    /*color:#4B0082;*/
+    background-color: rgba(75, 0, 130, 0.23);
+    box-shadow: -4px 0 0 #4B0082 inset;
+    text-align: right;
+    padding: 11px 23px;
+}
+
+.message-to-me{
+    /*color:#ff6c36;*/
+    background-color: rgba(255, 108, 54, 0.23);
+    box-shadow: 4px 0 0 #ff6c36 inset;
+    text-align: left;
+    padding: 11px 23px;
+}
+
+.chat-scroller {
+    overflow-y: scroll;
+    height: 60vh;
+}
+
+.friends-list {
+    width:30%;
+    display:inline-block;
+    vertical-align:top;
+}
+
+.friends-list button {
+    background-color: rgba(75, 0, 130, 0.23);
+    display:block;
+    width:95%;
+    margin-left:auto;
+    margin-right:auto;
+    border: none;
+    border-radius: 0px;
+    margin-left:auto;
+    margin-right: auto;
+    display: block;
+}
+
+@media screen and (max-width:800px) {
+    .friends-list{
+        width:100%;
+    }
+
+    .chat-box{
+        display: block;
+        width:80%;
+    }
 }
