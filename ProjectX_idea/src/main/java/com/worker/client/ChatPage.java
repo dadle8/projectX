@@ -220,9 +220,10 @@ public class ChatPage {
                 if(message.getText().length() != 0 & message.getText().length() <= 1024) {
                     sendMessageBtn.setEnabled(false);
                     tmForSendBtn.scheduleRepeating(delayMillis/4);
+                    final Timestamp dateMessage = new Timestamp(new java.util.Date().getTime());
 
                     WorkerService.App.getInstance().saveNewMessage(message.getText(), CurrentUser.getId(),
-                            addressee, new AsyncCallback<Boolean>() {
+                            addressee, dateMessage, new AsyncCallback<Boolean>() {
                         public void onFailure(Throwable caught) {
                             GWT.log("Error in 'sendMessageBtn.addClickHandler' when 'saveNewMessage'.\n" + caught.toString());
                             sendMessageBtnFlag = true;
@@ -230,7 +231,7 @@ public class ChatPage {
 
                         public void onSuccess(Boolean result) {
                             messages.setHTML(messages.getHTML() + "<p class='message-from-me'>"
-                                    + message.getText() + " | " + formatDate(new Timestamp(new java.util.Date().getTime())) + "</p>");
+                                    + message.getText() + " | " + formatDate(dateMessage) + "</p>");
                             message.setText("");
                             scrollPanel.scrollToBottom();
                             sendMessageBtnFlag = true;

@@ -1,16 +1,11 @@
 package com.worker.client;
 
-import com.google.gwt.maps.client.base.Point;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.web.bindery.requestfactory.server.Pair;
 import com.worker.DB_classes.UserEntity;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.jws.soap.SOAPBinding;
-import javax.servlet.http.HttpSession;
 
 public interface WorkerServiceAsync {
     void addCurrentGeo(double latitude, double longitude, String userAgent, AsyncCallback<Boolean> async);
@@ -26,18 +21,10 @@ public interface WorkerServiceAsync {
     void changePassword(String name, String newPassword, AsyncCallback<Boolean> async);
     void logout(AsyncCallback<Void> async);
     void getUserFromCurrentSession(AsyncCallback<UserEntity> async);
-
     void getAllUsers(String login, AsyncCallback<List> async);
-
-    void saveNewMessage(String message, int idfrom, String loginAddressee, AsyncCallback<Boolean> async);
-
-
+    void saveNewMessage(String message, int idfrom, String loginAddressee, Timestamp DateMessage, AsyncCallback<Boolean> async);
     void getLastUnreadMessage(int idfrom, String loginAddressee, String messages, AsyncCallback<String> async);
-
     void getMessageHistory(int idfrom, String loginAddressee, Timestamp time, AsyncCallback<String[]> async);
-
-
     void getCountOfUnreadMessages(int idto, AsyncCallback<String[][]> async);
-
     void getFriends(AsyncCallback<List<UserEntity>> async);
 }

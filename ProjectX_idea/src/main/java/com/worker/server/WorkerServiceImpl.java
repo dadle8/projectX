@@ -93,8 +93,8 @@ public class WorkerServiceImpl extends RemoteServiceServlet implements WorkerSer
         return HW.getAllUser(login);
     }
 
-    public Boolean saveNewMessage(String message, int idfrom, String loginAddressee) {
-        return HW.saveNewMessage(message,idfrom,loginAddressee);
+    public Boolean saveNewMessage(String message, int idfrom, String loginAddressee, Timestamp DateMessage) {
+        return HW.saveNewMessage(message,idfrom,loginAddressee, DateMessage);
     }
 
     public String getLastUnreadMessage(int idfrom, String loginAddressee, String messages) {

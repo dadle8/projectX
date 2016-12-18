@@ -50,5 +50,6 @@
     <orderEntry type="library" name="gwt-ajaxloader-1.1.0" level="project" />
     <orderEntry type="library" name="gwt-user" level="project" />
     <orderEntry type="library" name="gwt-user" level="project" />
+    <orderEntry type="library" name="gwt-user" level="project" />
   </component>
 </module>

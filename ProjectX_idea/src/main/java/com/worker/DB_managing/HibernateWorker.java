@@ -197,13 +197,13 @@ public class HibernateWorker implements Serializable {
      * This method save in table 'message' new message from 'idfrom' to 'loginAddressee' with content 'message'.
      * New message has flag 'isread' = 0 and 'dateMessage' = now date.
      */
-    public Boolean saveNewMessage(String message, int idfrom, String loginAddressee) {
+    public Boolean saveNewMessage(String message, int idfrom, String loginAddressee, Timestamp DateMessage) {
         UserEntity userAddressee = getUserByLogin(loginAddressee);
         Session session = factory.openSession();
 
         MessagesEntity newMessage = new MessagesEntity();
         newMessage.setMessage(message);
-        newMessage.setDateMessage(new Timestamp(new java.util.Date().getTime()));
+        newMessage.setDateMessage(DateMessage);
         newMessage.setIdfrom(idfrom);
         newMessage.setIdto(userAddressee.getId());
         newMessage.setIsread(0);
