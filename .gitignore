@@ -1,4 +1,4 @@
-ProjectX_idea/.idea/*
+/.idea/*
 *.cache.js
 *.class
-ProjectX_idea/target
+/target/*
