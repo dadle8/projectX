@@ -13,4 +13,8 @@
         <servlet-name>com.worker.Worker WorkerService</servlet-name>
         <url-pattern>/Worker/WorkerService</url-pattern>
     </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>Worker.html</welcome-file>
+    </welcome-file-list>
 </web-app>
