@@ -1,4 +1,4 @@
 .idea/
-*.cache.js
-*.class
 target/
+Projectx_idea/ProjecX_idea.iml
+out/
